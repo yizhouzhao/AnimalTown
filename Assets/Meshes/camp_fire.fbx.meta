@@ -1,15 +1,44 @@
 fileFormatVersion: 2
-guid: ff7c0596e76fd7048861b39317755218
+guid: 9f50a6060198a094799d9f59fdf25d89
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: Rocks
+    100004: utensil_and_rope
+    100006: woods_and_ground
     400000: //RootNode
-    2100000: lambert3
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: pCylinder1
-  externalObjects: {}
+    400002: Rocks
+    400004: utensil_and_rope
+    400006: woods_and_ground
+    2100000: woods_and_ground_texture
+    2100002: rocks_texture
+    2100004: utensilrope_texture
+    2300000: Rocks
+    2300002: utensil_and_rope
+    2300004: woods_and_ground
+    3300000: Rocks
+    3300002: utensil_and_rope
+    3300004: woods_and_ground
+    4300000: woods_and_ground
+    4300002: Rocks
+    4300004: utensil_and_rope
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rocks_texture
+    second: {fileID: 2100000, guid: a5866154d0443f94783c5e2ba94644e6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: utensilrope_texture
+    second: {fileID: 2100000, guid: 22606d02be81e8e40ba987bcb21499d1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: woods_and_ground_texture
+    second: {fileID: 2100000, guid: d402dbb85efac244f925a507956a7e75, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -40,7 +69,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 30
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1

@@ -51,7 +51,7 @@ public class PlayerMove : MonoBehaviour
         else
         {
             //Moving
-            _animator.SetInteger("animation", 1);
+            _animator.SetInteger("animation", 2);
         }
     }
 }

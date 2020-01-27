@@ -65,15 +65,18 @@ ModelImporter:
     2100006: M_eye_white
     2100008: M_eye_black
     2100010: M_eyebrow
+    2300000: eye_left
+    2300002: eye_right
+    2300004: eyebrow
+    3300000: eye_left
+    3300002: eye_right
+    3300004: eyebrow
     4300000: body
     4300002: eye_right
     4300004: eyebrow
     4300006: eye_left
     9500000: //RootNode
     13700000: body
-    13700002: eye_left
-    13700004: eye_right
-    13700006: eyebrow
     2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
@@ -106,7 +109,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 100
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1

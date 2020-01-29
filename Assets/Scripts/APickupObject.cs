@@ -41,17 +41,22 @@ public class APickupObject : MonoBehaviour
         }
     }
 
-    public void Pickup(AnimalCharacter animalCharacter)
+    //make the object static without collision and rigidbody
+    public void MakeStatic()
     {
-        Debug.Log("APickupObject Pickup");
         Rigidbody rBody = GetComponent<Rigidbody>();
         GetComponent<BoxCollider>().enabled = false;
         GetComponent<MeshCollider>().enabled = false;
         rBody.useGravity = false;
         rBody.velocity = Vector3.zero;
         rBody.angularVelocity = Vector3.zero;
+    }
+
+    public void Pickup(AnimalCharacter animalCharacter)
+    {
+        Debug.Log("APickupObject Pickup");
+        MakeStatic();
         this.transform.position = animalCharacter.holdTransform.position;
-       
         this.transform.parent = animalCharacter.holdTransform;
         animalCharacter.bHoldObject = true;
         animalCharacter.meetPickupObject = null;

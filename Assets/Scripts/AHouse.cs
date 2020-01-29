@@ -15,9 +15,11 @@ public class AHouse : ASceneTool
 
     public override void Interact(AnimalCharacter animalCharacter)
     {
+        //Set Activity
         animalCharacter.currentActivity = EActivity.Sleep;
         animalCharacter.animator.SetInteger("animation", 5);
 
+        //Action
         Debug.Log("AHouse: sleep");
         StartCoroutine(SleepNow());
         IEnumerator SleepNow()

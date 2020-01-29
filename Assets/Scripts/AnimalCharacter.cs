@@ -70,7 +70,7 @@ public class AnimalCharacter : MonoBehaviour
         if (Input.GetKeyDown("e"))
         {
             print("Pickup!!!");
-            PickupObject();
+            PickupDropObject();
         }
     }
 
@@ -84,7 +84,7 @@ public class AnimalCharacter : MonoBehaviour
         }
     }
 
-    public void PickupObject()
+    public void PickupDropObject()
     {
         if(holdObject == null)
         {

@@ -9,7 +9,17 @@ public enum ESceneEventTool
 
 public enum EActivity
 {
-    Sleep, Eat, Play
+    Sleep, Eat, Play, Travel
+}
+
+public enum EObject
+{
+    Apple, Fish, Bamboo
+}
+
+public enum EAnimalType
+{
+    Panda, Tiger, Goose, Pig
 }
 
 public class EAnimalIslandDefinitions : MonoBehaviour

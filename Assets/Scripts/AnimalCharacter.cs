@@ -5,6 +5,7 @@ using UnityEngine;
 public class AnimalCharacter : MonoBehaviour
 {
     [Header("Basic information")]
+    public EAnimalType animalType;
     public string characterName;
     public int age;
     public string chararcterDescription;
@@ -14,7 +15,7 @@ public class AnimalCharacter : MonoBehaviour
     public float motorSkill;
     public float artCraftSkill;
 
-    [Header("Animation")]
+    //Animation and nevigation*
     public Animator animator;
 
     [Header("Status(Fluents)")]
@@ -25,16 +26,37 @@ public class AnimalCharacter : MonoBehaviour
     public ASceneTool sceneTool;//Scenetool Reference: to record what scene tool the character meets
     public float currentActivityRemainTime;
     public EActivity currentActivity;
+    public bool bInActivity;
+
+    //Object in hand
+    public bool holdObject;
+    public EObject objectType;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        this.animator = this.gameObject.GetComponent<Animator>();
+        animator.SetInteger("animation", 0);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown("space"))
+        {
+            print("Interact!!!");
+            ActWithSceneTool();
+        }
+    }
+
+    //Act with Scene tool
+    public void ActWithSceneTool()
+    {
+        if (sceneTool != null)
+        {
+            this.bInActivity = true;
+            sceneTool.Interact(this);
+        }
     }
 }

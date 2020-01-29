@@ -8,6 +8,8 @@ public class ASceneTool : MonoBehaviour
     //Define tool type
     public ESceneEventTool toolType;
     public string toolName;
+    public EActivity activityType;
+    public float activityDuration;
 
     //Occupied
     public int maxCapacity = 1;
@@ -18,6 +20,7 @@ public class ASceneTool : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Ascenetool: " + this.toolName + " enters: " + other.gameObject.name);
         if(other.gameObject.tag == "Player" || other.gameObject.tag == "Agent")
         {
             //Still have place
@@ -32,6 +35,7 @@ public class ASceneTool : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log("Ascenetool: " + this.toolName + " exits: " + other.gameObject.name);
         if (other.gameObject.tag == "Player" || other.gameObject.tag == "Agent")
         {
             AnimalCharacter animalCharacter = other.gameObject.GetComponent<AnimalCharacter>();

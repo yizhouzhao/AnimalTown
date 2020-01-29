@@ -22,22 +22,41 @@ public class AnimalCharacter : MonoBehaviour
     public float energy; //tired or excited
     public float fullness; //hungry or full
 
-    //Activity
+    [Header("Activity")]
     public ASceneTool sceneTool;//Scenetool Reference: to record what scene tool the character meets
     public float currentActivityRemainTime;
     public EActivity currentActivity;
     public bool bInActivity;
 
-    //Object in hand
-    public bool holdObject;
-    public EObject objectType;
+    [Header("Object")]
+    public bool bHoldObject;
+    public APickupObject meetPickupObject;
+    public Transform holdTransform; //position to hold this object
+    public APickupObject holdObject;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        //Set up animation
         this.animator = this.gameObject.GetComponent<Animator>();
         animator.SetInteger("animation", 0);
+
+        //Set up hold transform to hold the pick up object
+        foreach (Transform eachChild in transform)
+        {
+            if (eachChild.name == "HoldTransform")
+            {
+                holdTransform = eachChild;
+                break;
+            }
+        }
+
+        if(holdTransform == null)
+        {
+            Debug.LogError("No hold transform for player/agent");
+        }
+
     }
 
     // Update is called once per frame
@@ -47,6 +66,11 @@ public class AnimalCharacter : MonoBehaviour
         {
             print("Interact!!!");
             ActWithSceneTool();
+        }
+        if (Input.GetKeyDown("e"))
+        {
+            print("Pickup!!!");
+            PickupObject();
         }
     }
 
@@ -58,5 +82,21 @@ public class AnimalCharacter : MonoBehaviour
             this.bInActivity = true;
             sceneTool.Interact(this);
         }
+    }
+
+    public void PickupObject()
+    {
+        if(holdObject == null)
+        {
+            if (meetPickupObject != null)
+            {
+                meetPickupObject.Pickup(this);
+            }
+        }
+        else
+        {
+            holdObject.Drop(this);
+        }
+
     }
 }

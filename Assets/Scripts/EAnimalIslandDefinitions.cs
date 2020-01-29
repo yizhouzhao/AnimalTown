@@ -12,7 +12,7 @@ public enum EActivity
     Sleep, Eat, Play, Travel
 }
 
-public enum EObject
+public enum EPickupObject
 {
     Apple, Fish, Bamboo
 }

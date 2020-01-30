@@ -6,7 +6,6 @@ public class AFish : APickupObject
 {
     void AWake()
     {
-        this.objectType = EPickupObject.Apple;
-        this.eatable = true;
+        this.objectType = EPickupObject.Fish;
     }
 }

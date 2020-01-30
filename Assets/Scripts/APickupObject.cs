@@ -10,7 +10,7 @@ public class APickupObject : MonoBehaviour
     //occupied
     public bool occupied = false;
 
-    //
+    //Eatable?
     public bool eatable;
 
     private void OnTriggerEnter(Collider other)
@@ -65,6 +65,7 @@ public class APickupObject : MonoBehaviour
         GetComponent<Rigidbody>().useGravity = true;
     }
 
+    //Pick up object
     public void Pickup(AnimalCharacter animalCharacter)
     {
         Debug.Log("APickupObject Pickup");
@@ -77,6 +78,7 @@ public class APickupObject : MonoBehaviour
 
     }
 
+    //Drop object
     public void Drop(AnimalCharacter animalCharacter)
     {
         MakeDynamic();
@@ -85,4 +87,6 @@ public class APickupObject : MonoBehaviour
         animalCharacter.bHoldObject = false;
         animalCharacter.holdObject = null;
     }
+
+
 }

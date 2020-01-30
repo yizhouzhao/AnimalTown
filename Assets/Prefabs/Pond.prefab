@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7549608470080799860}
   - component: {fileID: 7549608470080799859}
   - component: {fileID: 65957248772686582}
+  - component: {fileID: 1295722622618705823}
   m_Layer: 0
   m_Name: Pond
   m_TagString: Untagged
@@ -89,5 +90,28 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10, y: 2.220446e-16, z: 10}
+  m_Size: {x: 12.58, y: 1.52, z: 11.72}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1295722622618705823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7549608470080799857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1713c36d62004cd46b9b8d74f8881db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toolType: 2
+  toolName: 
+  activityType: 5
+  activityDuration: 0
+  maxCapacity: 1
+  animalCharacterNames: []
+  fruitPrefab: {fileID: 6700632672244994687, guid: 14715c85243eb7741b7a8fc2f4957e64,
+    type: 3}
+  fruitGeneratingTime: 2
+  fruitCount: 0
+  maxFruitCount: 5

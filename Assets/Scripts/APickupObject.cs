@@ -15,10 +15,12 @@ public class APickupObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Agent")
+        //if (other.gameObject.tag == "Player" || other.gameObject.tag == "Agent")
+        if(other.gameObject.tag == "Vision")
         {
             Debug.Log("APickupObject enters");
-            AnimalCharacter animalCharacter = other.gameObject.GetComponent<AnimalCharacter>();
+            //A character/an agent sees a pickup object
+            AnimalCharacter animalCharacter = other.gameObject.GetComponent<TCone>().owner;
             if(animalCharacter.meetPickupObject == null && !occupied)
             {
                 animalCharacter.meetPickupObject = this;
@@ -29,11 +31,13 @@ public class APickupObject : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Agent")
+        //if (other.gameObject.tag == "Player" || other.gameObject.tag == "Agent")
+        if (other.gameObject.tag == "Vision")
         {
             Debug.Log("APickupObject exits");
-            AnimalCharacter animalCharacter = other.gameObject.GetComponent<AnimalCharacter>();
-            if(ReferenceEquals(animalCharacter.meetPickupObject, this))
+            //A character/an agent leaves a pickup object
+            AnimalCharacter animalCharacter = other.gameObject.GetComponent<TCone>().owner;
+            if (ReferenceEquals(animalCharacter.meetPickupObject, this))
             {
                 animalCharacter.meetPickupObject = null;
                 occupied = false;

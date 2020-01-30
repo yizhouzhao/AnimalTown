@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7840794373828136128}
   - component: {fileID: 7840794373113875039}
   - component: {fileID: 65839965423795922}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: tree1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,6 +56,7 @@ MonoBehaviour:
     type: 3}
   fruitGeneratingTime: 4
   fruitCount: 0
+  maxFruitCount: 10
 --- !u!65 &65839965423795922
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -80,7 +81,7 @@ GameObject:
   - component: {fileID: 7840794373828136132}
   - component: {fileID: 7840794373827333348}
   - component: {fileID: 7840794373826367012}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: bark05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +158,7 @@ GameObject:
   - component: {fileID: 7840794373828136134}
   - component: {fileID: 7840794373827333350}
   - component: {fileID: 7840794373826367014}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: leaf_maple
   m_TagString: Untagged
   m_Icon: {fileID: 0}

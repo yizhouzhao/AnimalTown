@@ -52,6 +52,15 @@ public class APickupObject : MonoBehaviour
         rBody.angularVelocity = Vector3.zero;
     }
 
+    //make the object with collision and rigidbody
+    public void MakeDynamic()
+    {
+        transform.parent = null;
+        GetComponent<BoxCollider>().enabled = true;
+        GetComponent<MeshCollider>().enabled = true;
+        GetComponent<Rigidbody>().useGravity = true;
+    }
+
     public void Pickup(AnimalCharacter animalCharacter)
     {
         Debug.Log("APickupObject Pickup");
@@ -66,10 +75,7 @@ public class APickupObject : MonoBehaviour
 
     public void Drop(AnimalCharacter animalCharacter)
     {
-        this.transform.parent = null;
-        GetComponent<BoxCollider>().enabled = true;
-        GetComponent<MeshCollider>().enabled = true;
-        GetComponent<Rigidbody>().useGravity = true;
+        MakeDynamic();
         GetComponent<Rigidbody>().AddForce(animalCharacter.transform.forward * 10f);
         this.occupied = false;
         animalCharacter.bHoldObject = false;

@@ -19,12 +19,12 @@ public class ASceneTool : MonoBehaviour
     public List<string> animalCharacterNames; //hold animal character names
 
     private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("Ascenetool: " + this.toolName + " enters: " + other.gameObject.name);
+    {  
         if(other.gameObject.tag == "Player" || other.gameObject.tag == "Agent")
         {
+            Debug.Log("Ascenetool: " + this.toolName + " enters: " + other.gameObject.name);
             //Still have place
-            if(animalCharacterNames.Count < maxCapacity)
+            if (animalCharacterNames.Count < maxCapacity)
             {
                 AnimalCharacter animalCharacter = other.gameObject.GetComponent<AnimalCharacter>();
                 animalCharacterNames.Add(animalCharacter.characterName);
@@ -34,10 +34,10 @@ public class ASceneTool : MonoBehaviour
     }
 
     private void OnTriggerExit(Collider other)
-    {
-        Debug.Log("Ascenetool: " + this.toolName + " exits: " + other.gameObject.name);
+    {  
         if (other.gameObject.tag == "Player" || other.gameObject.tag == "Agent")
         {
+            Debug.Log("Ascenetool: " + this.toolName + " exits: " + other.gameObject.name);
             AnimalCharacter animalCharacter = other.gameObject.GetComponent<AnimalCharacter>();
             animalCharacterNames.Remove(animalCharacter.characterName);
             animalCharacter.sceneTool = null;

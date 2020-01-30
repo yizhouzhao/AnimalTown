@@ -10,6 +10,7 @@ public class ATree : ASceneTool
     public float fruitGeneratingTime = 1f;
     private float fruitGeneratingTimeRemain;
     public int fruitCount;
+    public int maxFruitCount = 10;
     
     void Awake()
     {   
@@ -35,14 +36,39 @@ public class ATree : ASceneTool
 
         //Action
         Debug.Log("ATree: CollectFruit");
-        StartCoroutine(SleepNow());
-        IEnumerator SleepNow()
+        StartCoroutine(CollectFruit());
+        IEnumerator CollectFruit()
         {
             yield return new WaitForSeconds(this.activityDuration);
 
             animalCharacter.animator.SetInteger("animation", 0);
             
             animalCharacter.bInActivity = false;
+
+            //Collect Fruit
+            if(fruitCount > 0) //still have fruit
+            {
+                foreach(Transform childTransform in transform)
+                {
+                    APickupObject pickupObject = childTransform.GetComponent<APickupObject>();
+                    if(pickupObject)
+                    {
+                        fruitCount--;
+                        //if character do not have object in hand
+                        if(!animalCharacter.bHoldObject)
+                        {
+                            pickupObject.Pickup(animalCharacter);
+                        }
+                        else //hold an object already
+                        {
+                            pickupObject.MakeDynamic();
+                            pickupObject.occupied = false;
+                        }
+                        break;
+                    }
+
+                }
+            }
         }
     }
 
@@ -51,16 +77,20 @@ public class ATree : ASceneTool
         fruitGeneratingTimeRemain -= Time.deltaTime;
         if(fruitGeneratingTimeRemain < 0f)
         {
-            //Generate fruit
-            GameObject fruit = Instantiate(fruitPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-            fruit.GetComponent<APickupObject>().MakeStatic();
-            fruit.transform.parent = this.transform;
-            Vector3 boxSize = GetComponent<BoxCollider>().size;
+            if (fruitCount <= maxFruitCount)
+            {
+                //Generate fruit
+                GameObject fruit = Instantiate(fruitPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+                APickupObject pickupObject = fruit.GetComponent<APickupObject>();
+                pickupObject.MakeStatic();
+                pickupObject.occupied = true;
+                fruit.transform.parent = this.transform;
+                Vector3 boxSize = GetComponent<BoxCollider>().size;
 
-            fruit.transform.localPosition = new Vector3(Random.Range(-boxSize.x/4, boxSize.x/4f),
-                Random.Range(boxSize.y / 3, boxSize.y), Random.Range(-boxSize.z / 4, boxSize.z / 4f));
-            fruitCount++;
-           
+                fruit.transform.localPosition = new Vector3(Random.Range(-boxSize.x / 4, boxSize.x / 4f),
+                    Random.Range(boxSize.y / 3, boxSize.y), Random.Range(-boxSize.z / 4, boxSize.z / 4f));
+                fruitCount++;
+            }
             fruitGeneratingTimeRemain = fruitGeneratingTime;
         }
         

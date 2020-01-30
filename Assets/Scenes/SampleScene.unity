@@ -2077,7 +2077,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 27ed485660935bd42874f0ea17f35a64, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 27ed485660935bd42874f0ea17f35a64, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4932,7 +4932,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: fcfc2a05e44c3d14896a06712a69ae89, type: 3}
       propertyPath: m_Layer
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: fcfc2a05e44c3d14896a06712a69ae89, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5257,7 +5257,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!135 &1381230699
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8108,6 +8108,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PondWater
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549608470080799857, guid: 9572de949ae7d234db32578f6ed5b6ff,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7549608470080799861, guid: 9572de949ae7d234db32578f6ed5b6ff,
         type: 3}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum ESceneEventTool
 {
-    House, Tree, Pool, Farm
+    House, Tree, Pond, Farm
 }
 
 public enum EActivity

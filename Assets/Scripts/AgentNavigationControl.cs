@@ -12,16 +12,21 @@ public class AgentNavigationControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (testTravelTo != "")
+        {
+            TravelTo(GameObject.FindWithTag("Player").transform.position);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (testTravelTo != "")
-        {
-            TravelTo(GameObject.FindWithTag("Player").transform.position);
-        }
+        //if (testTravelTo != "")
+        //{
+        //    TravelTo(GameObject.FindWithTag("Player").transform.position);
+        //}
+
+        //Debug.Log("AgentNavCtrl: " + IsDoneTraveling().ToString());
     }
 
     //Travel to player and start conversation

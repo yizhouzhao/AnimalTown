@@ -22,6 +22,14 @@ public enum EAnimalType
     Panda, Tiger, Goose, Pig
 }
 
+
+public class AnimalIslandProfile
+{
+    public static float terrainHeight = 200;
+    public static float terrainWidth = 200;
+
+}
+
 public class EAnimalIslandDefinitions : MonoBehaviour
 {
 

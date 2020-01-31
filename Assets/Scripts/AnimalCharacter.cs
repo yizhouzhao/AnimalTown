@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AnimalCharacter : MonoBehaviour
 {
@@ -46,6 +47,9 @@ public class AnimalCharacter : MonoBehaviour
     public AnimalCharacter meetAnimalCharacter; //meet another agent
     public bool agreeCommunication; //whether the two character want to communicate
 
+    //Nevigation
+    [HideInInspector]
+    AgentNavigationControl navControl;
 
     // Start is called before the first frame update
     void Start()
@@ -54,14 +58,21 @@ public class AnimalCharacter : MonoBehaviour
         this.animator = this.gameObject.GetComponent<Animator>();
         animator.SetInteger("animation", 0);
 
+        //Set hold object position
         holdTransform = this.transform.Find("HoldTransform");
-
         if(holdTransform == null)
         {
             Debug.LogError("No hold transform for player/agent");
         }
 
+        //Set up start money
         money = 10f;
+
+        //Set up navigation control for agents only
+        if (this.gameObject.tag == "Agent")
+        {
+            navControl = GetComponent<AgentNavigationControl>();
+        }
     }
 
     // Update is called once per frame
@@ -83,8 +94,20 @@ public class AnimalCharacter : MonoBehaviour
             print("Use!!!");
             UseObject();
         }
+
+        //Test random walk for agent
+        if(gameObject.tag == "Agent")
+        {
+            if (navControl.IsDoneTraveling())
+            {
+                //RandomWalk1(UnityEngine.Random.Range(100f, 200f));
+                RandomWalk2();
+            }
+        }
+
     }
 
+    //Act with animal character event
     private void ActWithAnimalCharacter()
     {
         if (this.meetAnimalCharacter)
@@ -94,7 +117,7 @@ public class AnimalCharacter : MonoBehaviour
         }
     }
 
-    //Act with Scene tool
+    //Act with scene tool event
     public void ActWithSceneTool()
     {
         if (sceneTool != null)
@@ -105,6 +128,7 @@ public class AnimalCharacter : MonoBehaviour
         }
     }
 
+    //Pick up drop event
     public void PickupDropObject()
     {
         if(holdObject == null)
@@ -120,6 +144,7 @@ public class AnimalCharacter : MonoBehaviour
         }
     }
 
+    //Use object event
     public void UseObject()
     {
         if (holdObject != null)
@@ -229,5 +254,31 @@ public class AnimalCharacter : MonoBehaviour
             meetAnimalCharacter.meetAnimalCharacter = null;
             this.meetAnimalCharacter = null;
         }
+    }
+
+    //Walk event: random walk version 1 get a random point from radius
+    public void RandomWalk1(float walkRadius)
+    {
+        Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * walkRadius;
+        randomDirection += transform.position;
+        NavMeshHit hit;
+        NavMesh.SamplePosition(randomDirection, out hit, walkRadius, 1);
+        Vector3 finalPosition = hit.position;
+
+        navControl.TravelTo(finalPosition);
+    }
+
+    //Walk event: random walk version 2 get a random point on map
+    public void RandomWalk2()
+    {
+        float x = UnityEngine.Random.Range(0.1f, 0.9f) * AnimalIslandProfile.terrainHeight;
+        float z = UnityEngine.Random.Range(0.1f, 0.9f) * AnimalIslandProfile.terrainWidth;
+
+        Vector3 targetPosition = new Vector3(x, this.transform.position.y, z);
+        NavMeshHit hit;
+        NavMesh.SamplePosition(targetPosition, out hit, 50, NavMesh.AllAreas);
+
+        navControl.TravelTo(hit.position);
+        Debug.Log("Animal Character RandomWalk2: " + hit.position);
     }
 }

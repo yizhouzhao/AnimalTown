@@ -9,7 +9,7 @@ public enum ESceneEventTool
 
 public enum EActivity
 {
-    Sleep, Eat, Play, Travel, CollectFruit, Fishing
+    Idle, Sleep, Eat, Play, Travel, CollectFruit, Fishing
 }
 
 public enum EPickupObject

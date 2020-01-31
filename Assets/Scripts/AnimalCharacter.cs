@@ -72,6 +72,12 @@ public class AnimalCharacter : MonoBehaviour
             print("Pickup!!!");
             PickupDropObject();
         }
+
+        if (Input.GetKeyDown("q"))
+        {
+            print("Use!!!");
+            UseObject();
+        }
     }
 
     //Act with Scene tool
@@ -97,6 +103,19 @@ public class AnimalCharacter : MonoBehaviour
         {
             holdObject.Drop(this);
         }
+    }
 
+    public void UseObject()
+    {
+        if (holdObject != null)
+        {
+            //If it is food and eatable
+            AFood food = holdObject as AFood;
+            if (food && food.eatable)
+            {
+                this.bInActivity = true;
+                food.Eat(this);
+            }
+        }
     }
 }

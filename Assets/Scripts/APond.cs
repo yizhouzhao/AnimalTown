@@ -42,7 +42,7 @@ public class APond : ASceneTool
             yield return new WaitForSeconds(this.activityDuration);
 
             animalCharacter.animator.SetInteger("animation", 0);
-
+            animalCharacter.currentActivity = EActivity.Idle;
             animalCharacter.bInActivity = false;
 
             //Collect Fruit

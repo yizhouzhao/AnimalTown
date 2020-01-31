@@ -11,7 +11,7 @@ public class APickupObject : MonoBehaviour
     public bool occupied = false;
 
     //Eatable?
-    public bool eatable;
+    public bool eatable = false;
 
     private void OnTriggerEnter(Collider other)
     {

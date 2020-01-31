@@ -12,10 +12,4 @@ public class TCone : MonoBehaviour
     {
         owner = this.transform.parent.GetComponent<AnimalCharacter>();    
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

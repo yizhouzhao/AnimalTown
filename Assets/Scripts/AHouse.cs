@@ -26,9 +26,13 @@ public class AHouse : ASceneTool
         {
             yield return new WaitForSeconds(4f);
 
-            animalCharacter.animator.SetInteger("animation", 0);
-            animalCharacter.energy = Mathf.Min(1f, animalCharacter.energy + 0.5f);
             animalCharacter.bInActivity = false;
+            animalCharacter.currentActivity = EActivity.Idle;
+            animalCharacter.animator.SetInteger("animation", 0);
+
+            //Energy gain
+            animalCharacter.energy = Mathf.Min(1f, animalCharacter.energy + 0.5f);
+            
         }
     }
 }

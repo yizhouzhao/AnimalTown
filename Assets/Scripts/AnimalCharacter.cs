@@ -21,6 +21,7 @@ public class AnimalCharacter : MonoBehaviour
     [Header("Status(Fluents)")]
     public float energy; //tired or excited
     public float fullness; //hungry or full
+    public float money; //money
 
     [Header("Activity")]
     public ASceneTool sceneTool;//Scenetool Reference: to record what scene tool the character meets
@@ -33,6 +34,15 @@ public class AnimalCharacter : MonoBehaviour
     public APickupObject meetPickupObject;
     public Transform holdTransform; //position to hold this object
     public APickupObject holdObject;
+
+    [Header("Keycode for control")]
+    public KeyCode interactKey;
+    public KeyCode pickupDropKey;
+    public KeyCode useKey;
+
+    [Header("Communication")]
+    public AnimalCharacter meetAnimalCharacter; //meet another agent
+    public bool agreeCommunication; //whether the two character want to communicate
 
 
     // Start is called before the first frame update
@@ -62,18 +72,18 @@ public class AnimalCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space"))
+        if (Input.GetKeyDown(interactKey))
         {
             print("Interact!!!");
             ActWithSceneTool();
         }
-        if (Input.GetKeyDown("e"))
+        if (Input.GetKeyDown(pickupDropKey))
         {
             print("Pickup!!!");
             PickupDropObject();
         }
 
-        if (Input.GetKeyDown("q"))
+        if (Input.GetKeyDown(useKey))
         {
             print("Use!!!");
             UseObject();
@@ -125,5 +135,91 @@ public class AnimalCharacter : MonoBehaviour
         this.animator.SetInteger("animation", 0);
         this.currentActivity = EActivity.Idle;
         this.bInActivity = false;
+    }
+
+    //Group activity: trade
+    public void Trade()
+    {
+        this.agreeCommunication = true;
+
+        this.animator.SetInteger("animation", 0);
+        this.bInActivity = true;
+        this.currentActivity = EActivity.Trade;
+
+        //if already in trade event
+        if (meetAnimalCharacter.agreeCommunication)
+        {
+            return;
+        }
+
+        //Wait another animalcharacter's response
+        StartCoroutine(WaitTradeRequest(meetAnimalCharacter, 1f));
+        IEnumerator WaitTradeRequest(AnimalCharacter anotherCharacter, float waitTime)
+        {
+            float accumulatedWaitTime = 0f;
+            while (accumulatedWaitTime < waitTime)
+            {
+                accumulatedWaitTime += Time.deltaTime;
+                if (anotherCharacter.agreeCommunication)
+                {
+                    break;
+                }
+            }
+            yield return new WaitForSeconds(1f); //just for delay
+        }
+
+        if(this.agreeCommunication && meetAnimalCharacter.agreeCommunication)
+        {
+            APickupObject myObject = this.holdObject;
+            APickupObject hisObject = meetAnimalCharacter.holdObject;
+
+            //Trade event
+            if(myObject && hisObject) //case 1: exchange goods
+            {
+                myObject.Drop(this);
+                hisObject.Drop(meetAnimalCharacter);
+                myObject.Pickup(meetAnimalCharacter);
+                hisObject.Pickup(this);
+            }
+            else if (myObject == null && hisObject == null) //case 2: nothing happens
+            {
+
+            }
+
+            else if (myObject != null && hisObject == null) //case 2: sell
+            {
+                if(meetAnimalCharacter.money > myObject.price)
+                {
+                    myObject.Drop(this);
+                    myObject.Pickup(meetAnimalCharacter);
+                    this.money += myObject.price;
+                    meetAnimalCharacter.money -= myObject.price;
+                }
+            }
+
+
+            else if (myObject == null && hisObject != null) //case 4: buy
+            {
+                if (this.money > hisObject.price)
+                {
+                    hisObject.Drop(meetAnimalCharacter);
+                    hisObject.Pickup(this);
+                    this.money -= hisObject.price;
+                    meetAnimalCharacter.money += hisObject.price;
+                }
+            }
+
+
+
+        }
+
+        this.SetIdle();
+        this.agreeCommunication = false;
+
+        meetAnimalCharacter.SetIdle();
+        meetAnimalCharacter.agreeCommunication = false;
+
+        meetAnimalCharacter.meetAnimalCharacter = null;
+        this.meetAnimalCharacter = null;
     }
 }

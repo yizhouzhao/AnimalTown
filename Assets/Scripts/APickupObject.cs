@@ -13,6 +13,9 @@ public class APickupObject : MonoBehaviour
     //Eatable?
     public bool eatable = false;
 
+    //price
+    public float price = 1.0f;
+
     private void OnTriggerEnter(Collider other)
     {
         //if (other.gameObject.tag == "Player" || other.gameObject.tag == "Agent")

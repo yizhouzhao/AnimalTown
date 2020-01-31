@@ -12,4 +12,37 @@ public class TCone : MonoBehaviour
     {
         owner = this.transform.parent.GetComponent<AnimalCharacter>();    
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Agent")
+        {
+            //double direction
+            Debug.Log("Animal Character meet another: " + other.gameObject.name);
+            AnimalCharacter animalCharacter = other.gameObject.GetComponent<AnimalCharacter>();
+            if (this.owner.meetAnimalCharacter == null && animalCharacter.meetAnimalCharacter == null)
+            {
+                this.owner.meetAnimalCharacter = animalCharacter;
+                animalCharacter.meetAnimalCharacter = this.owner;
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Agent")
+        {
+            //double direction
+            Debug.Log("Animal Character exit another: " + other.gameObject.name);
+            AnimalCharacter animalCharacter = other.gameObject.GetComponent<AnimalCharacter>();
+            if (this.owner.meetAnimalCharacter && animalCharacter.meetAnimalCharacter)
+            {
+                if(ReferenceEquals(this.owner.meetAnimalCharacter, animalCharacter))
+                {
+                    owner.meetAnimalCharacter = null;
+                    animalCharacter.meetAnimalCharacter = null;
+                }
+            }
+        }
+    }
 }

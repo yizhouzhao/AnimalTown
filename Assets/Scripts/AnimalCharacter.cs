@@ -158,7 +158,7 @@ public class AnimalCharacter : MonoBehaviour
         }
 
         //Wait another animalcharacter's response
-        StartCoroutine(WaitTradeRequest(meetAnimalCharacter, 1f));
+        StartCoroutine(WaitTradeRequest(meetAnimalCharacter, 5f));
         IEnumerator WaitTradeRequest(AnimalCharacter anotherCharacter, float waitTime)
         {
             float accumulatedWaitTime = 0f;
@@ -171,60 +171,63 @@ public class AnimalCharacter : MonoBehaviour
                 }
             }
             yield return new WaitForSeconds(1f); //just for delay
-        }
 
-        if(this.agreeCommunication && meetAnimalCharacter.agreeCommunication)
-        {
-            APickupObject myObject = this.holdObject;
-            APickupObject hisObject = meetAnimalCharacter.holdObject;
-
-            //Trade event
-            if(myObject && hisObject) //case 1: exchange goods
+            if (this.agreeCommunication && meetAnimalCharacter.agreeCommunication)
             {
-                myObject.Drop(this);
-                hisObject.Drop(meetAnimalCharacter);
-                myObject.Pickup(meetAnimalCharacter);
-                hisObject.Pickup(this);
-            }
-            else if (myObject == null && hisObject == null) //case 2: nothing happens
-            {
+                APickupObject myObject = this.holdObject;
+                APickupObject hisObject = meetAnimalCharacter.holdObject;
 
-            }
-
-            else if (myObject != null && hisObject == null) //case 2: sell
-            {
-                if(meetAnimalCharacter.money > myObject.price)
+                //Trade event
+                if (myObject && hisObject) //case 1: exchange goods
                 {
+                    Debug.Log("Animal Character Trade case 1");
                     myObject.Drop(this);
-                    myObject.Pickup(meetAnimalCharacter);
-                    this.money += myObject.price;
-                    meetAnimalCharacter.money -= myObject.price;
-                }
-            }
-
-
-            else if (myObject == null && hisObject != null) //case 4: buy
-            {
-                if (this.money > hisObject.price)
-                {
                     hisObject.Drop(meetAnimalCharacter);
+                    myObject.Pickup(meetAnimalCharacter);
                     hisObject.Pickup(this);
-                    this.money -= hisObject.price;
-                    meetAnimalCharacter.money += hisObject.price;
                 }
+                else if (myObject == null && hisObject == null) //case 2: nothing happens
+                {
+                    Debug.Log("Animal Character Trade case 2");
+                }
+
+                else if (myObject != null && hisObject == null) //case 3: sell
+                {
+                    Debug.Log("Animal Character Trade case 3");
+                    if (meetAnimalCharacter.money > myObject.price)
+                    {
+                        myObject.Drop(this);
+                        myObject.Pickup(meetAnimalCharacter);
+                        this.money += myObject.price;
+                        meetAnimalCharacter.money -= myObject.price;
+                    }
+                }
+
+
+                else if (myObject == null && hisObject != null) //case 4: buy
+                {
+                    Debug.Log("Animal Character Trade case 4");
+                    if (this.money > hisObject.price)
+                    {
+                        hisObject.Drop(meetAnimalCharacter);
+                        hisObject.Pickup(this);
+                        this.money -= hisObject.price;
+                        meetAnimalCharacter.money += hisObject.price;
+                    }
+                }
+
+
+
             }
 
+            this.SetIdle();
+            this.agreeCommunication = false;
 
+            meetAnimalCharacter.SetIdle();
+            meetAnimalCharacter.agreeCommunication = false;
 
+            meetAnimalCharacter.meetAnimalCharacter = null;
+            this.meetAnimalCharacter = null;
         }
-
-        this.SetIdle();
-        this.agreeCommunication = false;
-
-        meetAnimalCharacter.SetIdle();
-        meetAnimalCharacter.agreeCommunication = false;
-
-        meetAnimalCharacter.meetAnimalCharacter = null;
-        this.meetAnimalCharacter = null;
     }
 }

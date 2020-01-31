@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,6 +17,7 @@ public class AnimalCharacter : MonoBehaviour
     public float artCraftSkill;
 
     //Animation and nevigation*
+    [HideInInspector]
     public Animator animator;
 
     [Header("Status(Fluents)")]
@@ -52,21 +54,14 @@ public class AnimalCharacter : MonoBehaviour
         this.animator = this.gameObject.GetComponent<Animator>();
         animator.SetInteger("animation", 0);
 
-        //Set up hold transform to hold the pick up object
-        foreach (Transform eachChild in transform)
-        {
-            if (eachChild.name == "HoldTransform")
-            {
-                holdTransform = eachChild;
-                break;
-            }
-        }
+        holdTransform = this.transform.Find("HoldTransform");
 
         if(holdTransform == null)
         {
             Debug.LogError("No hold transform for player/agent");
         }
 
+        money = 10f;
     }
 
     // Update is called once per frame
@@ -74,8 +69,8 @@ public class AnimalCharacter : MonoBehaviour
     {
         if (Input.GetKeyDown(interactKey))
         {
-            print("Interact!!!");
             ActWithSceneTool();
+            ActWithAnimalCharacter();
         }
         if (Input.GetKeyDown(pickupDropKey))
         {
@@ -90,11 +85,21 @@ public class AnimalCharacter : MonoBehaviour
         }
     }
 
+    private void ActWithAnimalCharacter()
+    {
+        if (this.meetAnimalCharacter)
+        {
+            Debug.Log("Animal Character Interact with another character");
+            Trade();
+        }
+    }
+
     //Act with Scene tool
     public void ActWithSceneTool()
     {
         if (sceneTool != null)
         {
+            Debug.Log("Animal Character Interact with scene tool"); 
             this.bInActivity = true;
             sceneTool.Interact(this);
         }

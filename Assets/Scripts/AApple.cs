@@ -12,5 +12,6 @@ public class AApple : ASeed
         this.fullGain = 0.2f;
         this.eatTime = 2f;
         this.growTime = 1f;
+        this.price = 1f;
     }
 }

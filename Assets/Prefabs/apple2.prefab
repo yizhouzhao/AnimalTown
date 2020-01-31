@@ -64,6 +64,7 @@ MonoBehaviour:
   objectType: 0
   occupied: 0
   eatable: 1
+  price: 1
   eatTime: 0
   fullGain: 0
   cookable: 1

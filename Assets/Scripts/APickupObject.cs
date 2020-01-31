@@ -54,6 +54,7 @@ public class APickupObject : MonoBehaviour
         Rigidbody rBody = GetComponent<Rigidbody>();
         GetComponent<BoxCollider>().enabled = false;
         GetComponent<MeshCollider>().enabled = false;
+        rBody.isKinematic = true;
         rBody.useGravity = false;
         rBody.velocity = Vector3.zero;
         rBody.angularVelocity = Vector3.zero;
@@ -64,21 +65,24 @@ public class APickupObject : MonoBehaviour
     public void MakeDynamic()
     {
         transform.parent = null;
+        Rigidbody rBody = GetComponent<Rigidbody>();
+
         GetComponent<BoxCollider>().enabled = true;
         GetComponent<MeshCollider>().enabled = true;
-        GetComponent<Rigidbody>().useGravity = true;
+        rBody.useGravity = true;
+        rBody.isKinematic = false;
     }
 
     //Pick up object
     public void Pickup(AnimalCharacter animalCharacter)
     {
-        Debug.Log("APickupObject Pickup");
-        MakeStatic();
+        Debug.Log("APickupObject Pickup");  
         this.transform.position = animalCharacter.holdTransform.position;
         this.transform.parent = animalCharacter.holdTransform;
         animalCharacter.bHoldObject = true;
         animalCharacter.meetPickupObject = null;
         animalCharacter.holdObject = this;
+        MakeStatic();
 
     }
 

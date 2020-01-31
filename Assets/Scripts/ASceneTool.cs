@@ -40,7 +40,11 @@ public class ASceneTool : MonoBehaviour
             Debug.Log("Ascenetool: " + this.toolName + " exits: " + other.gameObject.name);
             AnimalCharacter animalCharacter = other.gameObject.GetComponent<AnimalCharacter>();
             animalCharacterNames.Remove(animalCharacter.characterName);
-            animalCharacter.sceneTool = null;
+
+            if (ReferenceEquals(animalCharacter.sceneTool, this))
+            {
+                animalCharacter.sceneTool = null;
+            }
         }
     }
 

@@ -118,4 +118,12 @@ public class AnimalCharacter : MonoBehaviour
             }
         }
     }
+
+    //Set this agent to idle status
+    public void SetIdle()
+    {
+        this.animator.SetInteger("animation", 0);
+        this.currentActivity = EActivity.Idle;
+        this.bInActivity = false;
+    }
 }

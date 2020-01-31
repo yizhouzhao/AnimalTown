@@ -82,14 +82,28 @@ public class ASoil : ASceneTool
             Debug.Log("Ascenetool: " + this.toolName + " exits: " + other.gameObject.name);
             AnimalCharacter animalCharacter = other.gameObject.GetComponent<AnimalCharacter>();
             animalCharacterNames.Remove(animalCharacter.characterName);
-            animalCharacter.sceneTool = null;
+
+            if (ReferenceEquals(animalCharacter.sceneTool, this))
+            {
+                animalCharacter.sceneTool = null;
+            }
         }
     }
 
 
-    // Update is called once per frame
-    void Update()
+    public override void Interact(AnimalCharacter animalCharacter)
     {
-        
+        //if have seed in hand plant seed
+        if (animalCharacter.holdObject != null)
+        {
+            ASeed seed = animalCharacter.holdObject.GetComponent<APickupObject>() as ASeed;
+            if (seed)
+            {
+                seed.Drop(animalCharacter);
+                Plant(seed);
+            }
+        }
     }
+
+
 }

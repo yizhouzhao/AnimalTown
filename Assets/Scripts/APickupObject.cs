@@ -54,6 +54,7 @@ public class APickupObject : MonoBehaviour
         rBody.useGravity = false;
         rBody.velocity = Vector3.zero;
         rBody.angularVelocity = Vector3.zero;
+        this.transform.localRotation = Quaternion.identity;
     }
 
     //make the object with collision and rigidbody

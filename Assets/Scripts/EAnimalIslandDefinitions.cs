@@ -4,12 +4,12 @@ using UnityEngine;
 
 public enum ESceneEventTool
 {
-    House, Tree, Pond, Farm
+    House, Tree, Pond, Farm, Fire
 }
 
 public enum EActivity
 {
-    Idle, Sleep, Eat, Play, Travel, CollectFruit, Fishing
+    Idle, Sleep, Eat, Play, Travel, CollectFruit, Fishing, Cook, Plant
 }
 
 public enum EPickupObject

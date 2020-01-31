@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2231612365505511574}
   m_Layer: 0
   m_Name: apple2
-  m_TagString: Untagged
+  m_TagString: PickupObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,6 +66,11 @@ MonoBehaviour:
   eatable: 1
   eatTime: 0
   fullGain: 0
+  cookable: 1
+  cookTime: 1
+  growTime: 0
+  plantPrefab: {fileID: 7840794373828628704, guid: d0a60fc0d3b447d48997099d5bab6fa7,
+    type: 3}
 --- !u!54 &735497206780124456
 Rigidbody:
   m_ObjectHideFlags: 0

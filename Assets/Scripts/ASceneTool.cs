@@ -44,7 +44,6 @@ public class ASceneTool : MonoBehaviour
         }
     }
 
-
     //Virtual Act Method: realize interaction between this scene tool and agent
     public virtual void Interact(AnimalCharacter animalCharacter)
     {

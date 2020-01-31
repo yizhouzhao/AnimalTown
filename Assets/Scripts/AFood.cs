@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class AFood : APickupObject
 {
-    public float eatTime; //time to eat this food
-    public float fullGain; //fullness gain after eating the food
+    public float eatTime = 2f; //time to eat this food
+    public float fullGain = 0.2f; //fullness gain after eating the food
+    
+    public bool cookable = true; //able to cook?
+    public float cookTime = 1f; //time to cook
 
     void Awake()
     {

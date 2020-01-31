@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AApple : AFood
+public class AApple : ASeed
 {
     // Start is called before the first frame update
     void Start()
     {
         this.objectType = EPickupObject.Apple;
-        eatTime = 2f;
-        fullGain = 0.2f;
+        this.cookTime = 1f; //for text only
+        this.fullGain = 0.2f;
+        this.eatTime = 2f;
+        this.growTime = 1f;
     }
 }

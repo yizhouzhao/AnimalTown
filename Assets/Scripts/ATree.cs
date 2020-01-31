@@ -89,6 +89,7 @@ public class ATree : ASceneTool
 
                 fruit.transform.localPosition = new Vector3(Random.Range(-boxSize.x / 4, boxSize.x / 4f),
                     Random.Range(boxSize.y / 3, boxSize.y), Random.Range(-boxSize.z / 4, boxSize.z / 4f));
+                
                 fruitCount++;
             }
             fruitGeneratingTimeRemain = fruitGeneratingTime;

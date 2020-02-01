@@ -6,19 +6,12 @@ using UnityEngine.AI;
 public class AgentNavigationControl : MonoBehaviour
 {
     public NavMeshAgent agent;
-    [Header("Status")]
     public string testTravelTo = "";
     private bool _calculatingPath;
-
-    [HideInInspector]
-    public float originalSpeed;
-    public float originalAngularSpeed; 
 
     // Start is called before the first frame update
     void Start()
     {
-        originalSpeed = agent.speed;
-        originalAngularSpeed = agent.angularSpeed;
         if (testTravelTo != "")
         {
             TravelTo(GameObject.FindWithTag("Player").transform.position);

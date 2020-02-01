@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Agent
+  - PickupObject
+  - Vision
   layers:
   - Default
   - TransparentFX

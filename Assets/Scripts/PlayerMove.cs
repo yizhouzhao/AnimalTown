@@ -44,14 +44,14 @@ public class PlayerMove : MonoBehaviour
 
     private void LateUpdate()
     {
-        if(_state == EPlayerState.Idle)
+        if (_state == EPlayerState.Idle)
         {
-            _animator.SetInteger("animation", 0);
+            //_animator.SetInteger("animation", 0);
         }
         else
         {
             //Moving
-            _animator.SetInteger("animation", 2);
+            _animator.SetInteger("animation", 1);
         }
     }
 }

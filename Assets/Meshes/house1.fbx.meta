@@ -1,368 +1,50 @@
 fileFormatVersion: 2
-guid: 1a5dc595090458445897da3d02249a05
+guid: fcfc2a05e44c3d14896a06712a69ae89
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: group11
-    100002: group12
-    100004: group13
-    100006: group14
-    100008: group15
-    100010: group16
-    100012: group17
-    100014: group18
-    100016: group19
-    100018: //RootNode
-    100020: pCube10
-    100022: pCube11
-    100024: pCube12
-    100026: pCube13
-    100028: pCube14
-    100030: pCube15
-    100032: pCube25
-    100034: pCube25 1
-    100036: pCube26
-    100038: pCube26 1
-    100040: pCube29
-    100042: pCube29 1
-    100044: pCube30
-    100046: pCube30 1
-    100048: pCube31
-    100050: pCube31 1
-    100052: pCube32
-    100054: pCube32 1
-    100056: pCube33
-    100058: pCube33 1
-    100060: pCube34
-    100062: pCube34 1
-    100064: pCube35
-    100066: pCube35 1
-    100068: pCube36
-    100070: pCube36 1
-    100072: pCube37
-    100074: pCube37 1
-    100076: pCube38
-    100078: pCube38 1
-    100080: pCube39
-    100082: pCube39 1
-    100084: pCube40
-    100086: pCube40 1
-    100088: pCube41
-    100090: pCube41 1
-    100092: pCube49
-    100094: pCube5
-    100096: pCube5 1
-    100098: pCube50
-    100100: pCube6
-    100102: pCube6 1
-    100104: pCube60
-    100106: pCube61
-    100108: pCube62
-    100110: pCube63
-    100112: pCube64
-    100114: pCube65
-    100116: pCube66
-    100118: pCube67
-    100120: pCube68
-    100122: pCube69
-    100124: pCube7
-    100126: pCube7 1
-    100128: pCube70
-    100130: pCube71
-    100132: pCube72
-    100134: pCube73
-    100136: pCube74
-    100138: pCube75
-    100140: pCube76
-    100142: pCube77
-    100144: pCube78
-    100146: pCube79
-    100148: pCube8
-    100150: pCube8 1
-    100152: pCube80
-    100154: pCube81
-    100156: pCube82
-    100158: pCube83
-    100160: pCube84
-    100162: pCylinder3
-    100164: pCylinder4
-    100166: pPlane3
-    100168: transform1
-    100170: transform10
-    100172: transform11
-    100174: transform12
-    100176: transform13
-    100178: transform14
-    100180: transform15
-    100182: transform16
-    100184: transform17
-    100186: transform18
-    100188: transform19
-    100190: transform2
-    100192: transform20
-    100194: transform21
-    100196: transform22
-    100198: transform23
-    100200: transform24
-    100202: transform25
-    100204: transform26
-    100206: transform27
-    100208: transform28
-    100210: transform29
-    100212: transform3
-    100214: transform30
-    100216: transform31
-    100218: transform32
-    100220: transform33
-    100222: transform34
-    100224: transform35
-    100226: transform36
-    100228: transform37
-    100230: transform38
-    100232: transform39
-    100234: transform4
-    100236: transform40
-    100238: transform41
-    100240: transform42
-    100242: transform43
-    100244: transform44
-    100246: transform45
-    100248: transform46
-    100250: transform47
-    100252: transform48
-    100254: transform49
-    100256: transform5
-    100258: transform50
-    100260: transform51
-    100262: transform52
-    100264: transform53
-    100266: transform54
-    100268: transform55
-    100270: transform56
-    100272: transform57
-    100274: transform58
-    100276: transform59
-    100278: transform6
-    100280: transform60
-    100282: transform61
-    100284: transform62
-    100286: transform63
-    100288: transform64
-    100290: transform65
-    100292: transform66
-    100294: transform67
-    100296: transform68
-    100298: transform69
-    100300: transform7
-    100302: transform70
-    100304: transform71
-    100306: transform72
-    100308: transform73
-    100310: transform74
-    100312: transform75
-    100314: transform76
-    100316: transform8
-    100318: transform9
-    400000: group11
-    400002: group12
-    400004: group13
-    400006: group14
-    400008: group15
-    400010: group16
-    400012: group17
-    400014: group18
-    400016: group19
-    400018: //RootNode
-    400020: pCube10
-    400022: pCube11
-    400024: pCube12
-    400026: pCube13
-    400028: pCube14
-    400030: pCube15
-    400032: pCube25
-    400034: pCube25 1
-    400036: pCube26
-    400038: pCube26 1
-    400040: pCube29
-    400042: pCube29 1
-    400044: pCube30
-    400046: pCube30 1
-    400048: pCube31
-    400050: pCube31 1
-    400052: pCube32
-    400054: pCube32 1
-    400056: pCube33
-    400058: pCube33 1
-    400060: pCube34
-    400062: pCube34 1
-    400064: pCube35
-    400066: pCube35 1
-    400068: pCube36
-    400070: pCube36 1
-    400072: pCube37
-    400074: pCube37 1
-    400076: pCube38
-    400078: pCube38 1
-    400080: pCube39
-    400082: pCube39 1
-    400084: pCube40
-    400086: pCube40 1
-    400088: pCube41
-    400090: pCube41 1
-    400092: pCube49
-    400094: pCube5
-    400096: pCube5 1
-    400098: pCube50
-    400100: pCube6
-    400102: pCube6 1
-    400104: pCube60
-    400106: pCube61
-    400108: pCube62
-    400110: pCube63
-    400112: pCube64
-    400114: pCube65
-    400116: pCube66
-    400118: pCube67
-    400120: pCube68
-    400122: pCube69
-    400124: pCube7
-    400126: pCube7 1
-    400128: pCube70
-    400130: pCube71
-    400132: pCube72
-    400134: pCube73
-    400136: pCube74
-    400138: pCube75
-    400140: pCube76
-    400142: pCube77
-    400144: pCube78
-    400146: pCube79
-    400148: pCube8
-    400150: pCube8 1
-    400152: pCube80
-    400154: pCube81
-    400156: pCube82
-    400158: pCube83
-    400160: pCube84
-    400162: pCylinder3
-    400164: pCylinder4
-    400166: pPlane3
-    400168: transform1
-    400170: transform10
-    400172: transform11
-    400174: transform12
-    400176: transform13
-    400178: transform14
-    400180: transform15
-    400182: transform16
-    400184: transform17
-    400186: transform18
-    400188: transform19
-    400190: transform2
-    400192: transform20
-    400194: transform21
-    400196: transform22
-    400198: transform23
-    400200: transform24
-    400202: transform25
-    400204: transform26
-    400206: transform27
-    400208: transform28
-    400210: transform29
-    400212: transform3
-    400214: transform30
-    400216: transform31
-    400218: transform32
-    400220: transform33
-    400222: transform34
-    400224: transform35
-    400226: transform36
-    400228: transform37
-    400230: transform38
-    400232: transform39
-    400234: transform4
-    400236: transform40
-    400238: transform41
-    400240: transform42
-    400242: transform43
-    400244: transform44
-    400246: transform45
-    400248: transform46
-    400250: transform47
-    400252: transform48
-    400254: transform49
-    400256: transform5
-    400258: transform50
-    400260: transform51
-    400262: transform52
-    400264: transform53
-    400266: transform54
-    400268: transform55
-    400270: transform56
-    400272: transform57
-    400274: transform58
-    400276: transform59
-    400278: transform6
-    400280: transform60
-    400282: transform61
-    400284: transform62
-    400286: transform63
-    400288: transform64
-    400290: transform65
-    400292: transform66
-    400294: transform67
-    400296: transform68
-    400298: transform69
-    400300: transform7
-    400302: transform70
-    400304: transform71
-    400306: transform72
-    400308: transform73
-    400310: transform74
-    400312: transform75
-    400314: transform76
-    400316: transform8
-    400318: transform9
-    2100000: lambert4
-    2100002: lambert1
-    2100004: blinn1
+    100000: //RootNode
+    400000: //RootNode
+    2100000: lambert3
+    2100002: blinn1
+    2100004: lambert5
     2100006: lambert2
-    2100008: lambert3
-    2100010: lambert5
-    2300000: pCube84
-    3300000: pCube84
+    2100008: lambert1
+    2100010: lambert4
+    2300000: //RootNode
+    3300000: //RootNode
     4300000: pCube84
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: blinn1
-    second: {fileID: 2100000, guid: 211e6c160c9c051468d6c77a65397b64, type: 2}
+    second: {fileID: 2100000, guid: b915b79607e27d34aba41948ac186493, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: lambert1
-    second: {fileID: 2100000, guid: 1e8371d6a35507745be2cccbbf7d03c3, type: 2}
+    second: {fileID: 2100000, guid: b915b79607e27d34aba41948ac186493, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: lambert2
-    second: {fileID: 2100000, guid: 1e8371d6a35507745be2cccbbf7d03c3, type: 2}
+    second: {fileID: 2100000, guid: b915b79607e27d34aba41948ac186493, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: lambert3
-    second: {fileID: 2100000, guid: f168579cea6a21c428d7060972911c24, type: 2}
+    second: {fileID: 2100000, guid: 34909d106508ccd40aa54fbb1573dd9a, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: lambert4
-    second: {fileID: 2100000, guid: f168579cea6a21c428d7060972911c24, type: 2}
+    second: {fileID: 2100000, guid: 211e6c160c9c051468d6c77a65397b64, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: lambert5
-    second: {fileID: 2100000, guid: 34909d106508ccd40aa54fbb1573dd9a, type: 2}
+    second: {fileID: 2100000, guid: 211e6c160c9c051468d6c77a65397b64, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -393,7 +75,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 800
+    globalScale: 1000
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1

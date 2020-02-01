@@ -8393,25 +8393,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1bd30d248cdf7c469cadcdd62d7af61, type: 3}
---- !u!1 &3590720042207144723 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3590720042252378297, guid: c1bd30d248cdf7c469cadcdd62d7af61,
-    type: 3}
-  m_PrefabInstance: {fileID: 3590720042207144722}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3590720042207144724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3590720042207144723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4751825ddf499a4e9730809d60be6b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  address: http://localhost:8080/socket.io/
 --- !u!1001 &3647291659319922267
 PrefabInstance:
   m_ObjectHideFlags: 0

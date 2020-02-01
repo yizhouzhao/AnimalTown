@@ -679,6 +679,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 3590720042301738649}
   testTravelTo: 
+  originalSpeed: 0
+  originalAngularSpeed: 0
 --- !u!143 &568836016598875231
 CharacterController:
   m_ObjectHideFlags: 0

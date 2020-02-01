@@ -32,9 +32,7 @@ public class AFood : APickupObject
         {
             yield return new WaitForSeconds(this.eatTime);
 
-            animalCharacter.bInActivity = false;
-            animalCharacter.currentActivity = EActivity.Idle;
-            animalCharacter.animator.SetInteger("animation", 0);
+            animalCharacter.SetIdle();
 
             //Gain fullness
             animalCharacter.fullness = Mathf.Min(animalCharacter.fullness + fullGain, 1f);

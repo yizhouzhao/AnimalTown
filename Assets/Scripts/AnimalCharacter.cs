@@ -31,6 +31,7 @@ public class AnimalCharacter : MonoBehaviour
     public float currentActivityRemainTime;
     public EActivity currentActivity;
     public bool bInActivity;
+    public float coolDown;
 
     [Header("Object")]
     public bool bHoldObject;
@@ -68,6 +69,9 @@ public class AnimalCharacter : MonoBehaviour
         //Set up start money
         money = 10f;
 
+        //Cool down
+        coolDown = 3f;
+
         //Set up navigation control for agents only
         if (this.gameObject.tag == "Agent")
         {
@@ -78,26 +82,55 @@ public class AnimalCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(interactKey))
+        coolDown -= Time.deltaTime;
+        if (coolDown < 0f)
         {
-            ActWithSceneTool();
-            ActWithAnimalCharacter();
-        }
-        if (Input.GetKeyDown(pickupDropKey))
-        {
-            print("Pickup!!!");
-            PickupDropObject();
+            coolDown = 3f;
+            float interactProb = UnityEngine.Random.Range(0f, 1f);
+            float pickupProb = UnityEngine.Random.Range(0f, 1f);
+            if (Input.GetKeyDown(interactKey) || interactProb < 1f)
+            {
+                ActWithSceneTool();
+                ActWithAnimalCharacter();
+            }
+            if (Input.GetKeyDown(pickupDropKey) || pickupProb < 0.2f)
+            {
+                //print("Pickup!!!");
+                PickupDropObject();
+            }
+
+            if (Input.GetKeyDown(useKey))
+            {
+                //print("Use!!!");
+                UseObject();
+            }
         }
 
-        if (Input.GetKeyDown(useKey))
-        {
-            print("Use!!!");
-            UseObject();
-        }
 
         //Test random walk for agent
         if(gameObject.tag == "Agent")
         {
+            if (bInActivity)
+            {
+                navControl.agent.speed = 0f;
+                navControl.agent.angularSpeed = 0f;
+            }
+            else
+            {
+                navControl.agent.speed = navControl.originalSpeed;
+                //Debug.Log("Animal Character Update: " + navControl.agent.speed.ToString());
+                navControl.agent.angularSpeed = navControl.originalAngularSpeed;
+
+                //StartCoroutine(WalkTime(2f));
+
+                //IEnumerator WalkTime(float walkSomeTime)
+                //{
+                //    this.bInActivity = false;
+                //    yield return new WaitForSeconds(walkSomeTime);
+                //    this.bInActivity = false;
+                //}
+            }
+
             if (navControl.IsDoneTraveling())
             {
                 //RandomWalk1(UnityEngine.Random.Range(100f, 200f));

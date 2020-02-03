@@ -47,9 +47,12 @@ public class AnimalCharacter : MonoBehaviour
     public AnimalCharacter meetAnimalCharacter; //meet another agent
     public bool agreeCommunication; //whether the two character want to communicate
 
-    //Nevigation
+    
     [HideInInspector]
     AgentNavigationControl navControl;
+
+    [Header("Nevigation")]
+    public GameObject signPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -78,21 +81,24 @@ public class AnimalCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(interactKey))
+        if (gameObject.tag == "Player")
         {
-            ActWithSceneTool();
-            ActWithAnimalCharacter();
-        }
-        if (Input.GetKeyDown(pickupDropKey))
-        {
-            print("Pickup!!!");
-            PickupDropObject();
-        }
+            if (Input.GetKeyDown(interactKey))
+            {
+                ActWithSceneTool();
+                ActWithAnimalCharacter();
+            }
+            if (Input.GetKeyDown(pickupDropKey))
+            {
+                print("Pickup!!!");
+                PickupDropObject();
+            }
 
-        if (Input.GetKeyDown(useKey))
-        {
-            print("Use!!!");
-            UseObject();
+            if (Input.GetKeyDown(useKey))
+            {
+                print("Use!!!");
+                UseObject();
+            }
         }
 
         //Test random walk for agent
@@ -280,5 +286,6 @@ public class AnimalCharacter : MonoBehaviour
 
         navControl.TravelTo(hit.position);
         Debug.Log("Animal Character RandomWalk2: " + hit.position);
+        GameObject pNewObject = (GameObject)GameObject.Instantiate(signPrefab, hit.position, Quaternion.identity);
     }
 }

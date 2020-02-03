@@ -8,14 +8,21 @@ public class AgentNavigationControl : MonoBehaviour
     public NavMeshAgent agent;
     public string testTravelTo = "";
     private bool _calculatingPath;
+    public float originalSpeed;
+    public float originalAngularSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
+        //Test navigation
         if (testTravelTo != "")
         {
             TravelTo(GameObject.FindWithTag("Player").transform.position);
         }
+
+        originalAngularSpeed = agent.speed;
+        originalAngularSpeed = agent.angularSpeed;
+
     }
 
     // Update is called once per frame

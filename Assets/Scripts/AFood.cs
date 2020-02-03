@@ -22,6 +22,8 @@ public class AFood : APickupObject
         animalCharacter.bHoldObject = false;
         animalCharacter.holdObject = null;
 
+        animalCharacter.StopMove();
+
         Debug.Log("AFood(eat): " + this.objectType.ToString());
         animalCharacter.currentActivity = EActivity.Eat;
         StartCoroutine(EatApple());
@@ -32,9 +34,7 @@ public class AFood : APickupObject
         {
             yield return new WaitForSeconds(this.eatTime);
 
-            animalCharacter.bInActivity = false;
-            animalCharacter.currentActivity = EActivity.Idle;
-            animalCharacter.animator.SetInteger("animation", 0);
+            animalCharacter.SetIdle();
 
             //Gain fullness
             animalCharacter.fullness = Mathf.Min(animalCharacter.fullness + fullGain, 1f);

@@ -33,7 +33,11 @@ public class PlayerMove : MonoBehaviour
         {
             isMoving = true;
             _state = EPlayerState.Moving;
-            controller.SimpleMove(transform.forward * speed);
+
+            if (controller.enabled)
+            {
+                controller.SimpleMove(transform.forward * speed);
+            }
         }
         else
         {

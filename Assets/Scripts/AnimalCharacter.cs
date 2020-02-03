@@ -74,7 +74,7 @@ public class AnimalCharacter : MonoBehaviour
         money = 10f;
 
         //Activity cool down time
-        activityCoolDown = 3f;
+        activityCoolDown = 1f;
         currentActivityCoolDown = activityCoolDown;
 
         //Set up navigation control for agents only
@@ -110,9 +110,9 @@ public class AnimalCharacter : MonoBehaviour
         //Test random walk for agent
         if(gameObject.tag == "Agent")
         {
-            currentActivityCoolDown -= Time.deltaTime;
-            if (currentActivityCoolDown > 0)
-                return;
+            //currentActivityCoolDown -= Time.deltaTime;
+            //if (currentActivityCoolDown > 0)
+            //    return;
 
             
             if (Input.GetKeyDown(interactKey))//UnityEngine.Random.Range(0f, 1f) < 0.9)
@@ -205,8 +205,9 @@ public class AnimalCharacter : MonoBehaviour
     {
         if (tag == "Agent") //agent
         {
-            this.navControl.agent.speed = 0;
-            this.navControl.agent.angularSpeed = 0;
+            //this.navControl.agent.speed = 0;
+            //this.navControl.agent.angularSpeed = 0;
+            navControl.agent.isStopped = true;
         }
         else //tag == "Player"
         {
@@ -223,8 +224,9 @@ public class AnimalCharacter : MonoBehaviour
 
         if (navControl)
         {
-            this.navControl.agent.speed = this.navControl.originalSpeed;
-            this.navControl.agent.angularSpeed = this.navControl.originalAngularSpeed;
+            //this.navControl.agent.speed = this.navControl.originalSpeed;
+            //this.navControl.agent.angularSpeed = this.navControl.originalAngularSpeed;
+            navControl.agent.isStopped = false;
         }
         else
         {

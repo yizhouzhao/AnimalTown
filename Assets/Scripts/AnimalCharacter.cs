@@ -31,6 +31,8 @@ public class AnimalCharacter : MonoBehaviour
     public float currentActivityRemainTime;
     public EActivity currentActivity;
     public bool bInActivity;
+    public float activityCoolDown;
+    public float currentActivityCoolDown;
 
     [Header("Object")]
     public bool bHoldObject;
@@ -49,7 +51,7 @@ public class AnimalCharacter : MonoBehaviour
 
     
     [HideInInspector]
-    AgentNavigationControl navControl;
+    public AgentNavigationControl navControl;
 
     [Header("Nevigation")]
     public GameObject signPrefab;
@@ -70,6 +72,10 @@ public class AnimalCharacter : MonoBehaviour
 
         //Set up start money
         money = 10f;
+
+        //Activity cool down time
+        activityCoolDown = 3f;
+        currentActivityCoolDown = activityCoolDown;
 
         //Set up navigation control for agents only
         if (this.gameObject.tag == "Agent")
@@ -104,6 +110,31 @@ public class AnimalCharacter : MonoBehaviour
         //Test random walk for agent
         if(gameObject.tag == "Agent")
         {
+            currentActivityCoolDown -= Time.deltaTime;
+            if (currentActivityCoolDown > 0)
+                return;
+
+            currentActivityCoolDown = activityCoolDown;
+            if (UnityEngine.Random.Range(0f, 1f) < 0.9)
+            {
+                ActWithSceneTool();
+                ActWithAnimalCharacter();
+                //navControl.agent.speed = navControl.originalSpeed;
+            }
+            if (UnityEngine.Random.Range(0f, 1f) < 0.6)
+            {
+                //avControl.agent.speed = 0;
+                PickupDropObject();
+                //navControl.agent.speed = navControl.originalSpeed;
+            }
+
+            if (UnityEngine.Random.Range(0f, 1f) < 0.6)
+            {
+                //navControl.agent.speed = 0;
+                UseObject();
+                //navControl.agent.speed = navControl.originalSpeed;
+            }
+
             if (navControl.IsDoneTraveling())
             {
                 //RandomWalk1(UnityEngine.Random.Range(100f, 200f));
@@ -141,11 +172,13 @@ public class AnimalCharacter : MonoBehaviour
         {
             if (meetPickupObject != null)
             {
+                print("Pickup!!!");
                 meetPickupObject.Pickup(this);
             }
         }
         else
         {
+            print("Drop!!!");
             holdObject.Drop(this);
         }
     }
@@ -156,6 +189,7 @@ public class AnimalCharacter : MonoBehaviour
         if (holdObject != null)
         {
             //If it is food and eatable
+            print("Animal Character Use!!!");
             AFood food = holdObject as AFood;
             if (food && food.eatable)
             {
@@ -171,6 +205,12 @@ public class AnimalCharacter : MonoBehaviour
         this.animator.SetInteger("animation", 0);
         this.currentActivity = EActivity.Idle;
         this.bInActivity = false;
+
+        if (navControl)
+        {
+            this.navControl.agent.speed = this.navControl.originalSpeed;
+            this.navControl.agent.angularSpeed = this.navControl.originalAngularSpeed;
+        }
     }
 
     //Group activity: trade

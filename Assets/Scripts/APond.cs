@@ -30,12 +30,17 @@ public class APond : ASceneTool
 
     public override void Interact(AnimalCharacter animalCharacter)
     {
+        if (animalCharacter.navControl)
+        {
+            animalCharacter.navControl.agent.speed = 0;
+            animalCharacter.navControl.agent.angularSpeed = 0;
+        }
         //Set Activity
         animalCharacter.currentActivity = EActivity.CollectFruit;
         animalCharacter.animator.SetInteger("animation", 3);
 
         //Action
-        Debug.Log("ATree: CollectFruit");
+        Debug.Log("APond: Collect fish");
         StartCoroutine(CollectFruit());
         IEnumerator CollectFruit()
         {

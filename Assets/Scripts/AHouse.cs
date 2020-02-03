@@ -15,6 +15,11 @@ public class AHouse : ASceneTool
 
     public override void Interact(AnimalCharacter animalCharacter)
     {
+        if (animalCharacter.navControl)
+        {
+            animalCharacter.navControl.agent.speed = 0;
+            animalCharacter.navControl.agent.angularSpeed = 0;
+        }
         //Set Activity
         animalCharacter.currentActivity = EActivity.Sleep;
         animalCharacter.animator.SetInteger("animation", 5);
@@ -22,13 +27,12 @@ public class AHouse : ASceneTool
         //Action
         Debug.Log("AHouse: sleep");
         StartCoroutine(SleepNow());
+     
         IEnumerator SleepNow()
         {
-            yield return new WaitForSeconds(4f);
+            yield return new WaitForSeconds(activityDuration);
 
-            animalCharacter.bInActivity = false;
-            animalCharacter.currentActivity = EActivity.Idle;
-            animalCharacter.animator.SetInteger("animation", 0);
+            animalCharacter.SetIdle();
 
             //Energy gain
             animalCharacter.energy = Mathf.Min(1f, animalCharacter.energy + 0.5f);

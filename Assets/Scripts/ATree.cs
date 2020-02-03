@@ -30,6 +30,11 @@ public class ATree : ASceneTool
 
     public override void Interact(AnimalCharacter animalCharacter)
     {
+        if (animalCharacter.navControl)
+        {
+            animalCharacter.navControl.agent.speed = 0;
+            animalCharacter.navControl.agent.angularSpeed = 0;
+        }
         //Set Activity
         animalCharacter.currentActivity = EActivity.CollectFruit;
         animalCharacter.animator.SetInteger("animation", 3);

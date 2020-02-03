@@ -20,7 +20,7 @@ public class AgentNavigationControl : MonoBehaviour
             TravelTo(GameObject.FindWithTag("Player").transform.position);
         }
 
-        originalAngularSpeed = agent.speed;
+        originalSpeed = agent.speed;
         originalAngularSpeed = agent.angularSpeed;
 
     }

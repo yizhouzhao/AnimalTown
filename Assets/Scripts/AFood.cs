@@ -10,9 +10,26 @@ public class AFood : APickupObject
     public bool cookable = true; //able to cook?
     public float cookTime = 1f; //time to cook
 
+    public bool stayFresh;//? whether this food stays fresh? e.g apple on tree or fish in pond
+    public float stayFreshTime; //How long this food stays fresh. if pass,
+
+
     void Awake()
     {
         this.eatable = true;
+        this.stayFreshTime = 10f;
+    }
+
+    private void Update()
+    {
+        if (!occupied)
+        {
+            stayFreshTime -= Time.deltaTime;
+            if(stayFreshTime < 0)
+            {
+                Destroy(this.gameObject);
+            }
+        }
     }
 
     //Eat food

@@ -87,6 +87,11 @@ public class AnimalCharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Activity cool down
+        currentActivityCoolDown -= Time.deltaTime;
+        if (currentActivityCoolDown > 0)
+            return;
+
         if (gameObject.tag == "Player")
         {
             if (Input.GetKeyDown(interactKey))
@@ -110,31 +115,21 @@ public class AnimalCharacter : MonoBehaviour
         //Test random walk for agent
         if(gameObject.tag == "Agent")
         {
-            //currentActivityCoolDown -= Time.deltaTime;
-            //if (currentActivityCoolDown > 0)
-            //    return;
-
-            
             if (Input.GetKeyDown(interactKey))//UnityEngine.Random.Range(0f, 1f) < 0.9)
             {
                 ActWithSceneTool();
                 ActWithAnimalCharacter();
                 //navControl.agent.speed = navControl.originalSpeed;
-                currentActivityCoolDown = activityCoolDown;
             }
-            //if (UnityEngine.Random.Range(0f, 1f) < 0.6)
-            //{
-            //    //avControl.agent.speed = 0;
-            //    PickupDropObject();
-            //    //navControl.agent.speed = navControl.originalSpeed;
-            //}
+            if (UnityEngine.Random.Range(0f, 1f) < 0.6)
+            {
+                PickupDropObject();
+            }
 
-            //if (UnityEngine.Random.Range(0f, 1f) < 0.6)
-            //{
-            //    //navControl.agent.speed = 0;
-            //    UseObject();
-            //    //navControl.agent.speed = navControl.originalSpeed;
-            //}
+            if (UnityEngine.Random.Range(0f, 1f) < 0.6)
+            {
+                UseObject();
+            }
 
             //if (navControl.IsDoneTraveling())
             //{
@@ -160,6 +155,7 @@ public class AnimalCharacter : MonoBehaviour
     {
         if (sceneTool != null)
         {
+            currentActivityCoolDown = activityCoolDown;
             Debug.Log("Animal Character Interact with scene tool"); 
             this.bInActivity = true;
             sceneTool.Interact(this);
@@ -173,13 +169,15 @@ public class AnimalCharacter : MonoBehaviour
         {
             if (meetPickupObject != null)
             {
-                print("Pickup!!!");
+                currentActivityCoolDown = activityCoolDown;
+                Debug.Log("Animal Charcte Pickup " + meetPickupObject.objectType.ToString());
                 meetPickupObject.Pickup(this);
             }
         }
         else
         {
-            print("Drop!!!");
+            currentActivityCoolDown = activityCoolDown;
+            Debug.Log("Animal Charcte Drop " + holdObject.objectType.ToString());
             holdObject.Drop(this);
         }
     }
@@ -189,9 +187,11 @@ public class AnimalCharacter : MonoBehaviour
     {
         if (holdObject != null)
         {
-            //If it is food and eatable
-            print("Animal Character Use!!!");
+            currentActivityCoolDown = activityCoolDown;
+            Debug.Log("Animal Character Use " + holdObject.objectType.ToString());
             AFood food = holdObject as AFood;
+
+            //If it is food and eatable
             if (food && food.eatable)
             {
                 this.bInActivity = true;
@@ -269,7 +269,8 @@ public class AnimalCharacter : MonoBehaviour
             
             //yield return new WaitForSeconds(1f); //just for delay
 
-            if (this.agreeCommunication && meetAnimalCharacter.agreeCommunication)
+            //if both two agents agree to trade
+            if (this.agreeCommunication && meetAnimalCharacter && meetAnimalCharacter.agreeCommunication)
             {
                 APickupObject myObject = this.holdObject;
                 APickupObject hisObject = meetAnimalCharacter.holdObject;
@@ -313,13 +314,14 @@ public class AnimalCharacter : MonoBehaviour
                     }
                 }
 
+                meetAnimalCharacter.SetIdle();
+                meetAnimalCharacter.agreeCommunication = false;
             }
 
             this.SetIdle();
             this.agreeCommunication = false;
 
-            meetAnimalCharacter.SetIdle();
-            meetAnimalCharacter.agreeCommunication = false;
+
 
             //meetAnimalCharacter.meetAnimalCharacter = null;
             //this.meetAnimalCharacter = null;

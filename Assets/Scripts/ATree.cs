@@ -80,9 +80,10 @@ public class ATree : ASceneTool
             {
                 //Generate fruit
                 GameObject fruit = Instantiate(fruitPrefab, new Vector3(0, 0, 0), Quaternion.identity);
-                APickupObject pickupObject = fruit.GetComponent<APickupObject>();
-                pickupObject.MakeStatic();
-                pickupObject.occupied = true;
+                AFood aFood = fruit.GetComponent<APickupObject>() as AFood;
+                aFood.MakeStatic();
+                aFood.occupied = true;
+
                 fruit.transform.parent = this.transform;
                 Vector3 boxSize = GetComponent<BoxCollider>().size;
 

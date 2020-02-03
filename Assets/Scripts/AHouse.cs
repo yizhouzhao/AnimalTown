@@ -15,10 +15,12 @@ public class AHouse : ASceneTool
 
     public override void Interact(AnimalCharacter animalCharacter)
     {
-        animalCharacter.StopMove();
+        
         //Set Activity
         animalCharacter.currentActivity = EActivity.Sleep;
         animalCharacter.animator.SetInteger("animation", 5);
+
+        animalCharacter.StopMove();
 
         //Action
         Debug.Log("AHouse: sleep");

@@ -18,6 +18,8 @@ public class ACampfire : ASceneTool
         //NEED COOK ANIMATION !!!!!!!!!!
         animalCharacter.animator.SetInteger("animation", 5);
 
+        animalCharacter.StopMove();
+
         //Action
         Debug.Log("ACampfire: Cook");
         StartCoroutine(Cook());

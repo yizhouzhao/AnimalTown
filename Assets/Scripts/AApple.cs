@@ -8,7 +8,7 @@ public class AApple : ASeed
     void Start()
     {
         this.objectType = EPickupObject.Apple;
-        this.cookTime = 1f; //for text only
+        this.cookTime = 1f; //for test only
         this.fullGain = 0.2f;
         this.eatTime = 2f;
         this.growTime = 1f;

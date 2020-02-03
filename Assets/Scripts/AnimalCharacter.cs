@@ -114,32 +114,33 @@ public class AnimalCharacter : MonoBehaviour
             if (currentActivityCoolDown > 0)
                 return;
 
-            currentActivityCoolDown = activityCoolDown;
-            if (UnityEngine.Random.Range(0f, 1f) < 0.9)
+            
+            if (Input.GetKeyDown(interactKey))//UnityEngine.Random.Range(0f, 1f) < 0.9)
             {
                 ActWithSceneTool();
                 ActWithAnimalCharacter();
                 //navControl.agent.speed = navControl.originalSpeed;
+                currentActivityCoolDown = activityCoolDown;
             }
-            if (UnityEngine.Random.Range(0f, 1f) < 0.6)
-            {
-                //avControl.agent.speed = 0;
-                PickupDropObject();
-                //navControl.agent.speed = navControl.originalSpeed;
-            }
+            //if (UnityEngine.Random.Range(0f, 1f) < 0.6)
+            //{
+            //    //avControl.agent.speed = 0;
+            //    PickupDropObject();
+            //    //navControl.agent.speed = navControl.originalSpeed;
+            //}
 
-            if (UnityEngine.Random.Range(0f, 1f) < 0.6)
-            {
-                //navControl.agent.speed = 0;
-                UseObject();
-                //navControl.agent.speed = navControl.originalSpeed;
-            }
+            //if (UnityEngine.Random.Range(0f, 1f) < 0.6)
+            //{
+            //    //navControl.agent.speed = 0;
+            //    UseObject();
+            //    //navControl.agent.speed = navControl.originalSpeed;
+            //}
 
-            if (navControl.IsDoneTraveling())
-            {
-                //RandomWalk1(UnityEngine.Random.Range(100f, 200f));
-                RandomWalk2();
-            }
+            //if (navControl.IsDoneTraveling())
+            //{
+            //    //RandomWalk1(UnityEngine.Random.Range(100f, 200f));
+            //    RandomWalk2();
+            //}
         }
 
     }
@@ -199,6 +200,20 @@ public class AnimalCharacter : MonoBehaviour
         }
     }
 
+    //Stop movement
+    public void StopMove()
+    {
+        if (tag == "Agent") //agent
+        {
+            this.navControl.agent.speed = 0;
+            this.navControl.agent.angularSpeed = 0;
+        }
+        else //tag == "Player"
+        {
+            GetComponent<CharacterController>().enabled = false;
+        }
+    }
+
     //Set this agent to idle status
     public void SetIdle()
     {
@@ -210,6 +225,10 @@ public class AnimalCharacter : MonoBehaviour
         {
             this.navControl.agent.speed = this.navControl.originalSpeed;
             this.navControl.agent.angularSpeed = this.navControl.originalAngularSpeed;
+        }
+        else
+        {
+            GetComponent<CharacterController>().enabled = true;
         }
     }
 
@@ -229,9 +248,12 @@ public class AnimalCharacter : MonoBehaviour
         }
 
         //Wait another animalcharacter's response
-        StartCoroutine(WaitTradeRequest(meetAnimalCharacter, 5f));
+        StartCoroutine(WaitTradeRequest(meetAnimalCharacter, 3f));
         IEnumerator WaitTradeRequest(AnimalCharacter anotherCharacter, float waitTime)
         {
+            //stop
+            StopMove();
+
             float accumulatedWaitTime = 0f;
             while (accumulatedWaitTime < waitTime)
             {
@@ -240,8 +262,10 @@ public class AnimalCharacter : MonoBehaviour
                 {
                     break;
                 }
+                yield return null;
             }
-            yield return new WaitForSeconds(1f); //just for delay
+            
+            //yield return new WaitForSeconds(1f); //just for delay
 
             if (this.agreeCommunication && meetAnimalCharacter.agreeCommunication)
             {
@@ -287,8 +311,6 @@ public class AnimalCharacter : MonoBehaviour
                     }
                 }
 
-
-
             }
 
             this.SetIdle();
@@ -297,8 +319,8 @@ public class AnimalCharacter : MonoBehaviour
             meetAnimalCharacter.SetIdle();
             meetAnimalCharacter.agreeCommunication = false;
 
-            meetAnimalCharacter.meetAnimalCharacter = null;
-            this.meetAnimalCharacter = null;
+            //meetAnimalCharacter.meetAnimalCharacter = null;
+            //this.meetAnimalCharacter = null;
         }
     }
 

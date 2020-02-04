@@ -13,5 +13,6 @@ public class AApple : ASeed
         this.eatTime = 2f;
         this.growTime = 1f;
         this.price = 1f;
+        this.stayFreshTime = 10f;
     }
 }

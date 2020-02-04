@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5512768603320791426}
   - component: {fileID: 8884033088364906798}
   - component: {fileID: 8234754509088966387}
+  - component: {fileID: 309535507024155767}
   m_Layer: 0
   m_Name: Sign
   m_TagString: Untagged
@@ -87,7 +88,29 @@ BoxCollider:
   m_GameObject: {fileID: 4752532897261433117}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &309535507024155767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4752532897261433117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5853a579ebc5dd34ca158231020c351a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectType: 0
+  occupied: 0
+  eatable: 0
+  price: 1
+  eatTime: 2
+  fullGain: 0.2
+  cookable: 1
+  cookTime: 1
+  stayFresh: 0
+  stayFreshTime: 100

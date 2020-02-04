@@ -17,7 +17,6 @@ public class AFood : APickupObject
     void Awake()
     {
         this.eatable = true;
-        this.stayFreshTime = 10f;
     }
 
     private void Update()
@@ -43,11 +42,11 @@ public class AFood : APickupObject
 
         Debug.Log("AFood(eat): " + this.objectType.ToString());
         animalCharacter.currentActivity = EActivity.Eat;
-        StartCoroutine(EatApple());
+        StartCoroutine(EatFood());
 
         //Eat animation
         animalCharacter.animator.SetInteger("animation", 4);
-        IEnumerator EatApple()
+        IEnumerator EatFood()
         {
             yield return new WaitForSeconds(this.eatTime);
 

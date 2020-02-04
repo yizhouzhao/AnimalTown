@@ -410,7 +410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3954d0e3750c444993c40b75098f1f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  speed: 12
   isMoving: 0
 --- !u!114 &8687088191285752301
 MonoBehaviour:
@@ -439,6 +439,8 @@ MonoBehaviour:
   currentActivityRemainTime: 0
   currentActivity: 0
   bInActivity: 0
+  activityCoolDown: 0
+  currentActivityCoolDown: 0
   bHoldObject: 0
   meetPickupObject: {fileID: 0}
   holdTransform: {fileID: 0}
@@ -448,6 +450,8 @@ MonoBehaviour:
   useKey: 0
   meetAnimalCharacter: {fileID: 0}
   agreeCommunication: 0
+  navControl: {fileID: 0}
+  signPrefab: {fileID: 0}
 --- !u!1 &8687088191285655358
 GameObject:
   m_ObjectHideFlags: 0

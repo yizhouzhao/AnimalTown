@@ -115,27 +115,28 @@ public class AnimalCharacter : MonoBehaviour
         //Test random walk for agent
         if(gameObject.tag == "Agent")
         {
-            if (Input.GetKeyDown(interactKey))//UnityEngine.Random.Range(0f, 1f) < 0.9)
+            if (UnityEngine.Random.Range(0f, 1f) < 1.0) //Input.GetKeyDown(interactKey))
             {
                 ActWithSceneTool();
                 ActWithAnimalCharacter();
                 //navControl.agent.speed = navControl.originalSpeed;
             }
-            if (UnityEngine.Random.Range(0f, 1f) < 0.6)
-            {
-                PickupDropObject();
-            }
-
-            if (UnityEngine.Random.Range(0f, 1f) < 0.6)
-            {
-                UseObject();
-            }
-
-            //if (navControl.IsDoneTraveling())
+            //if (UnityEngine.Random.Range(0f, 1f) < 0.2)
             //{
-            //    //RandomWalk1(UnityEngine.Random.Range(100f, 200f));
-            //    RandomWalk2();
+            //    PickupDropObject();
             //}
+
+            //if (UnityEngine.Random.Range(0f, 1f) < 0.6)
+            //{
+            //    UseObject();
+            //}
+
+            if (navControl.IsDoneTraveling())
+            {
+                //RandomWalk1(UnityEngine.Random.Range(100f, 200f));
+                currentActivityCoolDown = activityCoolDown;
+                RandomWalk2();
+            }
         }
 
     }
@@ -143,7 +144,7 @@ public class AnimalCharacter : MonoBehaviour
     //Act with animal character event
     private void ActWithAnimalCharacter()
     {
-        if (this.meetAnimalCharacter)
+        if ((this.meetAnimalCharacter != null) && (!bInActivity))
         {
             Debug.Log("Animal Character Interact with another character");
             Trade();
@@ -153,7 +154,7 @@ public class AnimalCharacter : MonoBehaviour
     //Act with scene tool event
     public void ActWithSceneTool()
     {
-        if (sceneTool != null)
+        if ((sceneTool != null) && (!bInActivity))
         {
             currentActivityCoolDown = activityCoolDown;
             Debug.Log("Animal Character Interact with scene tool"); 
@@ -187,7 +188,6 @@ public class AnimalCharacter : MonoBehaviour
     {
         if (holdObject != null)
         {
-            currentActivityCoolDown = activityCoolDown;
             Debug.Log("Animal Character Use " + holdObject.objectType.ToString());
             AFood food = holdObject as AFood;
 
@@ -205,14 +205,16 @@ public class AnimalCharacter : MonoBehaviour
     {
         if (tag == "Agent") //agent
         {
-            //this.navControl.agent.speed = 0;
-            //this.navControl.agent.angularSpeed = 0;
-            navControl.agent.isStopped = true;
+            this.navControl.agent.speed = 0;
+            this.navControl.agent.angularSpeed = 0;
+            //navControl.agent.isStopped = true;
         }
         else //tag == "Player"
         {
             GetComponent<CharacterController>().enabled = false;
         }
+
+        //Test stop move and immediatly stop moving
     }
 
     //Set this agent to idle status
@@ -224,23 +226,25 @@ public class AnimalCharacter : MonoBehaviour
 
         if (navControl)
         {
-            //this.navControl.agent.speed = this.navControl.originalSpeed;
-            //this.navControl.agent.angularSpeed = this.navControl.originalAngularSpeed;
-            navControl.agent.isStopped = false;
+            this.navControl.agent.speed = this.navControl.originalSpeed;
+            this.navControl.agent.angularSpeed = this.navControl.originalAngularSpeed;
+            //navControl.agent.isStopped = false;
         }
         else
         {
             GetComponent<CharacterController>().enabled = true;
         }
+
+        //Test stop move and immediatly resume moving
+        currentActivityCoolDown = activityCoolDown;
     }
 
     //Group activity: trade
     public void Trade()
     {
         this.agreeCommunication = true;
-
-        this.animator.SetInteger("animation", 0);
         this.bInActivity = true;
+        this.animator.SetInteger("animation", 0);
         this.currentActivity = EActivity.Trade;
 
         //if already in trade event

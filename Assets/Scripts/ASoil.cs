@@ -102,8 +102,8 @@ public class ASoil : ASceneTool
                 seed.Drop(animalCharacter);
                 Plant(seed);
             }
+
         }
+        animalCharacter.SetIdle();
     }
-
-
 }

@@ -593,6 +593,7 @@ GameObject:
   - component: {fileID: 3590720042301738649}
   - component: {fileID: 3590720042301738654}
   - component: {fileID: 1585009069288465447}
+  - component: {fileID: 3610780553315572332}
   m_Layer: 0
   m_Name: panda
   m_TagString: Agent
@@ -653,7 +654,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 20
-  m_Acceleration: 100
+  m_Acceleration: 200
   avoidancePriority: 50
   m_AngularSpeed: 80
   m_StoppingDistance: 1
@@ -721,6 +722,24 @@ MonoBehaviour:
   navControl: {fileID: 0}
   signPrefab: {fileID: 4752532897261433117, guid: 74a5a33414dc1f9459dc1978373b69c8,
     type: 3}
+--- !u!143 &3610780553315572332
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3590720042252378297}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 5.24
+  m_Radius: 2.24
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 2.16, z: 0}
 --- !u!1 &3590720042252378299
 GameObject:
   m_ObjectHideFlags: 0

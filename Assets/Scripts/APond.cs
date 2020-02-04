@@ -37,8 +37,8 @@ public class APond : ASceneTool
 
         //Action
         Debug.Log("APond: Collect fish");
-        StartCoroutine(CollectFruit());
-        IEnumerator CollectFruit()
+        StartCoroutine(CollectFish());
+        IEnumerator CollectFish()
         {
             yield return new WaitForSeconds(this.activityDuration);
 

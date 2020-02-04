@@ -40,7 +40,7 @@ public class TCone : MonoBehaviour
         if (other.gameObject.tag == "Player" || other.gameObject.tag == "Agent")
         {
             AnimalCharacter animalCharacter = other.gameObject.GetComponent<AnimalCharacter>();
-            if (owner.bInActivity || animalCharacter.bInActivity)
+            if (owner.agreeCommunication || animalCharacter.agreeCommunication)
             {
                 return;
             }

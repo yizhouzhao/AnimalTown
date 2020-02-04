@@ -161,7 +161,7 @@ public class AnimalCharacter : MonoBehaviour
     //Act with animal character event
     private void ActWithAnimalCharacter()
     {
-        if ((meetAnimalCharacter != null) && (!bInActivity) && (!meetAnimalCharacter.bInActivity))
+        if ((meetAnimalCharacter != null) && (!bInActivity)) //&& (!meetAnimalCharacter.bInActivity))
         {
             Debug.Log("Animal Character Interact with another character");
             currentActivityCoolDown = activityCoolDown;
@@ -306,7 +306,7 @@ public class AnimalCharacter : MonoBehaviour
             //if both two agents agree to trade
             if (this.agreeCommunication && meetAnimalCharacter.agreeCommunication)
             {
-                Debug.LogError("Animal Character Trade!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                Debug.LogError("Animal Character Trade: " + this.name + " with " + meetAnimalCharacter.name);
                 APickupObject myObject = this.holdObject;
                 APickupObject hisObject = meetAnimalCharacter.holdObject;
 
@@ -352,7 +352,7 @@ public class AnimalCharacter : MonoBehaviour
 
             else
             {
-                Debug.LogError("Animal Character No trade");
+                //Debug.LogError("Animal Character No trade");
             }
 
             meetAnimalCharacter.SetIdle();

@@ -98,7 +98,7 @@ public class AnimalCharacter : MonoBehaviour
     {
         //Activity cool down
         currentActivityCoolDown -= Time.deltaTime;
-        if (currentActivityCoolDown > 0 || bInActivity)
+        if (currentActivityCoolDown > 0)
             return;
 
         if (gameObject.tag == "Player")
@@ -348,6 +348,11 @@ public class AnimalCharacter : MonoBehaviour
                         meetAnimalCharacter.money += hisObject.price;
                     }
                 }
+            }
+
+            else
+            {
+                Debug.LogError("Animal Character No trade");
             }
 
             meetAnimalCharacter.SetIdle();

@@ -20,11 +20,18 @@ public class TCone : MonoBehaviour
             //double direction
             Debug.Log("Animal Character meet another: " + other.gameObject.name);
             AnimalCharacter animalCharacter = other.gameObject.GetComponent<AnimalCharacter>();
+            //both sides
             if (this.owner.meetAnimalCharacter == null && animalCharacter.meetAnimalCharacter == null)
             {
                 this.owner.meetAnimalCharacter = animalCharacter;
                 animalCharacter.meetAnimalCharacter = this.owner;
             }
+
+            //one side
+            //if (this.owner.meetAnimalCharacter == null)
+            //{
+            //    this.owner.meetAnimalCharacter = animalCharacter;
+            //}
         }
     }
 
@@ -35,14 +42,30 @@ public class TCone : MonoBehaviour
             //double direction
             Debug.Log("Animal Character exit another: " + other.gameObject.name);
             AnimalCharacter animalCharacter = other.gameObject.GetComponent<AnimalCharacter>();
+
+            if (owner.bInActivity)
+            {
+                return;
+            }
+
+            //both sides
             if (this.owner.meetAnimalCharacter && animalCharacter.meetAnimalCharacter)
             {
-                if(ReferenceEquals(this.owner.meetAnimalCharacter, animalCharacter))
+                if (ReferenceEquals(this.owner.meetAnimalCharacter, animalCharacter))
                 {
                     owner.meetAnimalCharacter = null;
                     animalCharacter.meetAnimalCharacter = null;
                 }
             }
+
+            //one side
+            //if (this.owner.meetAnimalCharacter)
+            //{
+            //    if (ReferenceEquals(this.owner.meetAnimalCharacter, animalCharacter))
+            //    {
+            //        owner.meetAnimalCharacter = null;
+            //    }
+            //}
         }
     }
 }

@@ -10,6 +10,7 @@ public class AgentNavigationControl : MonoBehaviour
     private bool _calculatingPath;
     public float originalSpeed;
     public float originalAngularSpeed;
+    public Vector3 recordVelocity; //record the current velocity
 
     // Start is called before the first frame update
     void Start()

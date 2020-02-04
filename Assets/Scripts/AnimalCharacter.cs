@@ -44,11 +44,12 @@ public class AnimalCharacter : MonoBehaviour
     public KeyCode interactKey;
     public KeyCode pickupDropKey;
     public KeyCode useKey;
+    public KeyCode communicationKey;
 
     [Header("Communication")]
     public AnimalCharacter meetAnimalCharacter; //meet another agent
     public bool agreeCommunication; //whether the two character want to communicate
-
+    public TCone visionCone;
     
     [HideInInspector]
     public AgentNavigationControl navControl;
@@ -82,6 +83,14 @@ public class AnimalCharacter : MonoBehaviour
         {
             navControl = GetComponent<AgentNavigationControl>();
         }
+
+        //Setup vision
+        Transform visionConeTransform = transform.Find("cone");
+        if (visionConeTransform == null)
+        {
+            Debug.LogError("No vision transform for player/agent");
+        }
+        visionCone = visionConeTransform.GetComponent<TCone>();
     }
 
     // Update is called once per frame
@@ -97,6 +106,9 @@ public class AnimalCharacter : MonoBehaviour
             if (Input.GetKeyDown(interactKey))
             {
                 ActWithSceneTool();
+            }
+            if (Input.GetKeyDown(interactKey))
+            {
                 ActWithAnimalCharacter();
             }
             if (Input.GetKeyDown(pickupDropKey))
@@ -115,12 +127,16 @@ public class AnimalCharacter : MonoBehaviour
         //Test random walk for agent
         if(gameObject.tag == "Agent")
         {
-            if (UnityEngine.Random.Range(0f, 1f) < 1.0) //Input.GetKeyDown(interactKey))
+            //if (UnityEngine.Random.Range(0f, 1f) < 1.0) //Input.GetKeyDown(interactKey))
+            //{
+            //    ActWithSceneTool();
+            //}
+
+            if (UnityEngine.Random.Range(0f, 1f) < 1.0) //Input.GetKeyDown(communicationKey))
             {
-                ActWithSceneTool();
                 ActWithAnimalCharacter();
-                //navControl.agent.speed = navControl.originalSpeed;
             }
+
             //if (UnityEngine.Random.Range(0f, 1f) < 0.2)
             //{
             //    PickupDropObject();
@@ -144,7 +160,7 @@ public class AnimalCharacter : MonoBehaviour
     //Act with animal character event
     private void ActWithAnimalCharacter()
     {
-        if ((this.meetAnimalCharacter != null) && (!bInActivity))
+        if ((meetAnimalCharacter != null) && (!bInActivity) && (!meetAnimalCharacter.bInActivity))
         {
             Debug.Log("Animal Character Interact with another character");
             Trade();
@@ -205,9 +221,11 @@ public class AnimalCharacter : MonoBehaviour
     {
         if (tag == "Agent") //agent
         {
-            this.navControl.agent.speed = 0;
-            this.navControl.agent.angularSpeed = 0;
-            //navControl.agent.isStopped = true;
+            //this.navControl.agent.speed = 0;
+            //this.navControl.agent.angularSpeed = 0;
+            //navControl.recordVelocity = navControl.agent.velocity;
+            //navControl.agent.velocity = Vector3.zero;
+            navControl.agent.isStopped = true;
         }
         else //tag == "Player"
         {
@@ -226,9 +244,10 @@ public class AnimalCharacter : MonoBehaviour
 
         if (navControl)
         {
-            this.navControl.agent.speed = this.navControl.originalSpeed;
-            this.navControl.agent.angularSpeed = this.navControl.originalAngularSpeed;
-            //navControl.agent.isStopped = false;
+            //this.navControl.agent.speed = this.navControl.originalSpeed;
+            //this.navControl.agent.angularSpeed = this.navControl.originalAngularSpeed;
+            navControl.agent.isStopped = false;
+            //navControl.agent.velocity = navControl.recordVelocity;
         }
         else
         {
@@ -242,6 +261,11 @@ public class AnimalCharacter : MonoBehaviour
     //Group activity: trade
     public void Trade()
     {
+        //stop
+        Debug.Log("Trade: " + name + " look at " + meetAnimalCharacter.name);
+        StopMove();
+        meetAnimalCharacter.StopMove();
+
         this.agreeCommunication = true;
         this.bInActivity = true;
         this.animator.SetInteger("animation", 0);
@@ -254,17 +278,18 @@ public class AnimalCharacter : MonoBehaviour
         }
 
         //Wait another animalcharacter's response
-        StartCoroutine(WaitTradeRequest(meetAnimalCharacter, 3f));
-        IEnumerator WaitTradeRequest(AnimalCharacter anotherCharacter, float waitTime)
+        StartCoroutine(WaitTradeRequest(3f));
+        IEnumerator WaitTradeRequest(float waitTime)
         {
-            //stop
-            StopMove();
-
             float accumulatedWaitTime = 0f;
             while (accumulatedWaitTime < waitTime)
             {
                 accumulatedWaitTime += Time.deltaTime;
-                if (anotherCharacter.agreeCommunication)
+
+                this.transform.LookAt(meetAnimalCharacter.transform.position);
+                meetAnimalCharacter.transform.LookAt(this.transform.position);
+
+                if (meetAnimalCharacter.agreeCommunication)
                 {
                     break;
                 }
@@ -274,7 +299,7 @@ public class AnimalCharacter : MonoBehaviour
             //yield return new WaitForSeconds(1f); //just for delay
 
             //if both two agents agree to trade
-            if (this.agreeCommunication && meetAnimalCharacter && meetAnimalCharacter.agreeCommunication)
+            if (this.agreeCommunication && meetAnimalCharacter.agreeCommunication)
             {
                 APickupObject myObject = this.holdObject;
                 APickupObject hisObject = meetAnimalCharacter.holdObject;
@@ -317,10 +342,10 @@ public class AnimalCharacter : MonoBehaviour
                         meetAnimalCharacter.money += hisObject.price;
                     }
                 }
-
-                meetAnimalCharacter.SetIdle();
-                meetAnimalCharacter.agreeCommunication = false;
             }
+
+            meetAnimalCharacter.SetIdle();
+            meetAnimalCharacter.agreeCommunication = false;
 
             this.SetIdle();
             this.agreeCommunication = false;

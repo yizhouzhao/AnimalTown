@@ -134,6 +134,9 @@ public class AnimalCharacter : MonoBehaviour
 
             if (UnityEngine.Random.Range(0f, 1f) < 1.0) //Input.GetKeyDown(communicationKey))
             {
+
+                visionCone.enabled = false;
+                //meetAnimalCharacter.visionCone.enabled = false;
                 ActWithAnimalCharacter();
             }
 
@@ -271,6 +274,8 @@ public class AnimalCharacter : MonoBehaviour
         this.animator.SetInteger("animation", 0);
         this.currentActivity = EActivity.Trade;
 
+
+
         //if already in trade event
         if (meetAnimalCharacter.agreeCommunication)
         {
@@ -286,6 +291,7 @@ public class AnimalCharacter : MonoBehaviour
             {
                 accumulatedWaitTime += Time.deltaTime;
 
+                Debug.Log("look at movement");
                 this.transform.LookAt(meetAnimalCharacter.transform.position);
                 meetAnimalCharacter.transform.LookAt(this.transform.position);
 

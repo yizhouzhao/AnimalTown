@@ -40,7 +40,7 @@ public class AFood : APickupObject
 
         animalCharacter.StopMove();
 
-        Debug.Log("AFood(eat): " + this.objectType.ToString());
+        //Debug.Log("AFood(eat): " + this.objectType.ToString());
         animalCharacter.currentActivity = EActivity.Eat;
         StartCoroutine(EatFood());
 

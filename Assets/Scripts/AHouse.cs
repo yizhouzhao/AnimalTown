@@ -23,7 +23,7 @@ public class AHouse : ASceneTool
         animalCharacter.StopMove();
 
         //Action
-        Debug.Log("AHouse: sleep");
+        //Debug.Log("AHouse: sleep");
         StartCoroutine(SleepNow());
      
         IEnumerator SleepNow()

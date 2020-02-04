@@ -132,21 +132,21 @@ public class AnimalCharacter : MonoBehaviour
                 ActWithSceneTool();
             }
 
-            if (UnityEngine.Random.Range(0f, 1f) < 0.9f) //Input.GetKeyDown(communicationKey))
+            if (UnityEngine.Random.Range(0f, 1f) < 0.3f) //Input.GetKeyDown(communicationKey))
             {
                 //meetAnimalCharacter.visionCone.enabled = false;
                 ActWithAnimalCharacter();
             }
 
-            //if (UnityEngine.Random.Range(0f, 1f) < 0.2)
-            //{
-            //    PickupDropObject();
-            //}
+            if (UnityEngine.Random.Range(0f, 1f) < 0.2f)
+            {
+                PickupDropObject();
+            }
 
-            //if (UnityEngine.Random.Range(0f, 1f) < 0.6)
-            //{
-            //    UseObject();
-            //}
+            if (UnityEngine.Random.Range(0f, 1f) < 0.2f)
+            {
+                UseObject();
+            }
 
             if (navControl.IsDoneTraveling())
             {
@@ -161,9 +161,9 @@ public class AnimalCharacter : MonoBehaviour
     //Act with animal character event
     private void ActWithAnimalCharacter()
     {
-        if ((meetAnimalCharacter != null) && (!bInActivity)) //&& (!meetAnimalCharacter.bInActivity))
+        if ((meetAnimalCharacter != null) && (!bInActivity) && (!meetAnimalCharacter.bInActivity))
         {
-            Debug.Log("Animal Character Interact with another character");
+            //Debug.Log("Animal Character Interact with another character");
             currentActivityCoolDown = activityCoolDown;
             Trade();
         }
@@ -189,14 +189,14 @@ public class AnimalCharacter : MonoBehaviour
             if (meetPickupObject != null)
             {
                 currentActivityCoolDown = activityCoolDown;
-                Debug.Log("Animal Charcte Pickup " + meetPickupObject.objectType.ToString());
+                //Debug.Log("Animal Charcte Pickup " + meetPickupObject.objectType.ToString());
                 meetPickupObject.Pickup(this);
             }
         }
         else
         {
             currentActivityCoolDown = activityCoolDown;
-            Debug.Log("Animal Charcte Drop " + holdObject.objectType.ToString());
+            //Debug.Log("Animal Charcte Drop " + holdObject.objectType.ToString());
             holdObject.Drop(this);
         }
     }
@@ -206,7 +206,7 @@ public class AnimalCharacter : MonoBehaviour
     {
         if (holdObject != null)
         {
-            Debug.Log("Animal Character Use " + holdObject.objectType.ToString());
+            //Debug.Log("Animal Character Use " + holdObject.objectType.ToString());
             AFood food = holdObject as AFood;
 
             //If it is food and eatable

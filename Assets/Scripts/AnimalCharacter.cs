@@ -98,7 +98,7 @@ public class AnimalCharacter : MonoBehaviour
     {
         //Activity cool down
         currentActivityCoolDown -= Time.deltaTime;
-        if (currentActivityCoolDown > 0)
+        if (currentActivityCoolDown > 0 || bInActivity)
             return;
 
         if (gameObject.tag == "Player")
@@ -127,15 +127,13 @@ public class AnimalCharacter : MonoBehaviour
         //Test random walk for agent
         if(gameObject.tag == "Agent")
         {
-            //if (UnityEngine.Random.Range(0f, 1f) < 1.0) //Input.GetKeyDown(interactKey))
-            //{
-            //    ActWithSceneTool();
-            //}
-
-            if (UnityEngine.Random.Range(0f, 1f) < 1.0) //Input.GetKeyDown(communicationKey))
+            if (UnityEngine.Random.Range(0f, 1f) < 0.6) //Input.GetKeyDown(interactKey))
             {
+                ActWithSceneTool();
+            }
 
-                visionCone.enabled = false;
+            if (UnityEngine.Random.Range(0f, 1f) < 0.6f) //Input.GetKeyDown(communicationKey))
+            {
                 //meetAnimalCharacter.visionCone.enabled = false;
                 ActWithAnimalCharacter();
             }
@@ -166,6 +164,7 @@ public class AnimalCharacter : MonoBehaviour
         if ((meetAnimalCharacter != null) && (!bInActivity) && (!meetAnimalCharacter.bInActivity))
         {
             Debug.Log("Animal Character Interact with another character");
+            currentActivityCoolDown = activityCoolDown;
             Trade();
         }
     }
@@ -307,6 +306,7 @@ public class AnimalCharacter : MonoBehaviour
             //if both two agents agree to trade
             if (this.agreeCommunication && meetAnimalCharacter.agreeCommunication)
             {
+                Debug.LogError("Animal Character Trade!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 APickupObject myObject = this.holdObject;
                 APickupObject hisObject = meetAnimalCharacter.holdObject;
 

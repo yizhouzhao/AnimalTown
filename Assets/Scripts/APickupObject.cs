@@ -21,7 +21,7 @@ public class APickupObject : MonoBehaviour
         //if (other.gameObject.tag == "Player" || other.gameObject.tag == "Agent")
         if(other.gameObject.tag == "Vision")
         {
-            Debug.Log("APickupObject enters");
+            //Debug.Log("APickupObject enters");
             //A character/an agent sees a pickup object
             AnimalCharacter animalCharacter = other.gameObject.GetComponent<TCone>().owner;
             if(animalCharacter.meetPickupObject == null && !occupied)
@@ -37,7 +37,7 @@ public class APickupObject : MonoBehaviour
         //if (other.gameObject.tag == "Player" || other.gameObject.tag == "Agent")
         if (other.gameObject.tag == "Vision")
         {
-            Debug.Log("APickupObject exits");
+            //Debug.Log("APickupObject exits");
             //A character/an agent leaves a pickup object
             AnimalCharacter animalCharacter = other.gameObject.GetComponent<TCone>().owner;
             if (ReferenceEquals(animalCharacter.meetPickupObject, this))
@@ -76,7 +76,7 @@ public class APickupObject : MonoBehaviour
     //Pick up object
     public void Pickup(AnimalCharacter animalCharacter)
     {
-        Debug.Log("APickupObject Pickup");  
+        //Debug.Log("APickupObject Pickup");  
         this.transform.position = animalCharacter.holdTransform.position;
         this.transform.parent = animalCharacter.holdTransform;
         animalCharacter.bHoldObject = true;

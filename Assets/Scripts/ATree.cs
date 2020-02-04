@@ -36,7 +36,7 @@ public class ATree : ASceneTool
         animalCharacter.animator.SetInteger("animation", 3);
 
         //Action
-        Debug.Log("ATree: CollectFruit");
+        //Debug.Log("ATree: CollectFruit");
         StartCoroutine(CollectFruit());
         IEnumerator CollectFruit()
         {

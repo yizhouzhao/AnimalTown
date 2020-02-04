@@ -32,5 +32,4 @@ public class AnimalIslandProfile
 
 public class EAnimalIslandDefinitions : MonoBehaviour
 {
-
 }

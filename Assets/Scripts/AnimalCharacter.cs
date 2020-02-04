@@ -132,7 +132,7 @@ public class AnimalCharacter : MonoBehaviour
                 ActWithSceneTool();
             }
 
-            if (UnityEngine.Random.Range(0f, 1f) < 0.6f) //Input.GetKeyDown(communicationKey))
+            if (UnityEngine.Random.Range(0f, 1f) < 0.9f) //Input.GetKeyDown(communicationKey))
             {
                 //meetAnimalCharacter.visionCone.enabled = false;
                 ActWithAnimalCharacter();
@@ -175,7 +175,7 @@ public class AnimalCharacter : MonoBehaviour
         if ((sceneTool != null) && (!bInActivity))
         {
             currentActivityCoolDown = activityCoolDown;
-            Debug.Log("Animal Character Interact with scene tool"); 
+            //Debug.Log("Animal Character Interact with scene tool"); 
             this.bInActivity = true;
             sceneTool.Interact(this);
         }
@@ -264,7 +264,7 @@ public class AnimalCharacter : MonoBehaviour
     public void Trade()
     {
         //stop
-        //Debug.Log("Trade: " + name + " look at " + meetAnimalCharacter.name);
+        Debug.Log("Trade: " + name + " look at " + meetAnimalCharacter.name);
         StopMove();
         meetAnimalCharacter.StopMove();
 
@@ -313,7 +313,7 @@ public class AnimalCharacter : MonoBehaviour
                 //Trade event
                 if (myObject && hisObject) //case 1: exchange goods
                 {
-                    Debug.Log("Animal Character Trade case 1");
+                    //Debug.Log("Animal Character Trade case 1");
                     myObject.Drop(this);
                     myObject.occupied = true;
                     hisObject.Drop(meetAnimalCharacter);
@@ -324,12 +324,12 @@ public class AnimalCharacter : MonoBehaviour
                 }
                 else if (myObject == null && hisObject == null) //case 2: nothing happens
                 {
-                    Debug.Log("Animal Character Trade case 2");
+                    //Debug.Log("Animal Character Trade case 2");
                 }
 
                 else if (myObject != null && hisObject == null) //case 3: sell
                 {
-                    Debug.Log("Animal Character Trade case 3");
+                    //Debug.Log("Animal Character Trade case 3");
                     if (meetAnimalCharacter.money > myObject.price)
                     {
                         myObject.Drop(this);
@@ -343,7 +343,7 @@ public class AnimalCharacter : MonoBehaviour
 
                 else if (myObject == null && hisObject != null) //case 4: buy
                 {
-                    Debug.Log("Animal Character Trade case 4");
+                    //Debug.Log("Animal Character Trade case 4");
                     if (this.money > hisObject.price)
                     {
                         hisObject.Drop(meetAnimalCharacter);
@@ -366,6 +366,9 @@ public class AnimalCharacter : MonoBehaviour
             this.SetIdle();
             this.agreeCommunication = false;
 
+            
+            meetAnimalCharacter.meetAnimalCharacter = null;
+            meetAnimalCharacter = null;
 
 
             //meetAnimalCharacter.meetAnimalCharacter = null;
@@ -396,7 +399,7 @@ public class AnimalCharacter : MonoBehaviour
         NavMesh.SamplePosition(targetPosition, out hit, 50, NavMesh.AllAreas);
 
         navControl.TravelTo(hit.position);
-        Debug.Log("Animal Character RandomWalk2: " + hit.position);
+        //Debug.Log("Animal Character RandomWalk2: " + hit.position);
         GameObject pNewObject = (GameObject)GameObject.Instantiate(signPrefab, hit.position, Quaternion.identity);
     }
 }

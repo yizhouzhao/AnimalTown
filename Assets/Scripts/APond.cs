@@ -36,7 +36,7 @@ public class APond : ASceneTool
         animalCharacter.animator.SetInteger("animation", 3);
 
         //Action
-        Debug.Log("APond: Collect fish");
+        //Debug.Log("APond: Collect fish");
         StartCoroutine(CollectFish());
         IEnumerator CollectFish()
         {

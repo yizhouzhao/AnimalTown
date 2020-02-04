@@ -22,7 +22,7 @@ public class ASceneTool : MonoBehaviour
     {  
         if(other.gameObject.tag == "Player" || other.gameObject.tag == "Agent")
         {
-            Debug.Log("Ascenetool: " + this.toolName + " enters: " + other.gameObject.name);
+            //Debug.Log("Ascenetool: " + this.toolName + " enters: " + other.gameObject.name);
             //Still have place
             if (animalCharacterNames.Count < maxCapacity)
             {
@@ -37,7 +37,7 @@ public class ASceneTool : MonoBehaviour
     {  
         if (other.gameObject.tag == "Player" || other.gameObject.tag == "Agent")
         {
-            Debug.Log("Ascenetool: " + this.toolName + " exits: " + other.gameObject.name);
+            //Debug.Log("Ascenetool: " + this.toolName + " exits: " + other.gameObject.name);
             AnimalCharacter animalCharacter = other.gameObject.GetComponent<AnimalCharacter>();
             animalCharacterNames.Remove(animalCharacter.characterName);
 

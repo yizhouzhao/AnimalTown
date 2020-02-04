@@ -21,7 +21,7 @@ public class ACampfire : ASceneTool
         animalCharacter.StopMove();
 
         //Action
-        Debug.Log("ACampfire: Cook");
+        //Debug.Log("ACampfire: Cook");
         StartCoroutine(Cook());
         IEnumerator Cook()
         {

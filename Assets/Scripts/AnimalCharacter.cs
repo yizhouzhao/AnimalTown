@@ -264,7 +264,7 @@ public class AnimalCharacter : MonoBehaviour
     public void Trade()
     {
         //stop
-        Debug.Log("Trade: " + name + " look at " + meetAnimalCharacter.name);
+        //Debug.Log("Trade: " + name + " look at " + meetAnimalCharacter.name);
         StopMove();
         meetAnimalCharacter.StopMove();
 
@@ -290,7 +290,7 @@ public class AnimalCharacter : MonoBehaviour
             {
                 accumulatedWaitTime += Time.deltaTime;
 
-                Debug.Log("look at movement");
+                //Debug.Log("look at movement");
                 this.transform.LookAt(meetAnimalCharacter.transform.position);
                 meetAnimalCharacter.transform.LookAt(this.transform.position);
 
@@ -306,7 +306,7 @@ public class AnimalCharacter : MonoBehaviour
             //if both two agents agree to trade
             if (this.agreeCommunication && meetAnimalCharacter.agreeCommunication)
             {
-                Debug.LogError("Animal Character Trade: " + this.name + " with " + meetAnimalCharacter.name);
+                Debug.Log("Animal Character Trade: " + this.name + " with " + meetAnimalCharacter.name);
                 APickupObject myObject = this.holdObject;
                 APickupObject hisObject = meetAnimalCharacter.holdObject;
 
@@ -315,7 +315,10 @@ public class AnimalCharacter : MonoBehaviour
                 {
                     Debug.Log("Animal Character Trade case 1");
                     myObject.Drop(this);
+                    myObject.occupied = true;
                     hisObject.Drop(meetAnimalCharacter);
+                    hisObject.occupied = true;
+
                     myObject.Pickup(meetAnimalCharacter);
                     hisObject.Pickup(this);
                 }
@@ -330,6 +333,7 @@ public class AnimalCharacter : MonoBehaviour
                     if (meetAnimalCharacter.money > myObject.price)
                     {
                         myObject.Drop(this);
+                        myObject.occupied = true;
                         myObject.Pickup(meetAnimalCharacter);
                         this.money += myObject.price;
                         meetAnimalCharacter.money -= myObject.price;
@@ -343,6 +347,7 @@ public class AnimalCharacter : MonoBehaviour
                     if (this.money > hisObject.price)
                     {
                         hisObject.Drop(meetAnimalCharacter);
+                        hisObject.occupied = true;
                         hisObject.Pickup(this);
                         this.money -= hisObject.price;
                         meetAnimalCharacter.money += hisObject.price;

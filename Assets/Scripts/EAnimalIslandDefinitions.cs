@@ -38,7 +38,7 @@ public class EAnimalIslandDefinitions : MonoBehaviour
     public static int pondCapacity = 4; //allow how many animals at pond together at one time
 
     //Seed:apple
-    public static float appleGrowTime = 12f; //how long it takes to grow an apple
+    public static float appleGrowTime = 2f; //how long it takes to grow an apple
     public static float appleFullGain = 0.2f;
     public static float appleCookTime = 2f;
     public static float appleEatTime = 2f;
@@ -47,10 +47,13 @@ public class EAnimalIslandDefinitions : MonoBehaviour
     public static float appleStayFreshTime = 100f;
 
     //Food:fish
-    public static float fishGrowTime = 8f;
+    public static float fishGrowTime = 2f;
     public static float fishFullGain = 0.3f;
     public static float fishCookTime = 2f;
     public static float fishEatTime = 2f;
     public static float fishPrice = 2f;
     public static float fishStayFreshTime = 50f;//after this time, the object destroys itself
+
+    //Character
+    public static float characterActivityCoolDown = 3f;
 }

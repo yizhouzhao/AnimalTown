@@ -78,7 +78,7 @@ public class AnimalCharacter : MonoBehaviour
         money = 10f;
 
         //Activity cool down time
-        activityCoolDown = 1f;
+        activityCoolDown = EAnimalIslandDefinitions.characterActivityCoolDown;
         currentActivityCoolDown = activityCoolDown;
 
         //Set up navigation control for agents only
@@ -95,6 +95,9 @@ public class AnimalCharacter : MonoBehaviour
         }
         visionCone = visionConeTransform.GetComponent<TCone>();
 
+        //energy and full
+        energy = 0.5f;
+        fullness = 0.5f;
     }
 
     // Update is called once per frame
@@ -131,7 +134,7 @@ public class AnimalCharacter : MonoBehaviour
         }
 
         //Test random walk for agent
-        if(gameObject.tag == "Agent")
+        if(gameObject.tag == "NOLONGERAgent")
         {
             if (UnityEngine.Random.Range(0f, 1f) < 0.6) //Input.GetKeyDown(interactKey))
             {
@@ -173,7 +176,7 @@ public class AnimalCharacter : MonoBehaviour
     }
 
     //Act with animal character event
-    private void ActWithAnimalCharacter()
+    public void ActWithAnimalCharacter()
     {
         if ((meetAnimalCharacter != null) && (!bInActivity))//&& (!meetAnimalCharacter.bInActivity))
         {
@@ -416,6 +419,19 @@ public class AnimalCharacter : MonoBehaviour
         float z = UnityEngine.Random.Range(0.1f, 0.9f) * EAnimalIslandDefinitions.terrainWidth;
 
         Vector3 targetPosition = new Vector3(x, this.transform.position.y, z);
+        NavMeshHit hit;
+        NavMesh.SamplePosition(targetPosition, out hit, 50, NavMesh.AllAreas);
+
+        navControl.TravelTo(hit.position);
+        //Debug.Log("Animal Character RandomWalk2: " + hit.position);
+        GameObject pNewObject = (GameObject)GameObject.Instantiate(signPrefab, hit.position, Quaternion.identity);
+    }
+
+    //Navigate to 
+    public void Walk2(float x, float z)
+    {
+        currentActivityCoolDown = activityCoolDown;
+        Vector3 targetPosition = new Vector3(x * EAnimalIslandDefinitions.terrainHeight, this.transform.position.y, z * EAnimalIslandDefinitions.terrainWidth);
         NavMeshHit hit;
         NavMesh.SamplePosition(targetPosition, out hit, 50, NavMesh.AllAreas);
 

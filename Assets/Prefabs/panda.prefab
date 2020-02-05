@@ -761,15 +761,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    vectorObservationSize: 1
+    vectorObservationSize: 7
     numStackedVectorObservations: 1
-    vectorActionSize: 01000000
+    vectorActionSize: 06000000
     vectorActionDescriptions: []
-    vectorActionSpaceType: 0
+    vectorActionSpaceType: 1
   m_Model: {fileID: 0}
   m_InferenceDevice: 0
   m_BehaviorType: 0
-  m_BehaviorName: My Behavior
+  m_BehaviorName: Reinforement Agent
   m_TeamID: 0
   m_useChildSensors: 1
 --- !u!114 &9162772314630595746
@@ -799,6 +799,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26adf868134829544a2e0f0afb8ae820, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxStep: 0
+  animalCharacter: {fileID: 0}
+  NUM_ITEM_TYPES: 0
+  NUM_TOOL_TYPES: 0
+  NUM_MEET_TYPES: 0
 --- !u!1 &3590720042252378299
 GameObject:
   m_ObjectHideFlags: 0

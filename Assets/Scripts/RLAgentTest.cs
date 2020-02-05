@@ -53,6 +53,5 @@ public class RLAgentTest : Agent
         gameObject.transform.position = new Vector3(140, 5, 150);
         rBody.velocity = Vector3.zero;
         rBody.angularVelocity = Vector3.zero;
-
     }
 }

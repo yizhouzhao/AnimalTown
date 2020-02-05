@@ -113,4 +113,4 @@ MonoBehaviour:
   cookable: 1
   cookTime: 1
   stayFresh: 0
-  stayFreshTime: 100
+  stayFreshTime: 20

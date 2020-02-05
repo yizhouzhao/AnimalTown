@@ -97,7 +97,9 @@ public class AnimalCharacter : MonoBehaviour
     void Update()
     {
         //Activity cool down
-        currentActivityCoolDown -= Time.deltaTime;
+        if(!bInActivity)
+            currentActivityCoolDown -= Time.deltaTime;
+        
         if (currentActivityCoolDown > 0)
             return;
 
@@ -143,7 +145,7 @@ public class AnimalCharacter : MonoBehaviour
                 PickupDropObject();
             }
 
-            if (UnityEngine.Random.Range(0f, 1f) < 0.2f)
+            if (UnityEngine.Random.Range(0f, 1f) < 0.6f)
             {
                 UseObject();
             }
@@ -174,6 +176,7 @@ public class AnimalCharacter : MonoBehaviour
     {
         if ((sceneTool != null) && (!bInActivity))
         {
+            //cool down
             currentActivityCoolDown = activityCoolDown;
             //Debug.Log("Animal Character Interact with scene tool"); 
             this.bInActivity = true;
@@ -188,16 +191,17 @@ public class AnimalCharacter : MonoBehaviour
         {
             if (meetPickupObject != null)
             {
-                currentActivityCoolDown = activityCoolDown;
                 //Debug.Log("Animal Charcte Pickup " + meetPickupObject.objectType.ToString());
                 meetPickupObject.Pickup(this);
+                currentActivityCoolDown = activityCoolDown;
             }
         }
         else
         {
-            currentActivityCoolDown = activityCoolDown;
+            
             //Debug.Log("Animal Charcte Drop " + holdObject.objectType.ToString());
             holdObject.Drop(this);
+            currentActivityCoolDown = activityCoolDown;
         }
     }
 
@@ -304,7 +308,7 @@ public class AnimalCharacter : MonoBehaviour
                 yield return null;
             }
             
-            //yield return new WaitForSeconds(1f); //just for delay
+            yield return new WaitForSeconds(.1f); //just for delay
 
             //if both two agents agree to trade
             if (this.agreeCommunication && meetAnimalCharacter.agreeCommunication)
@@ -370,12 +374,9 @@ public class AnimalCharacter : MonoBehaviour
             this.agreeCommunication = false;
 
             
-            meetAnimalCharacter.meetAnimalCharacter = null;
-            meetAnimalCharacter = null;
-
-
             //meetAnimalCharacter.meetAnimalCharacter = null;
-            //this.meetAnimalCharacter = null;
+            //meetAnimalCharacter = null;
+
         }
     }
 

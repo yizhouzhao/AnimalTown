@@ -19,6 +19,7 @@ public class APond : ASceneTool
         this.toolType = ESceneEventTool.Pond;
         this.activityType = EActivity.CollectFruit;
         this.activityDuration = 2f;
+        this.maxCapacity = 5;
     }
 
     void Start()

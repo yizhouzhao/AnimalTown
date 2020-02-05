@@ -34,9 +34,7 @@ public class AFood : APickupObject
     //Eat food
     public void Eat(AnimalCharacter animalCharacter)
     {
-        //Empty hand
-        animalCharacter.bHoldObject = false;
-        animalCharacter.holdObject = null;
+
         animalCharacter.StopMove();
 
         //Debug.Log("AFood(eat): " + this.objectType.ToString());

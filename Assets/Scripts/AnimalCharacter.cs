@@ -132,7 +132,7 @@ public class AnimalCharacter : MonoBehaviour
                 ActWithSceneTool();
             }
 
-            if (UnityEngine.Random.Range(0f, 1f) < 0.3f) //Input.GetKeyDown(communicationKey))
+            if (UnityEngine.Random.Range(0f, 1f) < 0.9f) //Input.GetKeyDown(communicationKey))
             {
                 //meetAnimalCharacter.visionCone.enabled = false;
                 ActWithAnimalCharacter();
@@ -161,7 +161,7 @@ public class AnimalCharacter : MonoBehaviour
     //Act with animal character event
     private void ActWithAnimalCharacter()
     {
-        if ((meetAnimalCharacter != null) && (!bInActivity) && (!meetAnimalCharacter.bInActivity))
+        if ((meetAnimalCharacter != null) && (!bInActivity))//&& (!meetAnimalCharacter.bInActivity))
         {
             //Debug.Log("Animal Character Interact with another character");
             currentActivityCoolDown = activityCoolDown;
@@ -204,7 +204,7 @@ public class AnimalCharacter : MonoBehaviour
     //Use object event
     public void UseObject()
     {
-        if (holdObject != null)
+        if (holdObject != null && (!bInActivity))
         {
             //Debug.Log("Animal Character Use " + holdObject.objectType.ToString());
             AFood food = holdObject as AFood;
@@ -212,6 +212,7 @@ public class AnimalCharacter : MonoBehaviour
             //If it is food and eatable
             if (food && food.eatable)
             {
+                currentActivityCoolDown = activityCoolDown;
                 this.bInActivity = true;
                 food.Eat(this);
             }
@@ -270,6 +271,8 @@ public class AnimalCharacter : MonoBehaviour
 
         this.agreeCommunication = true;
         this.bInActivity = true;
+        //meetAnimalCharacter.bInActivity = true;
+
         this.animator.SetInteger("animation", 0);
         this.currentActivity = EActivity.Trade;
 
@@ -306,7 +309,7 @@ public class AnimalCharacter : MonoBehaviour
             //if both two agents agree to trade
             if (this.agreeCommunication && meetAnimalCharacter.agreeCommunication)
             {
-                Debug.Log("Animal Character Trade: " + this.name + " with " + meetAnimalCharacter.name);
+                Debug.Log("Animal Character !!!Trade!!!: " + this.name + " with " + meetAnimalCharacter.name);
                 APickupObject myObject = this.holdObject;
                 APickupObject hisObject = meetAnimalCharacter.holdObject;
 

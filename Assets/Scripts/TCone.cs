@@ -18,13 +18,14 @@ public class TCone : MonoBehaviour
         if (other.gameObject.tag == "Player" || other.gameObject.tag == "Agent")
         {
             //double direction
-            //Debug.Log("Tcone Animal Character meet another: " + other.gameObject.name);
+            
             AnimalCharacter animalCharacter = other.gameObject.GetComponent<AnimalCharacter>();
             //both sides
             if (this.owner.meetAnimalCharacter == null && animalCharacter.meetAnimalCharacter == null)
             {
                 if (!this.owner.bInActivity && !animalCharacter.bInActivity)
                 {
+                    Debug.Log("Tcone Animal Character meet another: " + other.gameObject.name);
                     this.owner.meetAnimalCharacter = animalCharacter;
                     animalCharacter.meetAnimalCharacter = this.owner;
                 }
@@ -50,15 +51,13 @@ public class TCone : MonoBehaviour
                     return;
                 }
             }
-            //double direction
-            //Debug.Log("Tcone Animal Character exit another : " + other.gameObject.name);
-
 
             //both sides
             if (this.owner.meetAnimalCharacter && animalCharacter.meetAnimalCharacter)
             {
                 if (ReferenceEquals(this.owner.meetAnimalCharacter, animalCharacter))
                 {
+                    Debug.Log("Tcone Animal Character exit another : " + other.gameObject.name);
                     owner.meetAnimalCharacter = null;
                     animalCharacter.meetAnimalCharacter = null;
                 }

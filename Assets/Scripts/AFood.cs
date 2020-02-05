@@ -37,7 +37,6 @@ public class AFood : APickupObject
         //Empty hand
         animalCharacter.bHoldObject = false;
         animalCharacter.holdObject = null;
-
         animalCharacter.StopMove();
 
         //Debug.Log("AFood(eat): " + this.objectType.ToString());
@@ -57,6 +56,9 @@ public class AFood : APickupObject
 
             //Distroy this food
             Destroy(this.gameObject);
+
+            
+            
         }
     }
 }

@@ -25,7 +25,7 @@ public class TCone : MonoBehaviour
             {
                 if ((!this.owner.bInActivity) && (!animalCharacter.bInActivity))
                 {
-                    Debug.Log("Tcone "+ name + "Animal Character meet another: " + other.gameObject.name);
+                    Debug.Log("Tcone "+ owner.name + "Animal Character meet another: " + other.gameObject.name);
                     this.owner.meetAnimalCharacter = animalCharacter;
                     animalCharacter.meetAnimalCharacter = this.owner;
                 }
@@ -43,8 +43,9 @@ public class TCone : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" || other.gameObject.tag == "Agent")
         {
+            //Debug.Log("Player Agent Tcone " + name + " Animal Character exit another : " + other.gameObject.name);
             AnimalCharacter animalCharacter = other.gameObject.GetComponent<AnimalCharacter>();
-            if ((owner.agreeCommunication || animalCharacter.agreeCommunication) || ReferenceEquals(this.owner.meetAnimalCharacter, animalCharacter))
+            if ((owner.agreeCommunication || animalCharacter.agreeCommunication) && ReferenceEquals(this.owner.meetAnimalCharacter, animalCharacter))
             {
                 //if (ReferenceEquals(owner, owner.meetAnimalCharacter.meetAnimalCharacter))
                 {
@@ -55,9 +56,10 @@ public class TCone : MonoBehaviour
             //both sides
             if (this.owner.meetAnimalCharacter && animalCharacter.meetAnimalCharacter)
             {
+                //Debug.Log("Player Agent Tcone 2222" + name + " Animal Character exit another : " + other.gameObject.name);
                 if (ReferenceEquals(this.owner.meetAnimalCharacter, animalCharacter) && ReferenceEquals(animalCharacter.meetAnimalCharacter, this.owner))
                 {
-                    Debug.Log("Tcone " + name + " Animal Character exit another : " + other.gameObject.name);
+                    Debug.Log("Tcone " + owner.name + " Animal Character exit another : " + other.gameObject.name);
                     owner.meetAnimalCharacter = null;
                     animalCharacter.meetAnimalCharacter = null;
                 }

@@ -140,12 +140,12 @@ public class AnimalCharacter : MonoBehaviour
                 ActWithAnimalCharacter();
             }
 
-            if (UnityEngine.Random.Range(0f, 1f) < 0.2f)
+            if (UnityEngine.Random.Range(0f, 1f) < 0.5f)
             {
                 PickupDropObject();
             }
 
-            if (UnityEngine.Random.Range(0f, 1f) < 0.6f)
+            if (UnityEngine.Random.Range(0f, 1f) < 0.2f)
             {
                 UseObject();
             }
@@ -269,7 +269,6 @@ public class AnimalCharacter : MonoBehaviour
     public void Trade()
     {
         //stop
-        Debug.Log("Trade: " + name + " look at " + meetAnimalCharacter.name);
         StopMove();
         meetAnimalCharacter.StopMove();
 
@@ -288,6 +287,8 @@ public class AnimalCharacter : MonoBehaviour
             return;
         }
 
+        //Debug.LogError("Trade: " + name + " look at " + meetAnimalCharacter.name);
+
         //Wait another animalcharacter's response
         StartCoroutine(WaitTradeRequest(3f));
         IEnumerator WaitTradeRequest(float waitTime)
@@ -297,7 +298,7 @@ public class AnimalCharacter : MonoBehaviour
             {
                 accumulatedWaitTime += Time.deltaTime;
 
-                //Debug.Log("look at movement");
+                Debug.Log("Trade look at movement " + this.name + " : " + meetAnimalCharacter.name);
                 this.transform.LookAt(meetAnimalCharacter.transform.position);
                 meetAnimalCharacter.transform.LookAt(this.transform.position);
 
@@ -308,7 +309,7 @@ public class AnimalCharacter : MonoBehaviour
                 yield return null;
             }
             
-            yield return new WaitForSeconds(.1f); //just for delay
+            //yield return new WaitForSeconds(.1f); //just for delay
 
             //if both two agents agree to trade
             if (this.agreeCommunication && meetAnimalCharacter.agreeCommunication)
@@ -360,6 +361,7 @@ public class AnimalCharacter : MonoBehaviour
                         meetAnimalCharacter.money += hisObject.price;
                     }
                 }
+
             }
 
             else
@@ -367,15 +369,21 @@ public class AnimalCharacter : MonoBehaviour
                 //Debug.LogError("Animal Character No trade");
             }
 
-            meetAnimalCharacter.SetIdle();
-            meetAnimalCharacter.agreeCommunication = false;
+            if (meetAnimalCharacter) 
+            {
+                meetAnimalCharacter.SetIdle();
+                meetAnimalCharacter.agreeCommunication = false;
+                //Debug.LogError("Trade Complete 1");
+                meetAnimalCharacter.meetAnimalCharacter = null;
+                meetAnimalCharacter = null;
+                //Debug.LogError("Trade Complete 2");
+            }
+
 
             this.SetIdle();
             this.agreeCommunication = false;
 
-            
-            //meetAnimalCharacter.meetAnimalCharacter = null;
-            //meetAnimalCharacter = null;
+
 
         }
     }

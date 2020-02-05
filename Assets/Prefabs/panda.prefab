@@ -594,6 +594,9 @@ GameObject:
   - component: {fileID: 3590720042301738654}
   - component: {fileID: 1585009069288465447}
   - component: {fileID: 3610780553315572332}
+  - component: {fileID: 8839710921068742217}
+  - component: {fileID: 9162772314630595746}
+  - component: {fileID: 7869598599006260736}
   m_Layer: 0
   m_Name: panda
   m_TagString: Agent
@@ -681,6 +684,7 @@ MonoBehaviour:
   testTravelTo: 
   originalSpeed: 0
   originalAngularSpeed: 0
+  recordVelocity: {x: 0, y: 0, z: 0}
 --- !u!114 &1585009069288465447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -704,6 +708,8 @@ MonoBehaviour:
   energy: 0
   fullness: 0
   money: 0
+  fullLossPerSecond: 0.01
+  energyLossPerSecond: 0.01
   sceneTool: {fileID: 0}
   currentActivityRemainTime: 0
   currentActivity: 0
@@ -717,8 +723,10 @@ MonoBehaviour:
   interactKey: 0
   pickupDropKey: 0
   useKey: 0
+  communicationKey: 0
   meetAnimalCharacter: {fileID: 0}
   agreeCommunication: 0
+  visionCone: {fileID: 0}
   navControl: {fileID: 0}
   signPrefab: {fileID: 4752532897261433117, guid: 74a5a33414dc1f9459dc1978373b69c8,
     type: 3}
@@ -740,6 +748,57 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 2.16, z: 0}
+--- !u!114 &8839710921068742217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3590720042252378297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    vectorObservationSize: 1
+    numStackedVectorObservations: 1
+    vectorActionSize: 01000000
+    vectorActionDescriptions: []
+    vectorActionSpaceType: 0
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 0
+  m_BehaviorName: My Behavior
+  m_TeamID: 0
+  m_useChildSensors: 1
+--- !u!114 &9162772314630595746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3590720042252378297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DecisionPeriod: 5
+  RepeatAction: 1
+  offsetStep: 0
+--- !u!114 &7869598599006260736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3590720042252378297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26adf868134829544a2e0f0afb8ae820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3590720042252378299
 GameObject:
   m_ObjectHideFlags: 0

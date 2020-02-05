@@ -48,4 +48,9 @@ public class EAnimalIslandDefinitions : MonoBehaviour
 
     //Food:fish
     public static float fishGrowTime = 8f;
+    public static float fishFullGain = 0.3f;
+    public static float fishCookTime = 2f;
+    public static float fishEatTime = 2f;
+    public static float fishPrice = 2f;
+    public static float fishStayFreshTime = 50f;//after this time, the object destroys itself
 }

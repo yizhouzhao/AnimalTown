@@ -26,6 +26,9 @@ public class AnimalCharacter : MonoBehaviour
     public float fullness; //hungry or full
     public float money; //money
 
+    public float fullLossPerSecond = 0.01f;
+    public float energyLossPerSecond = 0.01f;
+
     [Header("Activity")]
     public ASceneTool sceneTool;//Scenetool Reference: to record what scene tool the character meets
     public float currentActivityRemainTime;
@@ -91,6 +94,7 @@ public class AnimalCharacter : MonoBehaviour
             Debug.LogError("No vision transform for player/agent");
         }
         visionCone = visionConeTransform.GetComponent<TCone>();
+
     }
 
     // Update is called once per frame
@@ -158,6 +162,14 @@ public class AnimalCharacter : MonoBehaviour
             }
         }
 
+    }
+
+    //Fix update for 
+    private void FixedUpdate()
+    {
+        //energy and full loss
+        energy = Mathf.Max(energy - energyLossPerSecond * Time.fixedDeltaTime, 0f);
+        fullness = Mathf.Max(fullness - fullLossPerSecond * Time.fixedDeltaTime, 0f);
     }
 
     //Act with animal character event
@@ -382,9 +394,6 @@ public class AnimalCharacter : MonoBehaviour
 
             this.SetIdle();
             this.agreeCommunication = false;
-
-
-
         }
     }
 

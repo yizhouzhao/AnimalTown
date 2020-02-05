@@ -8,11 +8,11 @@ public class AApple : ASeed
     void Start()
     {
         this.objectType = EPickupObject.Apple;
-        this.cookTime = 1f; //for test only
-        this.fullGain = 0.2f;
-        this.eatTime = 2f;
-        this.growTime = 1f;
-        this.price = 1f;
-        this.stayFreshTime = 100f;
+        this.cookTime = EAnimalIslandDefinitions.appleCookTime; //for test only
+        this.fullGain = EAnimalIslandDefinitions.appleFullGain;
+        this.eatTime = EAnimalIslandDefinitions.appleEatTime;
+        this.growTime = EAnimalIslandDefinitions.appleSeedGrowTime;
+        this.price = EAnimalIslandDefinitions.applePrice;
+        this.stayFreshTime = EAnimalIslandDefinitions.appleStayFreshTime;
     }
 }

@@ -10,7 +10,7 @@ public class AHouse : ASceneTool
         this.toolName = "House";
         this.toolType = ESceneEventTool.House;
         this.activityType = EActivity.Sleep;
-        this.activityDuration = 4f;
+        this.activityDuration = EAnimalIslandDefinitions.sleepTime;
     }
 
     public override void Interact(AnimalCharacter animalCharacter)

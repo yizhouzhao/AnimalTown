@@ -403,8 +403,8 @@ public class AnimalCharacter : MonoBehaviour
     //Walk event: random walk version 2 get a random point on map
     public void RandomWalk2()
     {
-        float x = UnityEngine.Random.Range(0.1f, 0.9f) * AnimalIslandProfile.terrainHeight;
-        float z = UnityEngine.Random.Range(0.1f, 0.9f) * AnimalIslandProfile.terrainWidth;
+        float x = UnityEngine.Random.Range(0.1f, 0.9f) * EAnimalIslandDefinitions.terrainHeight;
+        float z = UnityEngine.Random.Range(0.1f, 0.9f) * EAnimalIslandDefinitions.terrainWidth;
 
         Vector3 targetPosition = new Vector3(x, this.transform.position.y, z);
         NavMeshHit hit;

@@ -7,7 +7,7 @@ public class APond : ASceneTool
     //Fruit to generate over a period
     [Header("Fruit information")]
     public GameObject fruitPrefab;
-    public float fruitGeneratingTime = 1f;
+    public float fruitGeneratingTime;
     private float fruitGeneratingTimeRemain;
     public int fruitCount;
     public int maxFruitCount = 10;
@@ -18,14 +18,15 @@ public class APond : ASceneTool
         this.toolName = "Pond";
         this.toolType = ESceneEventTool.Pond;
         this.activityType = EActivity.CollectFruit;
-        this.activityDuration = 2f;
-        this.maxCapacity = 5;
+        this.activityDuration = EAnimalIslandDefinitions.collectFishTime;
+        this.maxCapacity = EAnimalIslandDefinitions.pondCapacity;
     }
 
     void Start()
     {
         //Tree info
         this.fruitCount = 0;
+        this.fruitGeneratingTime = EAnimalIslandDefinitions.fishGrowTime;
         this.fruitGeneratingTimeRemain = this.fruitGeneratingTime;
     }
 

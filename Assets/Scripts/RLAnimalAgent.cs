@@ -120,6 +120,8 @@ public class RLAnimalAgent : Agent
             SetReward(1);
         }
 
+        SetReward(animalCharacter.money * 0.01f);
+
         //Activity cool down
         if (!animalCharacter.bInActivity)
             animalCharacter.currentActivityCoolDown -= Time.deltaTime;

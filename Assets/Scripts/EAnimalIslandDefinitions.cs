@@ -42,7 +42,7 @@ public class EAnimalIslandDefinitions : MonoBehaviour
     public static float appleFullGain = 0.2f;
     public static float appleCookTime = 2f;
     public static float appleEatTime = 2f;
-    public static float appleSeedGrowTime = 48f; //how long it takes to grow an apple tree
+    public static float appleSeedGrowTime = 2f; //how long it takes to grow an apple tree
     public static float applePrice = 1f;
     public static float appleStayFreshTime = 100f;
 

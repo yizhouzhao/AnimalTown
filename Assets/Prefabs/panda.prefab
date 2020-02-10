@@ -730,6 +730,8 @@ MonoBehaviour:
   navControl: {fileID: 0}
   signPrefab: {fileID: 4752532897261433117, guid: 74a5a33414dc1f9459dc1978373b69c8,
     type: 3}
+  originalLocation: {x: 0, y: 0, z: 0}
+  runningTime: 0
 --- !u!143 &3610780553315572332
 CharacterController:
   m_ObjectHideFlags: 0
@@ -761,7 +763,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    vectorObservationSize: 7
+    vectorObservationSize: 15
     numStackedVectorObservations: 1
     vectorActionSize: 06000000
     vectorActionDescriptions: []
@@ -801,6 +803,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxStep: 0
   animalCharacter: {fileID: 0}
+  secondPerPeriod: 0
   NUM_ITEM_TYPES: 0
   NUM_TOOL_TYPES: 0
   NUM_MEET_TYPES: 0

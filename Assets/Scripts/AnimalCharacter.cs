@@ -59,6 +59,10 @@ public class AnimalCharacter : MonoBehaviour
 
     [Header("Nevigation")]
     public GameObject signPrefab;
+    public Vector3 originalLocation;
+
+    [Header("Survival Time")]
+    public float runningTime;
 
     // Start is called before the first frame update
     void Start()
@@ -74,9 +78,6 @@ public class AnimalCharacter : MonoBehaviour
             Debug.LogError("No hold transform for player/agent");
         }
 
-        //Set up start money
-        money = 10f;
-
         //Activity cool down time
         activityCoolDown = EAnimalIslandDefinitions.characterActivityCoolDown;
         currentActivityCoolDown = activityCoolDown;
@@ -86,6 +87,8 @@ public class AnimalCharacter : MonoBehaviour
         {
             navControl = GetComponent<AgentNavigationControl>();
         }
+        originalLocation = this.transform.position;
+
 
         //Setup vision
         Transform visionConeTransform = transform.Find("cone");
@@ -94,10 +97,24 @@ public class AnimalCharacter : MonoBehaviour
             Debug.LogError("No vision transform for player/agent");
         }
         visionCone = visionConeTransform.GetComponent<TCone>();
+    
+        ResetAnimalCharacter();
+    }
 
+    //Reset fluents for characters
+    public void ResetAnimalCharacter()
+    {
         //energy and full
         energy = 0.5f;
         fullness = 0.5f;
+        //Set up start money
+        money = 10f;
+
+        this.transform.position = originalLocation;
+        this.transform.rotation = Quaternion.identity;
+
+        //Reset activity, animation and nevigation
+        SetIdle();
     }
 
     // Update is called once per frame
@@ -170,9 +187,16 @@ public class AnimalCharacter : MonoBehaviour
     //Fix update for 
     private void FixedUpdate()
     {
+        RegularGainAndLoss();
+
+    }
+
+    private void RegularGainAndLoss()
+    {
         //energy and full loss
         energy = Mathf.Max(energy - energyLossPerSecond * Time.fixedDeltaTime, 0f);
         fullness = Mathf.Max(fullness - fullLossPerSecond * Time.fixedDeltaTime, 0f);
+        //money += 0.0001f * money;
     }
 
     //Act with animal character event

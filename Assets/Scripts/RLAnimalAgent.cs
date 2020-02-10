@@ -6,12 +6,15 @@ using System;
 
 public class RLAnimalAgent : Agent
 {
+    [Header("character")]
     public AnimalCharacter animalCharacter;
+
+    [Header("Done Period")]
+    public int secondPerPeriod;
 
     public int NUM_ITEM_TYPES;
     public int NUM_TOOL_TYPES;
     public int NUM_MEET_TYPES;
-
 
     public int GetHoldObjectCode()
     {
@@ -68,10 +71,13 @@ public class RLAnimalAgent : Agent
 
     public override void InitializeAgent()
     {
+        //initialize location
         animalCharacter = GetComponent<AnimalCharacter>();
         NUM_ITEM_TYPES = 3;
         NUM_TOOL_TYPES = 6;
         NUM_MEET_TYPES = 2;
+
+        secondPerPeriod = 100;
 
     }
 
@@ -112,15 +118,21 @@ public class RLAnimalAgent : Agent
         //Reward
         if (animalCharacter.fullness < 0.2f || animalCharacter.energy < 0.2f)
         {
-            SetReward(-1);
+            AddReward(-1);
         }
 
         if (animalCharacter.fullness > 0.8f || animalCharacter.energy > 0.8f)
         {
-            SetReward(1);
+            AddReward(1);
         }
 
-        SetReward(animalCharacter.money * 0.01f);
+        //Done
+        if((int)Time.time % secondPerPeriod == secondPerPeriod - 1)
+        {
+            Done();
+        }
+
+        //SetReward(animalCharacter.money * 0.01f);
 
         //Activity cool down
         if (!animalCharacter.bInActivity)
@@ -165,6 +177,6 @@ public class RLAnimalAgent : Agent
 
     public override void AgentReset()
     {
-
+        animalCharacter.ResetAnimalCharacter();
     }
 }

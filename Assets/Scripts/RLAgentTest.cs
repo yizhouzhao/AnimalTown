@@ -39,11 +39,11 @@ public class RLAgentTest : Agent
             gameObject.transform.position.z - 150< -10f || gameObject.transform.position.z - 150f > 10f)
         {
             Done();
-            SetReward(-1f);
+            AddReward(-1f);
         }
         else
         {
-            SetReward(0.1f);
+            AddReward(0.1f);
         }
     }
 

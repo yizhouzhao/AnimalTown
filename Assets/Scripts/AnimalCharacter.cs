@@ -473,7 +473,7 @@ public class AnimalCharacter : MonoBehaviour
 
         Vector3 targetPosition = this.transform.position + this.transform.forward * x * scale;
         targetPosition += this.transform.right * z * scale;
-            
+
         NavMeshHit hit;
         NavMesh.SamplePosition(targetPosition, out hit, 2 *　scale, NavMesh.AllAreas);
 

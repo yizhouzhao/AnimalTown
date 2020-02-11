@@ -20,7 +20,7 @@ public class UITimeControl : MonoBehaviour
     void Update()
     {
         int second = (int)(Time.time) % 60;
-        int minute = (int)(Time.time) / 60;
+        int minute = (int)(Time.time) % 3600 / 60;
         int hour = (int)(Time.time) / 3600;
 
         Sec.text = second.ToString("00");

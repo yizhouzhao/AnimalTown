@@ -84,8 +84,8 @@ public class RLAnimalAgent : Agent
     public override void CollectObservations()
     {
         //location
-        AddVectorObs(gameObject.transform.position.x);
-        AddVectorObs(gameObject.transform.position.z);
+        AddVectorObs(gameObject.transform.position.x / EAnimalIslandDefinitions.terrainWidth);
+        AddVectorObs(gameObject.transform.position.z / EAnimalIslandDefinitions.terrainHeight);
 
         //Fluents
         AddVectorObs(animalCharacter.energy);
@@ -116,15 +116,15 @@ public class RLAnimalAgent : Agent
     public override void AgentAction(float[] vectorAction)
     {
         //Reward
-        //if (animalCharacter.fullness < 0.2f || animalCharacter.energy < 0.2f)
+        if (animalCharacter.fullness < 0.2f || animalCharacter.energy < 0.2f)
         {
-            AddReward(-1);
+            AddReward(-0.02f);
         }
 
-        //if (animalCharacter.fullness > 0.8f || animalCharacter.energy > 0.8f)
-        //{
-        //    AddReward(1);
-        //}
+        if (animalCharacter.fullness > 0.8f || animalCharacter.energy > 0.8f)
+        {
+            AddReward(0.01f);
+        }
 
         //Done
         if((int)Time.time % secondPerPeriod == secondPerPeriod - 1)
@@ -132,7 +132,8 @@ public class RLAnimalAgent : Agent
             Done();
         }
 
-        //SetReward(animalCharacter.money * 0.01f);
+        //survivial reward
+        //SetReward(animalCharacter.money * 0.0001f);
 
         //Activity cool down
         if (!animalCharacter.bInActivity)

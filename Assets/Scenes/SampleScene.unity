@@ -5605,6 +5605,16 @@ PrefabInstance:
       propertyPath: m_BrainParameters.vectorObservationSize
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 8839710921068742217, guid: c1bd30d248cdf7c469cadcdd62d7af61,
+        type: 3}
+      propertyPath: m_BehaviorName
+      value: Panda Agent
+      objectReference: {fileID: 0}
+    - target: {fileID: 9162772314630595746, guid: c1bd30d248cdf7c469cadcdd62d7af61,
+        type: 3}
+      propertyPath: DecisionPeriod
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1bd30d248cdf7c469cadcdd62d7af61, type: 3}
 --- !u!1001 &832826552

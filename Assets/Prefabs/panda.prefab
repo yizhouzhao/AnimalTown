@@ -771,7 +771,7 @@ MonoBehaviour:
   m_Model: {fileID: 0}
   m_InferenceDevice: 0
   m_BehaviorType: 0
-  m_BehaviorName: Reinforement Agent
+  m_BehaviorName: Panda Agent
   m_TeamID: 0
   m_useChildSensors: 1
 --- !u!114 &9162772314630595746
@@ -786,7 +786,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DecisionPeriod: 5
+  DecisionPeriod: 20
   RepeatAction: 1
   offsetStep: 0
 --- !u!114 &7869598599006260736
@@ -803,7 +803,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxStep: 0
   animalCharacter: {fileID: 0}
-  secondPerPeriod: 0
+  secondPerPeriod: 10
   NUM_ITEM_TYPES: 0
   NUM_TOOL_TYPES: 0
   NUM_MEET_TYPES: 0

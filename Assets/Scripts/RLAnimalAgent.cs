@@ -116,15 +116,15 @@ public class RLAnimalAgent : Agent
     public override void AgentAction(float[] vectorAction)
     {
         //Reward
-        if (animalCharacter.fullness < 0.2f || animalCharacter.energy < 0.2f)
+        //if (animalCharacter.fullness < 0.2f || animalCharacter.energy < 0.2f)
         {
             AddReward(-1);
         }
 
-        if (animalCharacter.fullness > 0.8f || animalCharacter.energy > 0.8f)
-        {
-            AddReward(1);
-        }
+        //if (animalCharacter.fullness > 0.8f || animalCharacter.energy > 0.8f)
+        //{
+        //    AddReward(1);
+        //}
 
         //Done
         if((int)Time.time % secondPerPeriod == secondPerPeriod - 1)

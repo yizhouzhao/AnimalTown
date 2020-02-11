@@ -115,6 +115,8 @@ public class AnimalCharacter : MonoBehaviour
 
         //Reset activity, animation and nevigation
         SetIdle();
+
+        meetAnimalCharacter = null;
     }
 
     // Update is called once per frame
@@ -458,6 +460,22 @@ public class AnimalCharacter : MonoBehaviour
         Vector3 targetPosition = new Vector3(x * EAnimalIslandDefinitions.terrainHeight, this.transform.position.y, z * EAnimalIslandDefinitions.terrainWidth);
         NavMeshHit hit;
         NavMesh.SamplePosition(targetPosition, out hit, 50, NavMesh.AllAreas);
+
+        navControl.TravelTo(hit.position);
+        //Debug.Log("Animal Character RandomWalk2: " + hit.position);
+        GameObject pNewObject = (GameObject)GameObject.Instantiate(signPrefab, hit.position, Quaternion.identity);
+    }
+
+    //Navigate to 
+    public void Walk3 (float x, float z, float scale = 20f)
+    {
+        currentActivityCoolDown = activityCoolDown;
+
+        Vector3 targetPosition = this.transform.position + this.transform.forward * x * scale;
+        targetPosition += this.transform.right * z * scale;
+            
+        NavMeshHit hit;
+        NavMesh.SamplePosition(targetPosition, out hit, 2 *　scale, NavMesh.AllAreas);
 
         navControl.TravelTo(hit.position);
         //Debug.Log("Animal Character RandomWalk2: " + hit.position);

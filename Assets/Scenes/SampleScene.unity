@@ -1185,7 +1185,7 @@ PrefabInstance:
     - target: {fileID: 3590720042252378297, guid: c1bd30d248cdf7c469cadcdd62d7af61,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3590720042259796737, guid: c1bd30d248cdf7c469cadcdd62d7af61,
         type: 3}
@@ -3522,7 +3522,7 @@ PrefabInstance:
     - target: {fileID: 3590720042252352729, guid: c1bd30d248cdf7c469cadcdd62d7af61,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 106.4
+      value: 148.2
       objectReference: {fileID: 0}
     - target: {fileID: 3590720042252352729, guid: c1bd30d248cdf7c469cadcdd62d7af61,
         type: 3}
@@ -3582,7 +3582,7 @@ PrefabInstance:
     - target: {fileID: 3590720042252378297, guid: c1bd30d248cdf7c469cadcdd62d7af61,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3590720042301738654, guid: c1bd30d248cdf7c469cadcdd62d7af61,
         type: 3}
@@ -5132,7 +5132,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -189.7, y: 238.98}
+  m_AnchoredPosition: {x: -510.5, y: 238.98}
   m_SizeDelta: {x: -1049.3, y: -604.17}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &736837476
@@ -5603,12 +5603,17 @@ PrefabInstance:
     - target: {fileID: 8839710921068742217, guid: c1bd30d248cdf7c469cadcdd62d7af61,
         type: 3}
       propertyPath: m_BrainParameters.vectorObservationSize
-      value: 15
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 8839710921068742217, guid: c1bd30d248cdf7c469cadcdd62d7af61,
         type: 3}
       propertyPath: m_BehaviorName
       value: Panda Agent
+      objectReference: {fileID: 0}
+    - target: {fileID: 8839710921068742217, guid: c1bd30d248cdf7c469cadcdd62d7af61,
+        type: 3}
+      propertyPath: m_BrainParameters.numStackedVectorObservations
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9162772314630595746, guid: c1bd30d248cdf7c469cadcdd62d7af61,
         type: 3}
@@ -7498,7 +7503,7 @@ PrefabInstance:
     - target: {fileID: 3590720042252352729, guid: c1bd30d248cdf7c469cadcdd62d7af61,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 41.61
+      value: 90.6
       objectReference: {fileID: 0}
     - target: {fileID: 3590720042252352729, guid: c1bd30d248cdf7c469cadcdd62d7af61,
         type: 3}
@@ -7508,7 +7513,7 @@ PrefabInstance:
     - target: {fileID: 3590720042252352729, guid: c1bd30d248cdf7c469cadcdd62d7af61,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 53.1
+      value: 140.8
       objectReference: {fileID: 0}
     - target: {fileID: 3590720042252352729, guid: c1bd30d248cdf7c469cadcdd62d7af61,
         type: 3}
@@ -7558,7 +7563,7 @@ PrefabInstance:
     - target: {fileID: 3590720042252378297, guid: c1bd30d248cdf7c469cadcdd62d7af61,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3590720042301738654, guid: c1bd30d248cdf7c469cadcdd62d7af61,
         type: 3}
@@ -7998,7 +8003,7 @@ PrefabInstance:
     - target: {fileID: 3590720042252378297, guid: c1bd30d248cdf7c469cadcdd62d7af61,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3590720042252378311, guid: c1bd30d248cdf7c469cadcdd62d7af61,
         type: 3}
@@ -11078,7 +11083,7 @@ PrefabInstance:
     - target: {fileID: 3590720042252378297, guid: c1bd30d248cdf7c469cadcdd62d7af61,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3590720042259796737, guid: c1bd30d248cdf7c469cadcdd62d7af61,
         type: 3}
@@ -13323,7 +13328,7 @@ PrefabInstance:
     - target: {fileID: 3590720042252378297, guid: c1bd30d248cdf7c469cadcdd62d7af61,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3590720042301738654, guid: c1bd30d248cdf7c469cadcdd62d7af61,
         type: 3}
@@ -13402,7 +13407,7 @@ PrefabInstance:
     - target: {fileID: 3590720042252378297, guid: c1bd30d248cdf7c469cadcdd62d7af61,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3590720042301738649, guid: c1bd30d248cdf7c469cadcdd62d7af61,
         type: 3}
@@ -14161,7 +14166,7 @@ PrefabInstance:
     - target: {fileID: 3590720042252378297, guid: c1bd30d248cdf7c469cadcdd62d7af61,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3590720042259796737, guid: c1bd30d248cdf7c469cadcdd62d7af61,
         type: 3}
@@ -14186,7 +14191,7 @@ PrefabInstance:
     - target: {fileID: 8839710921068742217, guid: c1bd30d248cdf7c469cadcdd62d7af61,
         type: 3}
       propertyPath: m_BrainParameters.vectorObservationSize
-      value: 15
+      value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1bd30d248cdf7c469cadcdd62d7af61, type: 3}

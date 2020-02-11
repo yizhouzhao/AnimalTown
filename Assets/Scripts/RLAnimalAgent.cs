@@ -16,6 +16,8 @@ public class RLAnimalAgent : Agent
     public int NUM_TOOL_TYPES;
     public int NUM_MEET_TYPES;
 
+    private int loopCount;
+
     public int GetHoldObjectCode()
     {
         if(animalCharacter.holdObject == null)
@@ -78,6 +80,7 @@ public class RLAnimalAgent : Agent
         NUM_MEET_TYPES = 2;
 
         secondPerPeriod = 100;
+        loopCount = 1;
 
     }
 
@@ -86,6 +89,8 @@ public class RLAnimalAgent : Agent
         //location
         AddVectorObs(gameObject.transform.position.x / EAnimalIslandDefinitions.terrainWidth);
         AddVectorObs(gameObject.transform.position.z / EAnimalIslandDefinitions.terrainHeight);
+        AddVectorObs(0f); //gameObject.transform.forward.x);
+        AddVectorObs(0f);//gameObject.transform.forward.z);
 
         //Fluents
         AddVectorObs(animalCharacter.energy);
@@ -104,8 +109,8 @@ public class RLAnimalAgent : Agent
     public override float[] Heuristic()
     {        
         var action = new float[6];
-        action[0] = UnityEngine.Random.Range(0f, 1f);
-        action[1] = UnityEngine.Random.Range(0f, 1f);
+        action[0] = UnityEngine.Random.Range(-1f, 1f);
+        action[1] = UnityEngine.Random.Range(-1f, 1f);
         action[2] = 0.9f; //UnityEngine.Random.Range(0f, 1f);
         action[3] = 0.6f; // UnityEngine.Random.Range(0f, 1f);
         action[4] = 0.3f; // UnityEngine.Random.Range(0f, 1f);
@@ -118,7 +123,7 @@ public class RLAnimalAgent : Agent
         //Reward
         if (animalCharacter.fullness < 0.2f || animalCharacter.energy < 0.2f)
         {
-            AddReward(-0.02f);
+            AddReward(-0.01f);
         }
 
         if (animalCharacter.fullness > 0.8f || animalCharacter.energy > 0.8f)
@@ -127,13 +132,14 @@ public class RLAnimalAgent : Agent
         }
 
         //Done
-        if((int)Time.time % secondPerPeriod == secondPerPeriod - 1)
+        if(Time.time > loopCount * secondPerPeriod)
         {
+            loopCount++;
             Done();
         }
 
         //survivial reward
-        //SetReward(animalCharacter.money * 0.0001f);
+        AddReward(animalCharacter.money * 0.0005f);
 
         //Activity cool down
         if (!animalCharacter.bInActivity)
@@ -142,37 +148,37 @@ public class RLAnimalAgent : Agent
         if (animalCharacter.currentActivityCoolDown > 0)
             return;
 
-        float position_x = Mathf.Clamp(vectorAction[0], 0f, 1f);
-        float position_z = Mathf.Clamp(vectorAction[1], 0f, 1f);
+        float position_x = Mathf.Clamp(vectorAction[0], -1f, 1f);
+        float position_z = Mathf.Clamp(vectorAction[1], -1f, 1f);
 
-        float scene_tool_prob = Mathf.Clamp(vectorAction[2], 0f, 1f);
-        float pickup_drop_prob = Mathf.Clamp(vectorAction[3], 0f, 1f);
-        float use_prob =  Mathf.Clamp(vectorAction[4], 0f, 1f);
-        float communicate_prob = Mathf.Clamp(vectorAction[5], 0f, 1f);
+        float scene_tool_prob = Mathf.Clamp(vectorAction[2], -1f, 1f);
+        float pickup_drop_prob = Mathf.Clamp(vectorAction[3], -1f, 1f);
+        float use_prob =  Mathf.Clamp(vectorAction[4], -1f, 1f);
+        float communicate_prob = Mathf.Clamp(vectorAction[5], -1f, 1f);
 
-        if (UnityEngine.Random.Range(0f, 1f) < scene_tool_prob) 
+        if (0.0f < scene_tool_prob) 
         {
             animalCharacter.ActWithSceneTool();
         }
 
-        if (UnityEngine.Random.Range(0f, 1f) < communicate_prob) 
+        if (0.0f < communicate_prob) 
         {
-            animalCharacter.ActWithAnimalCharacter();
+            //animalCharacter.ActWithAnimalCharacter();
         }
 
-        if (UnityEngine.Random.Range(0f, 1f) < pickup_drop_prob)
+        if (0.0f < pickup_drop_prob)
         {
             animalCharacter.PickupDropObject();
         }
 
-        if (UnityEngine.Random.Range(0f, 1f) < use_prob)
+        if (0.0f < use_prob)
         {
             animalCharacter.UseObject();
         }
 
         if (animalCharacter.navControl.IsDoneTraveling())
         {
-            animalCharacter.Walk2(position_x, position_z);
+            animalCharacter.Walk3(position_x, position_z);
         }
     }
 

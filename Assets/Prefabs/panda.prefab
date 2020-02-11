@@ -763,7 +763,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    vectorObservationSize: 15
+    vectorObservationSize: 17
     numStackedVectorObservations: 1
     vectorActionSize: 06000000
     vectorActionDescriptions: []
@@ -803,7 +803,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxStep: 0
   animalCharacter: {fileID: 0}
-  secondPerPeriod: 10
+  secondPerPeriod: 100
   NUM_ITEM_TYPES: 0
   NUM_TOOL_TYPES: 0
   NUM_MEET_TYPES: 0

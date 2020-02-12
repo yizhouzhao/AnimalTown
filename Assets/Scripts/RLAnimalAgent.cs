@@ -141,6 +141,8 @@ public class RLAnimalAgent : Agent
         //survivial reward
         AddReward(0.0005f);
 
+        //money reward
+
         //Activity cool down
         if (!animalCharacter.bInActivity)
             animalCharacter.currentActivityCoolDown -= Time.deltaTime;

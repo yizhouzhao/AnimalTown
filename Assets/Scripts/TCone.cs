@@ -7,6 +7,8 @@ public class TCone : MonoBehaviour
     //Who owns the vision cone
     public AnimalCharacter owner;
 
+    private float meetCharacterStayTime;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +30,8 @@ public class TCone : MonoBehaviour
                     Debug.Log("Tcone "+ owner.name + "Animal Character meet another: " + other.gameObject.name);
                     this.owner.meetAnimalCharacter = animalCharacter;
                     animalCharacter.meetAnimalCharacter = this.owner;
+
+                    meetCharacterStayTime = 2 * owner.tradeWaitTime;
                 }
             }
 
@@ -37,6 +41,20 @@ public class TCone : MonoBehaviour
             //    this.owner.meetAnimalCharacter = animalCharacter;
             //}
         }
+    }
+
+    private void Update()
+    {
+        //if (owner.meetAnimalCharacter != null)
+        //{
+        //    meetCharacterStayTime -= Time.time;
+        //    if (meetCharacterStayTime < 0f)
+        //    {
+        //        //Clean
+        //        owner.meetAnimalCharacter = null;
+        //        meetCharacterStayTime = meetCharacterStayTime = 2 * owner.tradeWaitTime;
+        //    }
+        //}
     }
 
     void OnTriggerExit(Collider other)

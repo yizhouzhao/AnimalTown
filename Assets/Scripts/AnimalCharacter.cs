@@ -53,6 +53,7 @@ public class AnimalCharacter : MonoBehaviour
     public AnimalCharacter meetAnimalCharacter; //meet another agent
     public bool agreeCommunication; //whether the two character want to communicate
     public TCone visionCone;
+    public float tradeWaitTime;
     
     [HideInInspector]
     public AgentNavigationControl navControl;
@@ -97,7 +98,11 @@ public class AnimalCharacter : MonoBehaviour
             Debug.LogError("No vision transform for player/agent");
         }
         visionCone = visionConeTransform.GetComponent<TCone>();
-    
+
+        //Communication
+        tradeWaitTime = 3f;
+
+
         ResetAnimalCharacter();
     }
 
@@ -331,7 +336,7 @@ public class AnimalCharacter : MonoBehaviour
         //Debug.LogError("Trade: " + name + " look at " + meetAnimalCharacter.name);
 
         //Wait another animalcharacter's response
-        StartCoroutine(WaitTradeRequest(3f));
+        StartCoroutine(WaitTradeRequest(tradeWaitTime));
         IEnumerator WaitTradeRequest(float waitTime)
         {
             float accumulatedWaitTime = 0f;

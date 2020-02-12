@@ -139,7 +139,7 @@ public class RLAnimalAgent : Agent
         }
 
         //survivial reward
-        AddReward(animalCharacter.money * 0.0005f);
+        AddReward(0.0005f);
 
         //Activity cool down
         if (!animalCharacter.bInActivity)
@@ -163,7 +163,7 @@ public class RLAnimalAgent : Agent
 
         if (0.0f < communicate_prob) 
         {
-            //animalCharacter.ActWithAnimalCharacter();
+            animalCharacter.ActWithAnimalCharacter();
         }
 
         if (0.0f < pickup_drop_prob)

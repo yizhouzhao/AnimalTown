@@ -12,6 +12,11 @@ public enum EActivity
     Idle, Sleep, Eat, Play, Travel, CollectFruit, Fishing, Cook, Plant, Trade
 }
 
+public enum ETaskType
+{
+    Walk, Interact, PickupDrop, Use, Communicate
+}
+
 public enum EPickupObject
 {
     Apple, Fish, Bamboo

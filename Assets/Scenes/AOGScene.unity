@@ -5324,6 +5324,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7840794374178188819}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &895105423 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3647291660871691419, guid: fc46eb7c7afc5ca43b618e09bec13d54,
+    type: 3}
+  m_PrefabInstance: {fileID: 3647291659319922267}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &907108510
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6821,6 +6827,7 @@ MonoBehaviour:
   - {fileID: 1872182948}
   - {fileID: 1518857058}
   - {fileID: 1071494380}
+  - {fileID: 895105423}
   affordanceObjectPrefab: {fileID: 686850856699378727, guid: 1db58de7564f3d84f971f5f2751872b4,
     type: 3}
   rectTransform: {fileID: 0}
@@ -13184,6 +13191,11 @@ PrefabInstance:
       propertyPath: testTravelTo
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4234187592769960889, guid: c1bd30d248cdf7c469cadcdd62d7af61,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7869598599006260736, guid: c1bd30d248cdf7c469cadcdd62d7af61,
         type: 3}
       propertyPath: m_Enabled
@@ -13514,7 +13526,7 @@ PrefabInstance:
     - target: {fileID: 4850248516159283164, guid: 8ea7f82636bf7a24b957fb1f25dcfee2,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8687088191285655356, guid: 8ea7f82636bf7a24b957fb1f25dcfee2,
         type: 3}

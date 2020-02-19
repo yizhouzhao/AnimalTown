@@ -12,7 +12,8 @@ public class TCone : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        owner = this.transform.parent.GetComponent<AnimalCharacter>();    
+        owner = this.transform.parent.GetComponent<AnimalCharacter>();
+        Debug.Log("Tcone: owner");
     }
 
     void OnTriggerEnter(Collider other)

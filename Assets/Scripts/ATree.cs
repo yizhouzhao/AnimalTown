@@ -13,7 +13,8 @@ public class ATree : ASceneTool
     public int maxFruitCount = 10;
     
     void Awake()
-    {   
+    {
+        base.AWake();
         //Tool type
         this.toolName = "Tree";
         this.toolType = ESceneEventTool.Tree;

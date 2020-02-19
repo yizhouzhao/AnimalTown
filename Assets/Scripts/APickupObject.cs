@@ -94,7 +94,12 @@ public class APickupObject : MonoBehaviour
         this.occupied = false;
         animalCharacter.bHoldObject = false;
         animalCharacter.holdObject = null;
+
+        //Register affordance
+        UIAffordance.RegisterObject(this.gameObject);
     }
+
+    
 
 
 }

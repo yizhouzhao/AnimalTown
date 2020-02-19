@@ -18,6 +18,11 @@ public class ASceneTool : MonoBehaviour
     //Occupied Animal Characters
     public List<string> animalCharacterNames; //hold animal character names
 
+    protected void AWake()
+    {
+        UIAffordance.RegisterObject(this.gameObject);
+    }
+
     private void OnTriggerEnter(Collider other)
     {  
         if(other.gameObject.tag == "Player" || other.gameObject.tag == "Agent")

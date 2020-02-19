@@ -26,6 +26,8 @@ public class AFood : APickupObject
             stayFreshTime -= Time.deltaTime;
             if(stayFreshTime < 0)
             {
+                //Unregister game object at affordance map
+                UIAffordance.UnregisterObject(this.gameObject);
                 Destroy(this.gameObject);
             }
         }

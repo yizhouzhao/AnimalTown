@@ -14,6 +14,7 @@ public class APond : ASceneTool
 
     void Awake()
     {
+        base.AWake();
         //Tool type
         this.toolName = "Pond";
         this.toolType = ESceneEventTool.Pond;

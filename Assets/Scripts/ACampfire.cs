@@ -6,8 +6,10 @@ public class ACampfire : ASceneTool
 {
     void Awake()
     {
+        base.AWake();
         this.toolName = "Campfire";
         this.toolType = ESceneEventTool.Fire;
+        this.activityType = EActivity.Cook;
     }
 
     public override void Interact(AnimalCharacter animalCharacter)

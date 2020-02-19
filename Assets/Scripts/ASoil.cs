@@ -6,6 +6,12 @@ public class ASoil : ASceneTool
 {
     public bool hasPlants;
     // Start is called before the first frame update
+
+    void Awake()
+    {
+        base.AWake();
+    }
+    
     void Start()
     {
         hasPlants = false;

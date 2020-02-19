@@ -7,14 +7,27 @@ public class UIAffordanceObject : MonoBehaviour
 {
     public Image backgroudImage;
     public Text objectName;
+    public Text conditionText;
+    public Text affordanceText;
 
     public void ChangeBackGroudColor(Color newColor)
     {
         backgroudImage.color = newColor;
     }
 
-    public void ChangeText(string textString)
+    public void ChangeNameText(string textString)
     {
         objectName.text = textString;
     }
+
+    public void ChangeConditionText(string textString)
+    {
+        conditionText.text = textString;
+    }
+
+    public void ChangeAffordanceText(string textString)
+    {
+        affordanceText.text = textString;
+    }
+
 }

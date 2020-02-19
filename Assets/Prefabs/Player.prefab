@@ -435,6 +435,8 @@ MonoBehaviour:
   energy: 0
   fullness: 0
   money: 0
+  fullLossPerSecond: 0.01
+  energyLossPerSecond: 0.01
   sceneTool: {fileID: 0}
   currentActivityRemainTime: 0
   currentActivity: 0
@@ -448,10 +450,15 @@ MonoBehaviour:
   interactKey: 0
   pickupDropKey: 0
   useKey: 0
+  communicationKey: 0
   meetAnimalCharacter: {fileID: 0}
   agreeCommunication: 0
+  visionCone: {fileID: 0}
+  tradeWaitTime: 0
   navControl: {fileID: 0}
   signPrefab: {fileID: 0}
+  originalLocation: {x: 0, y: 0, z: 0}
+  runningTime: 0
 --- !u!1 &8687088191285655358
 GameObject:
   m_ObjectHideFlags: 0
@@ -1148,6 +1155,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6516248144451486437, guid: b59636ff500e9ba4fb76cda8fd4b6e27,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b59636ff500e9ba4fb76cda8fd4b6e27, type: 3}

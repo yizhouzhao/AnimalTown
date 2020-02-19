@@ -17,6 +17,15 @@ public class UIAffordance : MonoBehaviour
         { "Tree", new Color(0.6f,0.5f,0.4f)}
     };
 
+    public Dictionary<string, Vector2> AffordanceSize = new Dictionary<string, Vector2>() {
+        { "Farm", new Vector2(200f, 100f)},
+        { "Pond",  new Vector2(200f, 200f)},
+        { "House", new Vector2(80f, 80f)},
+        { "Fire", new Vector2(50f, 50f)},
+        { "Tree", new Vector2(50f, 50f)}
+    };
+
+
     //prefab
     public GameObject affordanceObjectPrefab;
 
@@ -75,8 +84,8 @@ public class UIAffordance : MonoBehaviour
 
                 //Debug.Log("Affordance: " + offset_x + " " + offset_y);
 
-                rt.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, offset_x, 50);
-                rt.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, offset_y, 50);
+                rt.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, offset_x, AffordanceSize[objectName].x);
+                rt.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, offset_y, AffordanceSize[objectName].y);
             }
         }
     }

@@ -10,6 +10,7 @@ public class CharacterState {
     public int meetCharacterCode;
 }
 
+[System.Serializable]
 public class PGNode
 {
     //Location
@@ -56,6 +57,8 @@ public class RLAOGControl : MonoBehaviour
     public ETaskType currentTask;
 
     [Header("History")]
+    public int memoryCapcity = 0;
+    [SerializeField]
     public List<PGNode> historyActivity = new List<PGNode>();
 
     private bool canTakeAction = false;

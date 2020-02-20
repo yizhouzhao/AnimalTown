@@ -28,7 +28,7 @@ public class TCone : MonoBehaviour
             {
                 if ((!this.owner.bInActivity) && (!animalCharacter.bInActivity))
                 {
-                    Debug.Log("Tcone "+ owner.name + "Animal Character meet another: " + other.gameObject.name);
+                    //Debug.Log("Tcone "+ owner.name + "Animal Character meet another: " + other.gameObject.name);
                     this.owner.meetAnimalCharacter = animalCharacter;
                     animalCharacter.meetAnimalCharacter = this.owner;
 
@@ -78,7 +78,7 @@ public class TCone : MonoBehaviour
                 //Debug.Log("Player Agent Tcone 2222" + name + " Animal Character exit another : " + other.gameObject.name);
                 if (ReferenceEquals(this.owner.meetAnimalCharacter, animalCharacter) && ReferenceEquals(animalCharacter.meetAnimalCharacter, this.owner))
                 {
-                    Debug.Log("Tcone " + owner.name + " Animal Character exit another : " + other.gameObject.name);
+                    //Debug.Log("Tcone " + owner.name + " Animal Character exit another : " + other.gameObject.name);
                     owner.meetAnimalCharacter = null;
                     animalCharacter.meetAnimalCharacter = null;
                 }

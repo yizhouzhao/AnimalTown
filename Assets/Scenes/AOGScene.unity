@@ -9109,7 +9109,7 @@ GameObject:
   - component: {fileID: 1559554911}
   - component: {fileID: 1559554910}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: SelfPG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11576,6 +11576,8 @@ MonoBehaviour:
   taskDesription: []
   currentTaskIndex: 0
   currentTask: 0
+  memoryCapcity: 0
+  historyActivity: []
   beliefList: []
 --- !u!1 &1944155845
 GameObject:
@@ -12944,6 +12946,8 @@ MonoBehaviour:
   - 
   currentTaskIndex: 0
   currentTask: 0
+  memoryCapcity: 0
+  historyActivity: []
   beliefList: []
 --- !u!1001 &686850856782152891
 PrefabInstance:

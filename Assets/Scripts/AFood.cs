@@ -55,6 +55,7 @@ public class AFood : APickupObject
             animalCharacter.fullness = Mathf.Min(animalCharacter.fullness + fullGain, 1f);
 
             //Distroy this food
+            UIAffordance.UnregisterObject(this.gameObject);
             Destroy(this.gameObject);
 
             

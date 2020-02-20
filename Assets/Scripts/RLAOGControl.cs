@@ -23,6 +23,9 @@ public class RLAOGControl : MonoBehaviour
     public int currentTaskIndex;
     public ETaskType currentTask;
 
+    [Header("History")]
+    public List<EActivity> historyActivity = new List<EActivity>();
+
     private bool canTakeAction = false;
 
     [Header("Task Sequence")]

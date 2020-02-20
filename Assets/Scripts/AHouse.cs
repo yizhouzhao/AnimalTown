@@ -7,6 +7,7 @@ public class AHouse : ASceneTool
 {
     void Awake()
     {
+        base.AWake();
         this.toolName = "House";
         this.toolType = ESceneEventTool.House;
         this.activityType = EActivity.Sleep;

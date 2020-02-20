@@ -117,7 +117,7 @@ public class UIAffordance : MonoBehaviour
                 float offset_x = (objectPosition.x - characterPosition.x) * 4 + rt.rect.width;
                 float offset_y = (-objectPosition.z + characterPosition.z) * 2 + rt.rect.height;
 
-                Debug.Log("Affordance rt size: " + rt.rect.width + " " + rt.rect.height);
+                //Debug.Log("Affordance rt size: " + rt.rect.width + " " + rt.rect.height);
 
                 rt.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, offset_x, AffordanceSize[objectName].x);
                 rt.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, offset_y, AffordanceSize[objectName].y);

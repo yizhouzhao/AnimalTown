@@ -60,7 +60,7 @@ public class ASoil : ASceneTool
         //Grow seed to a tree
         IEnumerator GrowSeed(ASeed aSeed)
         {
-            Debug.Log("Soil Plant: " + seed.objectType.ToString());
+            //Debug.Log("Soil Plant: " + seed.objectType.ToString());
 
             yield return new WaitForSeconds(aSeed.growTime);
 
@@ -77,6 +77,7 @@ public class ASoil : ASceneTool
             tree.transform.localScale = new Vector3(treeSize, treeSize, treeSize);
 
             //Distroy seed and soil
+            UIAffordance.UnregisterObject(aSeed.gameObject);
             Destroy(aSeed.gameObject);
         }
     }

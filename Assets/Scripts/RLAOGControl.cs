@@ -10,6 +10,38 @@ public class CharacterState {
     public int meetCharacterCode;
 }
 
+public class PGNode
+{
+    //Location
+    public float positionX;
+    public float positionZ;
+
+    //Time
+    public float pgTime;
+
+    //Activity
+    public EActivity activityType;
+
+    //Fluents
+    public float energy; //tired or excited
+    public float fullness; //hungry or full
+    public float money; //money
+
+    //Attributes
+    public string attr;
+
+    public PGNode(float x, float z, float t, EActivity activity, float engy, float full, float mny)
+    {
+        positionX = x;
+        positionZ = z;
+        pgTime = t;
+        activityType = activity;
+        energy = engy;
+        fullness = full;
+        money = mny;
+    }
+}
+
 public class RLAOGControl : MonoBehaviour
 {
     [Header("character")]
@@ -24,7 +56,7 @@ public class RLAOGControl : MonoBehaviour
     public ETaskType currentTask;
 
     [Header("History")]
-    public List<EActivity> historyActivity = new List<EActivity>();
+    public List<PGNode> historyActivity = new List<PGNode>();
 
     private bool canTakeAction = false;
 
@@ -34,7 +66,10 @@ public class RLAOGControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(ExecuteAfterTime(1f));
+        if (this.gameObject.tag == "Agent")
+        {
+            StartCoroutine(ExecuteAfterTime(1f));
+        }
         
         //init belief
         beliefList = new List<float>();
@@ -77,7 +112,7 @@ public class RLAOGControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (canTakeAction)
+        if (this.gameObject.tag == "Agent" == canTakeAction)
         {
             if (currentTaskIndex < taskList.Count && animalCharacter.currentActivityCoolDown < 0)
             {

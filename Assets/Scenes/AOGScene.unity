@@ -11480,6 +11480,31 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1927761818}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1940655267 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8687088191285655356, guid: 8ea7f82636bf7a24b957fb1f25dcfee2,
+    type: 3}
+  m_PrefabInstance: {fileID: 8687088193135863036}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1940655268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1940655267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de8b88c35fa5e114c80792dbcd6691ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animalCharacter: {fileID: 0}
+  taskList: 
+  taskDesription: []
+  currentTaskIndex: 0
+  currentTask: 0
+  historyActivity: 
+  beliefList: []
 --- !u!1 &1944155845
 GameObject:
   m_ObjectHideFlags: 0
@@ -12847,6 +12872,7 @@ MonoBehaviour:
   - 
   currentTaskIndex: 0
   currentTask: 0
+  historyActivity: 
   beliefList: []
 --- !u!1001 &686850856782152891
 PrefabInstance:
@@ -13132,7 +13158,7 @@ PrefabInstance:
     - target: {fileID: 3590720042252378297, guid: c1bd30d248cdf7c469cadcdd62d7af61,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3590720042259796737, guid: c1bd30d248cdf7c469cadcdd62d7af61,
         type: 3}

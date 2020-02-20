@@ -84,6 +84,9 @@ public class APickupObject : MonoBehaviour
         animalCharacter.holdObject = this;
         MakeStatic();
 
+        //Register affordance
+        UIAffordance.UnregisterObject(this.gameObject);
+
     }
 
     //Drop object

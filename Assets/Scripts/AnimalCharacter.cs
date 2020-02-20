@@ -65,6 +65,9 @@ public class AnimalCharacter : MonoBehaviour
     [Header("Survival Time")]
     public float runningTime;
 
+    [Header("AOG")]
+    public RLAOGControl aogControl;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -102,6 +105,8 @@ public class AnimalCharacter : MonoBehaviour
         //Communication
         tradeWaitTime = 3f;
 
+        //AOG
+        aogControl = this.GetComponent<RLAOGControl>();
 
         ResetAnimalCharacter();
     }
@@ -227,6 +232,11 @@ public class AnimalCharacter : MonoBehaviour
             //Debug.Log("Animal Character Interact with scene tool"); 
             this.bInActivity = true;
             sceneTool.Interact(this);
+
+            //AOG History
+            PGNode pgNode = new PGNode(this.transform.position.x, this.transform.position.z, Time.time,
+                sceneTool.activityType, this.energy, this.fullness, this.money);
+            aogControl.historyActivity.Add(pgNode);
         }
     }
 
@@ -240,6 +250,11 @@ public class AnimalCharacter : MonoBehaviour
                 //Debug.Log("Animal Charcte Pickup " + meetPickupObject.objectType.ToString());
                 meetPickupObject.Pickup(this);
                 currentActivityCoolDown = activityCoolDown;
+
+                //AOG History
+                PGNode pgNode = new PGNode(this.transform.position.x, this.transform.position.z, Time.time,
+                    EActivity.PickUP, this.energy, this.fullness, this.money);
+                aogControl.historyActivity.Add(pgNode);
             }
         }
         else
@@ -247,6 +262,10 @@ public class AnimalCharacter : MonoBehaviour
             
             //Debug.Log("Animal Charcte Drop " + holdObject.objectType.ToString());
             holdObject.Drop(this);
+            PGNode pgNode = new PGNode(this.transform.position.x, this.transform.position.z, Time.time,
+                EActivity.Drop, this.energy, this.fullness, this.money);
+            aogControl.historyActivity.Add(pgNode);
+
             currentActivityCoolDown = activityCoolDown;
         }
     }
@@ -265,6 +284,11 @@ public class AnimalCharacter : MonoBehaviour
                 currentActivityCoolDown = activityCoolDown;
                 this.bInActivity = true;
                 food.Eat(this);
+
+                //AOG History
+                PGNode pgNode = new PGNode(this.transform.position.x, this.transform.position.z, Time.time,
+                    EActivity.Eat, this.energy, this.fullness, this.money);
+                aogControl.historyActivity.Add(pgNode);
             }
         }
     }

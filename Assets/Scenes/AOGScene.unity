@@ -8182,12 +8182,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 6069302741579973877}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1418903051 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 890014261095019706, guid: d791015d99bfc694f905c81300315774,
-    type: 3}
-  m_PrefabInstance: {fileID: 890014260213254833}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1418903052 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 890014261095019709, guid: d791015d99bfc694f905c81300315774,
@@ -9195,7 +9189,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ced929eb47b55ce4c8b671088a29d30d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PGPanelPrefab: {fileID: 1418903051}
+  PGPanelPrefab: {fileID: 890014261095019706, guid: d791015d99bfc694f905c81300315774,
+    type: 3}
 --- !u!1001 &1564081963
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -36,7 +36,7 @@ public class UIPGPanelControl : MonoBehaviour
             GameObject pgObject = Instantiate(PGPanelPrefab, this.transform);
             RectTransform rt = pgObject.GetComponent<RectTransform>();
 
-            Debug.Log("UIPanelControl: " + "pgInit");
+            //Debug.Log("UIPanelControl: " + "pgInit");
             rt.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Left, 20 + 50 * i, 40);
             rt.SetInsetAndSizeFromParentEdge(RectTransform.Edge.Top, 30, 40);
 

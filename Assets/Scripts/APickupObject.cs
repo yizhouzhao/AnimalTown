@@ -2,6 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public class PickupObjectInfo
+{
+    //object type
+    public EPickupObject objectType;
+
+    //occupied
+    public bool occupied = false;
+
+    //Eatable?
+    public bool eatable = false;
+
+    //belief
+    public Vector3 recordPosition;
+    public float recordTime;
+
+    public PickupObjectInfo(EPickupObject otype, Vector3 position, float timeT)
+    {
+        this.objectType = otype;
+        recordPosition = position;
+        recordTime = timeT;
+    }
+}
+
 public class APickupObject : MonoBehaviour
 {
     //object type
@@ -16,6 +39,12 @@ public class APickupObject : MonoBehaviour
     //price
     public float price = 1.0f;
 
+    public PickupObjectInfo GetPickupObjectInfo()
+    {
+        return new PickupObjectInfo(objectType, this.transform.position, Time.time);
+    }
+
+
     private void OnTriggerEnter(Collider other)
     {
         //if (other.gameObject.tag == "Player" || other.gameObject.tag == "Agent")
@@ -29,6 +58,9 @@ public class APickupObject : MonoBehaviour
                 animalCharacter.meetPickupObject = this;
                 occupied = true;
             }
+
+            RLAOGControl aogConrol = animalCharacter.gameObject.GetComponent<RLAOGControl>();
+
         }
     }
 

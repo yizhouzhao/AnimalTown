@@ -16,7 +16,7 @@ public class ThiefAgent : PTAgent
     void Start()
     {
         //higher speed than pedestrian and police
-        this.thrust *= 2;
+        this.thrust *= 1;
         belief = new float[envConfig.worldAgentNum, 2];
         //init belief
         ResetBelief();
@@ -44,6 +44,7 @@ public class ThiefAgent : PTAgent
             }
         }
 
+        print("ThiefAgent: " + max_0_index);
         if(max_0_belief <= 0f)
         {
             lastActionIndex = UnityEngine.Random.Range(0, this.actions.Length / 2);

@@ -10,6 +10,41 @@ public class CharacterState {
     public int meetCharacterCode;
 }
 
+//Hisotry
+public class EntityState
+{
+    public float positionX;
+    public float positionZ;
+    public float timeT;
+}
+public class ObjectState : EntityState
+{
+
+}
+
+[System.Serializable]
+public class Mind
+{
+    //Belief of objects
+    public List<APickupObject> objectList;
+    public List<ASceneTool> sceneList;
+
+    //Mind 
+    public List<string> mindNames;
+    public List<Mind> otherMinds;
+    public List<Mind> commonMinds;
+
+    public Mind()
+    {
+        objectList = new List<APickupObject>();
+        sceneList = new List<ASceneTool>();
+        mindNames = new List<string>();
+        otherMinds = new List<Mind>();
+        commonMinds = new List<Mind>();
+    }
+}
+
+
 [System.Serializable]
 public class PGNode
 {
@@ -65,6 +100,9 @@ public class RLAOGControl : MonoBehaviour
 
     [Header("Task Sequence")]
     public List<float> beliefList;
+
+    [Header("Mind")]
+    public Mind mind;
 
     // Start is called before the first frame update
     void Start()

@@ -25,11 +25,11 @@ public class EPoliceThiefEnvConfig : MonoBehaviour
         else if (idx < (polices.Count + pedestrains.Count))
             return polices[idx - pedestrains.Count];
 
-        return thieves[idx - polices.Count + pedestrains.Count];
+        return thieves[idx - polices.Count - pedestrains.Count];
     }
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         worldAgentNum = pedestrains.Count + polices.Count + thieves.Count;
     }

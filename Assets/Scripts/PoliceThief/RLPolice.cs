@@ -6,8 +6,7 @@ using MLAgents;
 
 public class RLPolice : Agent
 {
-    public List<Pedestrain> pedestrains = new List<Pedestrain>();
-    public List<ThiefAgent> thieves = new List<ThiefAgent>();
+    public EPoliceThiefEnvConfig envConfig;
 
     public Rigidbody rigidBody;
 
@@ -19,7 +18,7 @@ public class RLPolice : Agent
 
     public override void CollectObservations()
     {
-        foreach(Pedestrain pedestrain in pedestrains)
+        foreach(Pedestrain pedestrain in envConfig.pedestrains)
         {
             AddVectorObs(pedestrain.gameObject.transform.position.x / EPoliceThiefEnv.landSize);
             AddVectorObs(pedestrain.gameObject.transform.position.z / EPoliceThiefEnv.landSize);
@@ -32,7 +31,7 @@ public class RLPolice : Agent
         AddVectorObs(rigidBody.velocity.x);
         AddVectorObs(rigidBody.velocity.z);
 
-        foreach (ThiefAgent thiefAgent in thieves)
+        foreach (ThiefAgent thiefAgent in envConfig.thieves)
         {
             AddVectorObs(thiefAgent.gameObject.transform.position.x / EPoliceThiefEnv.landSize);
             AddVectorObs(thiefAgent.gameObject.transform.position.z / EPoliceThiefEnv.landSize);
@@ -53,6 +52,7 @@ public class RLPolice : Agent
 
     public override void AgentAction(float[] vectorAction)
     {
+
 
     }
 

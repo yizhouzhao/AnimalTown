@@ -1,0 +1,8 @@
+numpy
+scipy
+tensorflow-gpu
+matplotlib
+torch
+gym
+seaborn
+Pillow

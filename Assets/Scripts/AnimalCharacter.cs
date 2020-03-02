@@ -4,6 +4,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[System.Serializable]
+public class AnimalCharacterInfo
+{
+    //object type
+    public string characterName;
+
+    //belief
+    public Vector3 recordPosition;
+    public float recordTime;
+
+    public AnimalCharacterInfo(string oname, Vector3 position, float timeT)
+    {
+        characterName = oname;
+        recordPosition = position;
+        recordTime = timeT;
+    }
+}
+
 public class AnimalCharacter : MonoBehaviour
 {
     [Header("Basic information")]
@@ -67,6 +85,11 @@ public class AnimalCharacter : MonoBehaviour
 
     [Header("AOG")]
     public RLAOGControl aogControl;
+
+    public AnimalCharacterInfo GetAnimalCharacterInfo()
+    {
+        return new AnimalCharacterInfo(characterName, this.transform.position, Time.time);
+    }
 
     // Start is called before the first frame update
     void Start()

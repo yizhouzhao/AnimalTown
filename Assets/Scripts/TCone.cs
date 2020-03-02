@@ -64,6 +64,9 @@ public class TCone : MonoBehaviour
         {
             //Debug.Log("Player Agent Tcone " + name + " Animal Character exit another : " + other.gameObject.name);
             AnimalCharacter animalCharacter = other.gameObject.GetComponent<AnimalCharacter>();
+            RLAOGControl aogControl = animalCharacter.gameObject.GetComponent<RLAOGControl>();
+            aogControl.mind.UpdateCharacterInfo(animalCharacter);
+
             if ((owner.agreeCommunication || animalCharacter.agreeCommunication) && ReferenceEquals(this.owner.meetAnimalCharacter, animalCharacter))
             {
                 //if (ReferenceEquals(owner, owner.meetAnimalCharacter.meetAnimalCharacter))

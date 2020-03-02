@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class PickupObjectInfo
 {
     //object type
     public EPickupObject objectType;
+    public string objectName;
 
     //occupied
     public bool occupied = false;
@@ -17,11 +19,13 @@ public class PickupObjectInfo
     public Vector3 recordPosition;
     public float recordTime;
 
-    public PickupObjectInfo(EPickupObject otype, Vector3 position, float timeT)
+    public PickupObjectInfo(EPickupObject otype, string oname, Vector3 position, float timeT, bool occup = false)
     {
+        objectName = oname;
         this.objectType = otype;
         recordPosition = position;
         recordTime = timeT;
+        occupied = occup;
     }
 }
 
@@ -41,7 +45,7 @@ public class APickupObject : MonoBehaviour
 
     public PickupObjectInfo GetPickupObjectInfo()
     {
-        return new PickupObjectInfo(objectType, this.transform.position, Time.time);
+        return new PickupObjectInfo(objectType, this.gameObject.name, this.transform.position, Time.time, occupied);
     }
 
 
@@ -59,7 +63,8 @@ public class APickupObject : MonoBehaviour
                 occupied = true;
             }
 
-            RLAOGControl aogConrol = animalCharacter.gameObject.GetComponent<RLAOGControl>();
+            RLAOGControl aogControl = animalCharacter.gameObject.GetComponent<RLAOGControl>();
+            aogControl.mind.UpdateObjectInfo(this);
 
         }
     }

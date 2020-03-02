@@ -10,37 +10,95 @@ public class CharacterState {
     public int meetCharacterCode;
 }
 
-//Hisotry
-public class EntityState
-{
-    public float positionX;
-    public float positionZ;
-    public float timeT;
-}
-public class ObjectState : EntityState
-{
-
-}
-
 [System.Serializable]
 public class Mind
 {
     //Belief of objects
-    public List<APickupObject> objectList;
-    public List<ASceneTool> sceneList;
+    public List<PickupObjectInfo> objectList;
+    public List<SceneToolInfo> sceneList;
+
+    //History
+    public List<AnimalCharacterInfo> characterInfoList;
 
     //Mind 
     public List<string> mindNames;
     public List<Mind> otherMinds;
     public List<Mind> commonMinds;
 
+    //meet time cool down
+    private float meetTimeCoolDown = 2f;
+
     public Mind()
     {
-        objectList = new List<APickupObject>();
-        sceneList = new List<ASceneTool>();
+        objectList = new List<PickupObjectInfo>();
+        sceneList = new List<SceneToolInfo>();
+
         mindNames = new List<string>();
         otherMinds = new List<Mind>();
         commonMinds = new List<Mind>();
+
+        characterInfoList = new List<AnimalCharacterInfo>();
+    }
+
+    public void UpdateObjectInfo(APickupObject pickupObject)
+    {
+        PickupObjectInfo pickupObjectInfo = pickupObject.GetPickupObjectInfo();
+        bool alreadyInList = false;
+        for (int i = 0; i < objectList.Count; ++i)
+        {
+            if (objectList[i].objectName == pickupObjectInfo.objectName)
+            {
+                alreadyInList = true;
+                objectList[i] = pickupObjectInfo;
+                break;
+            }
+        }
+        if (!alreadyInList)
+        {
+            objectList.Add(pickupObjectInfo);
+        }
+    }
+
+    public void UpdateSceneToolInfo(ASceneTool sceneTool)
+    {
+        SceneToolInfo sceneToolInfo = sceneTool.GetSceneToolInfo();
+        bool alreadyInList = false;
+        for (int i = 0; i < sceneList.Count; ++i)
+        {
+            if (sceneList[i].sceneName == sceneToolInfo.sceneName)
+            {
+                alreadyInList = true;
+                sceneList[i] = sceneToolInfo;
+                break;
+            }
+        }
+        if (!alreadyInList)
+        {
+            sceneList.Add(sceneToolInfo);
+        }
+    }
+
+    //different input of animal character to update their minds
+    public void UpdateCharacterInfo(AnimalCharacter animalCharacter)
+    {
+        string characterName = animalCharacter.characterName;
+        int characterIndex = mindNames.IndexOf(characterName);
+        if(characterIndex < 0) //not found
+        {
+            mindNames.Add(characterName);
+            otherMinds.Add(new Mind());
+            commonMinds.Add(new Mind());
+            characterIndex = mindNames.Count - 1;
+        }
+        otherMinds[characterIndex].characterInfoList.Add(animalCharacter.GetAnimalCharacterInfo());
+
+        if (animalCharacter.holdObject)
+            otherMinds[characterIndex].UpdateObjectInfo(animalCharacter.holdObject);
+
+        if (animalCharacter.sceneTool)
+            otherMinds[characterIndex].UpdateSceneToolInfo(animalCharacter.sceneTool);
+
+
     }
 }
 
@@ -135,6 +193,8 @@ public class RLAOGControl : MonoBehaviour
             //init 
             characterState = GetCharacterState();
         }
+
+        mind = new Mind();
 
     }
 

@@ -90,7 +90,20 @@ public class Mind
             commonMinds.Add(new Mind());
             characterIndex = mindNames.Count - 1;
         }
-        otherMinds[characterIndex].characterInfoList.Add(animalCharacter.GetAnimalCharacterInfo());
+
+        //Add character states in mind
+        AnimalCharacterInfo acinfo = animalCharacter.GetAnimalCharacterInfo();
+        if (otherMinds[characterIndex].characterInfoList.Count > 0)
+        {
+            if ((otherMinds[characterIndex].characterInfoList[otherMinds[characterIndex].characterInfoList.Count - 1].recordTime - acinfo.recordTime) < meetTimeCoolDown)
+            {
+                otherMinds[characterIndex].characterInfoList.Add(acinfo);
+            }
+        }
+        else
+        {
+            otherMinds[characterIndex].characterInfoList.Add(acinfo);
+        }
 
         if (animalCharacter.holdObject)
             otherMinds[characterIndex].UpdateObjectInfo(animalCharacter.holdObject);

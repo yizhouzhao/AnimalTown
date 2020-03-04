@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class CharacterState {
     public float positionX;
@@ -122,6 +123,22 @@ public class Mind
         if (animalCharacter.sceneTool)
             otherMinds[characterIndex].UpdateSceneToolInfo(animalCharacter.sceneTool);
 
+    }
+
+    public void UpdateCommonMind(AnimalCharacter otherAnimalCharacter, AnimalCharacter myAnimalCharacter)
+    {
+        string characterName = otherAnimalCharacter.characterName;
+        int characterIndex = mindNames.IndexOf(characterName);
+
+        Assert.IsTrue(characterIndex > 0);
+        //put self info into common mind
+        commonMinds[characterIndex].characterInfoList.Add(myAnimalCharacter.GetAnimalCharacterInfo());
+
+        if (myAnimalCharacter.holdObject)
+            otherMinds[characterIndex].UpdateObjectInfo(myAnimalCharacter.holdObject);
+
+        if (myAnimalCharacter.sceneTool)
+            otherMinds[characterIndex].UpdateSceneToolInfo(myAnimalCharacter.sceneTool);
 
     }
 }

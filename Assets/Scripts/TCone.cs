@@ -27,8 +27,16 @@ public class TCone : MonoBehaviour
             AnimalCharacter animalCharacter = other.gameObject.GetComponent<AnimalCharacter>();
             lastMeetCharacter = animalCharacter;
 
+
+            //mind control
             RLAOGControl aogControl = owner.gameObject.GetComponent<RLAOGControl>();
             aogControl.mind.UpdateCharacterInfo(animalCharacter);
+            
+            //common mind
+            if(ReferenceEquals(animalCharacter.meetAnimalCharacter, this.owner))
+            {
+                aogControl.mind.UpdateCommonMind(animalCharacter, this.owner);
+            }
 
 
             //both sides

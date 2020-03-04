@@ -7,6 +7,8 @@ public class TCone : MonoBehaviour
     //Who owns the vision cone
     public AnimalCharacter owner;
 
+    public AnimalCharacter lastMeetCharacter;
+
     private float meetCharacterStayTime;
 
     // Start is called before the first frame update
@@ -23,8 +25,12 @@ public class TCone : MonoBehaviour
             //double direction
             
             AnimalCharacter animalCharacter = other.gameObject.GetComponent<AnimalCharacter>();
+            lastMeetCharacter = animalCharacter;
+
             RLAOGControl aogControl = owner.gameObject.GetComponent<RLAOGControl>();
             aogControl.mind.UpdateCharacterInfo(animalCharacter);
+
+
             //both sides
             if (this.owner.meetAnimalCharacter == null && animalCharacter.meetAnimalCharacter == null)
             {

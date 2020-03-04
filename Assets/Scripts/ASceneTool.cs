@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class SceneToolInfo
+public class SceneToolInfo : mindInfo
 {
     //object type
     public ESceneEventTool sceneType;
@@ -12,11 +12,6 @@ public class SceneToolInfo
 
     //occupied
     public bool occupied = false;
-
-
-    //belief
-    public Vector3 recordPosition;
-    public float recordTime;
 
     public SceneToolInfo(ESceneEventTool otype, string oname, Vector3 position, float timeT)
     {

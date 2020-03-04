@@ -11,6 +11,17 @@ public class CharacterState {
 }
 
 [System.Serializable]
+public class mindInfo
+{
+    //Time and location
+    public Vector3 recordPosition;
+    public float recordTime;
+
+    //common mind
+    bool isCommon = false;
+}
+
+[System.Serializable]
 public class Mind
 {
     //Belief of objects

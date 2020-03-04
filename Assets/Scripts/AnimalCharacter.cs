@@ -5,14 +5,10 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [System.Serializable]
-public class AnimalCharacterInfo
+public class AnimalCharacterInfo : mindInfo
 {
     //object type
     public string characterName;
-
-    //belief
-    public Vector3 recordPosition;
-    public float recordTime;
 
     public AnimalCharacterInfo(string oname, Vector3 position, float timeT)
     {

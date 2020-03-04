@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class PickupObjectInfo
+public class PickupObjectInfo : mindInfo
 {
     //object type
     public EPickupObject objectType;
@@ -15,9 +15,7 @@ public class PickupObjectInfo
     //Eatable?
     public bool eatable = false;
 
-    //belief
-    public Vector3 recordPosition;
-    public float recordTime;
+
 
     public PickupObjectInfo(EPickupObject otype, string oname, Vector3 position, float timeT, bool occup = false)
     {

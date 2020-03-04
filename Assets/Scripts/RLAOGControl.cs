@@ -110,18 +110,26 @@ public class Mind
             if ((otherMinds[characterIndex].characterInfoList[otherMinds[characterIndex].characterInfoList.Count - 1].recordTime - acinfo.recordTime) < meetTimeCoolDown)
             {
                 otherMinds[characterIndex].characterInfoList.Add(acinfo);
+
+                if (animalCharacter.holdObject)
+                    otherMinds[characterIndex].UpdateObjectInfo(animalCharacter.holdObject);
+
+                if (animalCharacter.sceneTool)
+                    otherMinds[characterIndex].UpdateSceneToolInfo(animalCharacter.sceneTool);
             }
         }
         else
         {
             otherMinds[characterIndex].characterInfoList.Add(acinfo);
+
+            if (animalCharacter.holdObject)
+                otherMinds[characterIndex].UpdateObjectInfo(animalCharacter.holdObject);
+
+            if (animalCharacter.sceneTool)
+                otherMinds[characterIndex].UpdateSceneToolInfo(animalCharacter.sceneTool);
         }
 
-        if (animalCharacter.holdObject)
-            otherMinds[characterIndex].UpdateObjectInfo(animalCharacter.holdObject);
 
-        if (animalCharacter.sceneTool)
-            otherMinds[characterIndex].UpdateSceneToolInfo(animalCharacter.sceneTool);
 
     }
 
@@ -130,15 +138,40 @@ public class Mind
         string characterName = otherAnimalCharacter.characterName;
         int characterIndex = mindNames.IndexOf(characterName);
 
-        Assert.IsTrue(characterIndex > 0);
-        //put self info into common mind
-        commonMinds[characterIndex].characterInfoList.Add(myAnimalCharacter.GetAnimalCharacterInfo());
+        Assert.IsTrue(characterIndex >= 0);
 
-        if (myAnimalCharacter.holdObject)
-            otherMinds[characterIndex].UpdateObjectInfo(myAnimalCharacter.holdObject);
+        Debug.Log("RLAOG:" + "update common mind");
+        //Add character states in mind
+        AnimalCharacterInfo acinfo = myAnimalCharacter.GetAnimalCharacterInfo();
+        if (commonMinds[characterIndex].characterInfoList.Count > 0)
+        {
+            if ((commonMinds[characterIndex].characterInfoList[commonMinds[characterIndex].characterInfoList.Count - 1].recordTime - acinfo.recordTime) < meetTimeCoolDown)
+            {
+                commonMinds[characterIndex].characterInfoList.Add(acinfo);
 
-        if (myAnimalCharacter.sceneTool)
-            otherMinds[characterIndex].UpdateSceneToolInfo(myAnimalCharacter.sceneTool);
+                Debug.Log("RLAOG:" + "update common mind 2");
+
+                if (myAnimalCharacter.holdObject)
+                    commonMinds[characterIndex].UpdateObjectInfo(myAnimalCharacter.holdObject);
+
+                if (myAnimalCharacter.sceneTool)
+                    commonMinds[characterIndex].UpdateSceneToolInfo(myAnimalCharacter.sceneTool);
+            }
+        }
+        else //no record
+        {
+            commonMinds[characterIndex].characterInfoList.Add(acinfo);
+
+            Debug.Log("RLAOG:" + "update common mind 3");
+
+            if (myAnimalCharacter.holdObject)
+                commonMinds[characterIndex].UpdateObjectInfo(myAnimalCharacter.holdObject);
+
+            if (myAnimalCharacter.sceneTool)
+                commonMinds[characterIndex].UpdateSceneToolInfo(myAnimalCharacter.sceneTool);
+        }
+
+
 
     }
 }

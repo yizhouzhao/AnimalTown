@@ -12,7 +12,7 @@ public class CharacterState {
 }
 
 [System.Serializable]
-public class mindInfo
+public class MindInfo
 {
     //Time and location
     public Vector3 recordPosition;

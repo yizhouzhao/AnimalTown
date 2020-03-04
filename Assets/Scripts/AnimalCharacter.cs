@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [System.Serializable]
-public class AnimalCharacterInfo : mindInfo
+public class AnimalCharacterInfo : MindInfo
 {
     //object type
     public string characterName;

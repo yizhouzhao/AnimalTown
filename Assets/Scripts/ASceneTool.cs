@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class SceneToolInfo : mindInfo
+public class SceneToolInfo : MindInfo
 {
     //object type
     public ESceneEventTool sceneType;

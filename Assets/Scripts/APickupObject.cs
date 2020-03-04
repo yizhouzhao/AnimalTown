@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class PickupObjectInfo : mindInfo
+public class PickupObjectInfo : MindInfo
 {
     //object type
     public EPickupObject objectType;

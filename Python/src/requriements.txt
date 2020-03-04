@@ -1,3 +1,4 @@
+pyglet
 numpy
 scipy
 tensorflow-gpu
@@ -6,3 +7,4 @@ torch
 gym
 seaborn
 Pillow
+numpy-stl

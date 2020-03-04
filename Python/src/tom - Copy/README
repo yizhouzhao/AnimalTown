@@ -1,0 +1,4 @@
+pip install -e <path-to-ml-agents/ml-agents-envs>
+pip install -e <path-to-ml-agents/gym-unity>
+
+config.json from multiagent core.py World

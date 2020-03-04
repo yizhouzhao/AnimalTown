@@ -1,0 +1,13 @@
+{
+  "num_thief": 1,
+  "num_polices": 1,
+  "num_others": 0,
+  "open_world": true,
+  "dt": 0.1,
+  "damping": 0.25,
+  "contact_force": 100,
+  "contact_margin": -0.001,
+  "dim_c": 0,
+  "dim_p": 2,
+  "dim_r": 1
+}

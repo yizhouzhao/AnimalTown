@@ -53,6 +53,7 @@ public class AnimalCharacter : MonoBehaviour
 
     [Header("Object")]
     public bool bHoldObject;
+    public APickupObject lastPickupObject;
     public APickupObject meetPickupObject;
     public Transform holdTransform; //position to hold this object
     public APickupObject holdObject;

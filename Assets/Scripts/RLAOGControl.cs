@@ -111,6 +111,9 @@ public class Mind
             {
                 otherMinds[characterIndex].characterInfoList.Add(acinfo);
 
+                if (animalCharacter.meetPickupObject)
+                    otherMinds[characterIndex].UpdateObjectInfo(animalCharacter.meetPickupObject);
+
                 if (animalCharacter.holdObject)
                     otherMinds[characterIndex].UpdateObjectInfo(animalCharacter.holdObject);
 
@@ -121,6 +124,9 @@ public class Mind
         else
         {
             otherMinds[characterIndex].characterInfoList.Add(acinfo);
+
+            if (animalCharacter.meetPickupObject)
+                otherMinds[characterIndex].UpdateObjectInfo(animalCharacter.meetPickupObject);
 
             if (animalCharacter.holdObject)
                 otherMinds[characterIndex].UpdateObjectInfo(animalCharacter.holdObject);
@@ -151,6 +157,9 @@ public class Mind
 
                 Debug.Log("RLAOG:" + "update common mind 2");
 
+                if (myAnimalCharacter.lastPickupObject)
+                    otherMinds[characterIndex].UpdateObjectInfo(myAnimalCharacter.lastPickupObject);
+
                 if (myAnimalCharacter.holdObject)
                     commonMinds[characterIndex].UpdateObjectInfo(myAnimalCharacter.holdObject);
 
@@ -163,6 +172,9 @@ public class Mind
             commonMinds[characterIndex].characterInfoList.Add(acinfo);
 
             Debug.Log("RLAOG:" + "update common mind 3");
+
+            if (myAnimalCharacter.lastPickupObject)
+                commonMinds[characterIndex].UpdateObjectInfo(myAnimalCharacter.lastPickupObject);
 
             if (myAnimalCharacter.holdObject)
                 commonMinds[characterIndex].UpdateObjectInfo(myAnimalCharacter.holdObject);

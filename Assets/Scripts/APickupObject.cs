@@ -58,6 +58,7 @@ public class APickupObject : MonoBehaviour
             if(animalCharacter.meetPickupObject == null && !occupied)
             {
                 animalCharacter.meetPickupObject = this;
+                animalCharacter.lastPickupObject = this;
                 occupied = true;
             }
 

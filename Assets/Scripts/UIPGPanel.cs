@@ -19,7 +19,7 @@ public class UIPGPanel : MonoBehaviour
         int min = (int)pgTime % 3600 / 60;
         int sec = (int)pgTime % 60;
 
-        timeText.text = hour.ToString("00") + ":" + min.ToString("00") + ":" + sec.ToString("00");
+        timeText.text =  min.ToString("00") + ":" + sec.ToString("00");
         activitText.text = pgNode.activityType.ToString();
         healthSlide.value = pgNode.fullness;
         energySlide.value = pgNode.energy;

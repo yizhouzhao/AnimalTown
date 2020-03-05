@@ -8,9 +8,11 @@ public class UIMindInfoPanel : MonoBehaviour
     public Text timeText;
     public Text LocationText;
     public Text infoNameText;
+    public Image backgroundImage;
 
     public void SetInfoFromMind(MindInfo mindInfo)
     {
+      
         PickupObjectInfo poInfo = mindInfo as PickupObjectInfo;
         if (poInfo != null)
         {
@@ -21,6 +23,12 @@ public class UIMindInfoPanel : MonoBehaviour
         if (scInfo != null)
         {
             infoNameText.text = scInfo.sceneType.ToString();
+        }
+
+        AnimalCharacterInfo acInfo = mindInfo as AnimalCharacterInfo;
+        if (acInfo != null)
+        {
+            infoNameText.text = acInfo.characterName;
         }
 
         LocationText.text = mindInfo.recordPosition.x.ToString("000") + "," + mindInfo.recordPosition.z.ToString("000");

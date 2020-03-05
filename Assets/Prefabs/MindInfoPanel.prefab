@@ -91,6 +91,7 @@ MonoBehaviour:
   timeText: {fileID: 6644655243720868585}
   LocationText: {fileID: 6644655243950856280}
   infoNameText: {fileID: 6644655243959688494}
+  backgroundImage: {fileID: 6644655243564933592}
 --- !u!1 &6644655243720868591
 GameObject:
   m_ObjectHideFlags: 0

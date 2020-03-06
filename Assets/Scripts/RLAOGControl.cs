@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class CharacterState {
+public class CharacterState
+{
     public float positionX;
     public float positionZ;
     public int sceneCode;
@@ -33,7 +34,7 @@ public class Mind
     public List<AnimalCharacterInfo> characterInfoList;
 
     //Mind 
-    public List<string> mindNames;
+    public List<string> mindNames; // are otherMinds and commonMinds indexed the same way??
     public List<Mind> otherMinds;
     public List<Mind> commonMinds;
 
@@ -55,17 +56,12 @@ public class Mind
     public void UpdateObjectInfo(APickupObject pickupObject)
     {
         PickupObjectInfo pickupObjectInfo = pickupObject.GetPickupObjectInfo();
-        bool alreadyInList = false;
-        for (int i = 0; i < objectList.Count; ++i)
+        var index = objectList.FindIndex(obj => obj.objectName.Equals(pickupObjectInfo.objectName));
+        if (index != -1) // not found
         {
-            if (objectList[i].objectName == pickupObjectInfo.objectName)
-            {
-                alreadyInList = true;
-                objectList[i] = pickupObjectInfo;
-                break;
-            }
+            objectList[index] = pickupObjectInfo;
         }
-        if (!alreadyInList)
+        else
         {
             objectList.Add(pickupObjectInfo);
         }
@@ -74,69 +70,64 @@ public class Mind
     public void UpdateSceneToolInfo(ASceneTool sceneTool)
     {
         SceneToolInfo sceneToolInfo = sceneTool.GetSceneToolInfo();
-        bool alreadyInList = false;
-        for (int i = 0; i < sceneList.Count; ++i)
+        var index = sceneList.FindIndex(obj => obj.sceneName.Equals(sceneToolInfo.sceneName));
+        if (index != -1) // not found
         {
-            if (sceneList[i].sceneName == sceneToolInfo.sceneName)
-            {
-                alreadyInList = true;
-                sceneList[i] = sceneToolInfo;
-                break;
-            }
+            sceneList[index] = sceneToolInfo;
         }
-        if (!alreadyInList)
+        else
         {
             sceneList.Add(sceneToolInfo);
         }
     }
 
-    //different input of animal character to update their minds
-    public void UpdateCharacterInfo(AnimalCharacter animalCharacter)
+    // helper of UpdateCharacterInfo
+    // update what the other mind would know about my information?
+    // "I know that he has seen me and know xxx about me"
+    void UpdateCharacterInfoHelper(AnimalCharacter thisAnimalCharacter, AnimalCharacterInfo otherAnimalCharacterInfo, Mind otherMind)
     {
-        string characterName = animalCharacter.characterName;
-        int characterIndex = mindNames.IndexOf(characterName);
-        if(characterIndex < 0) //not found
+        otherMind.characterInfoList.Add(otherAnimalCharacterInfo);
+
+        if (thisAnimalCharacter.meetPickupObject)
+            otherMind.UpdateObjectInfo(thisAnimalCharacter.meetPickupObject);
+
+        if (thisAnimalCharacter.holdObject)
+            otherMind.UpdateObjectInfo(thisAnimalCharacter.holdObject);
+
+        if (thisAnimalCharacter.sceneTool)
+            otherMind.UpdateSceneToolInfo(thisAnimalCharacter.sceneTool);
+    }
+
+    //different input of animal character to update their minds
+    public void UpdateCharacterInfo(AnimalCharacter otherAnimalCharacter, AnimalCharacter thisAnimalCharacter)
+    {
+        characterInfoList.
+        string otherCharacterName = otherAnimalCharacter.characterName;
+        int otherCharacterIndex = mindNames.IndexOf(otherCharacterName); // check if had met this character before
+        if (otherCharacterIndex < 0) //not found
         {
-            mindNames.Add(characterName);
+            mindNames.Add(otherCharacterName);
+            // otherMinds and commonMinds are in the same order
             otherMinds.Add(new Mind());
             commonMinds.Add(new Mind());
-            characterIndex = mindNames.Count - 1;
+            otherCharacterIndex = mindNames.Count - 1;
         }
+        Mind otherMind = otherMinds[otherCharacterIndex];
 
         //Add character states in mind
-        AnimalCharacterInfo acinfo = animalCharacter.GetAnimalCharacterInfo();
-        if (otherMinds[characterIndex].characterInfoList.Count > 0)
+        AnimalCharacterInfo thisAnimalCharacterInfo = thisAnimalCharacter.GetAnimalCharacterInfo();
+        var otherMindCharacterInfoCount = otherMind.characterInfoList.Count;
+        if (otherMindCharacterInfoCount > 0) // other mind's history is not empty
         {
-            if ((otherMinds[characterIndex].characterInfoList[otherMinds[characterIndex].characterInfoList.Count - 1].recordTime - acinfo.recordTime) < meetTimeCoolDown)
+            if ((otherMind.characterInfoList[otherMindCharacterInfoCount - 1].recordTime - thisAnimalCharacterInfo.recordTime) < meetTimeCoolDown)
             {
-                otherMinds[characterIndex].characterInfoList.Add(acinfo);
-
-                if (animalCharacter.meetPickupObject)
-                    otherMinds[characterIndex].UpdateObjectInfo(animalCharacter.meetPickupObject);
-
-                if (animalCharacter.holdObject)
-                    otherMinds[characterIndex].UpdateObjectInfo(animalCharacter.holdObject);
-
-                if (animalCharacter.sceneTool)
-                    otherMinds[characterIndex].UpdateSceneToolInfo(animalCharacter.sceneTool);
+                UpdateCharacterInfoHelper(thisAnimalCharacter, thisAnimalCharacterInfo, otherMind);
             }
         }
         else
         {
-            otherMinds[characterIndex].characterInfoList.Add(acinfo);
-
-            if (animalCharacter.meetPickupObject)
-                otherMinds[characterIndex].UpdateObjectInfo(animalCharacter.meetPickupObject);
-
-            if (animalCharacter.holdObject)
-                otherMinds[characterIndex].UpdateObjectInfo(animalCharacter.holdObject);
-
-            if (animalCharacter.sceneTool)
-                otherMinds[characterIndex].UpdateSceneToolInfo(animalCharacter.sceneTool);
+            UpdateCharacterInfoHelper(otherAnimalCharacter, thisAnimalCharacterInfo, otherMind);
         }
-
-
-
     }
 
     public void UpdateCommonMind(AnimalCharacter otherAnimalCharacter, AnimalCharacter myAnimalCharacter)
@@ -182,9 +173,6 @@ public class Mind
             if (myAnimalCharacter.sceneTool)
                 commonMinds[characterIndex].UpdateSceneToolInfo(myAnimalCharacter.sceneTool);
         }
-
-
-
     }
 }
 
@@ -255,10 +243,10 @@ public class RLAOGControl : MonoBehaviour
         {
             StartCoroutine(ExecuteAfterTime(1f));
         }
-        
+
         //init belief
         beliefList = new List<float>();
-        for(int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++)
         {
             beliefList.Add(UnityEngine.Random.Range(0f, 1f));
         }
@@ -311,11 +299,11 @@ public class RLAOGControl : MonoBehaviour
                     Vector3 targetLocation = new Vector3(targetObject.transform.position.x, this.transform.position.y, targetObject.transform.position.z);
                     animalCharacter.navControl.TravelTo(targetLocation);
 
-                    if (Vector3.Distance(targetLocation, transform.position) < 2f || 
+                    if (Vector3.Distance(targetLocation, transform.position) < 2f ||
                         (animalCharacter.sceneTool != null && animalCharacter.sceneTool.gameObject.name == taskDesription[currentTaskIndex])
                         || animalCharacter.meetPickupObject != null && animalCharacter.meetPickupObject.gameObject.name == taskDesription[currentTaskIndex]) //done traveling
                     {
-                     
+
                         currentTaskIndex++;
                     }
                 }
@@ -325,7 +313,7 @@ public class RLAOGControl : MonoBehaviour
                     animalCharacter.ActWithAnimalCharacter();
                     currentTaskIndex++;
                 }
-                else if(currentTask == ETaskType.PickupDrop)
+                else if (currentTask == ETaskType.PickupDrop)
                 {
                     animalCharacter.PickupDropObject();
                     currentTaskIndex++;
@@ -392,9 +380,9 @@ public class RLAOGControl : MonoBehaviour
 
     public void Explore(int state_action_code, ETaskType taskType, string TaskDescription)
     {
-        if(state_action_code == 0) //Scene
+        if (state_action_code == 0) //Scene
         {
-            
+
         }
     }
 }

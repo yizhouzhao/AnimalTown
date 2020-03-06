@@ -24,29 +24,29 @@ public class TCone : MonoBehaviour
         {
             //double direction
             
-            AnimalCharacter animalCharacter = other.gameObject.GetComponent<AnimalCharacter>();
-            lastMeetCharacter = animalCharacter;
+            AnimalCharacter otherAnimalCharacter = other.gameObject.GetComponent<AnimalCharacter>();
+            lastMeetCharacter = otherAnimalCharacter;
 
 
             //mind control
             RLAOGControl aogControl = owner.gameObject.GetComponent<RLAOGControl>();
-            aogControl.mind.UpdateCharacterInfo(animalCharacter);
+            aogControl.mind.UpdateCharacterInfo(otherAnimalCharacter);
             
             //common mind
-            if(ReferenceEquals(animalCharacter.meetAnimalCharacter, this.owner))
+            if(ReferenceEquals(otherAnimalCharacter.meetAnimalCharacter, this.owner))
             {
-                aogControl.mind.UpdateCommonMind(animalCharacter, this.owner);
+                aogControl.mind.UpdateCommonMind(otherAnimalCharacter, this.owner);
             }
 
 
             //both sides
-            if (this.owner.meetAnimalCharacter == null && animalCharacter.meetAnimalCharacter == null)
+            if (this.owner.meetAnimalCharacter == null && otherAnimalCharacter.meetAnimalCharacter == null)
             {
-                if ((!this.owner.bInActivity) && (!animalCharacter.bInActivity))
+                if ((!this.owner.bInActivity) && (!otherAnimalCharacter.bInActivity))
                 {
                     //Debug.Log("Tcone "+ owner.name + "Animal Character meet another: " + other.gameObject.name);
-                    this.owner.meetAnimalCharacter = animalCharacter;
-                    animalCharacter.meetAnimalCharacter = this.owner;
+                    this.owner.meetAnimalCharacter = otherAnimalCharacter;
+                    otherAnimalCharacter.meetAnimalCharacter = this.owner;
 
                     meetCharacterStayTime = 2 * owner.tradeWaitTime;
                 }

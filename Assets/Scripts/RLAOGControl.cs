@@ -84,28 +84,30 @@ public class Mind
     // helper of UpdateCharacterInfo
     // update what the other mind would know about my information?
     // "I know that he has seen me and know xxx about me"
-    void UpdateCharacterInfoHelper(AnimalCharacter me, AnimalCharacterInfo acinfo, Mind otherMind)
+    void UpdateCharacterInfoHelper(AnimalCharacter thisAnimalCharacter, AnimalCharacterInfo otherAnimalCharacterInfo, Mind otherMind)
     {
-        otherMind.characterInfoList.Add(acinfo);
+        otherMind.characterInfoList.Add(otherAnimalCharacterInfo);
 
-        if (me.meetPickupObject)
-            otherMind.UpdateObjectInfo(me.meetPickupObject);
+        if (thisAnimalCharacter.meetPickupObject)
+            otherMind.UpdateObjectInfo(thisAnimalCharacter.meetPickupObject);
 
-        if (me.holdObject)
-            otherMind.UpdateObjectInfo(me.holdObject);
+        if (thisAnimalCharacter.holdObject)
+            otherMind.UpdateObjectInfo(thisAnimalCharacter.holdObject);
 
-        if (me.sceneTool)
-            otherMind.UpdateSceneToolInfo(me.sceneTool);
+        if (thisAnimalCharacter.sceneTool)
+            otherMind.UpdateSceneToolInfo(thisAnimalCharacter.sceneTool);
     }
 
     //different input of animal character to update their minds
-    public void UpdateCharacterInfo(AnimalCharacter otherAnimalCharacter)
+    public void UpdateCharacterInfo(AnimalCharacter otherAnimalCharacter, AnimalCharacter thisAnimalCharacter)
     {
+        characterInfoList.
         string otherCharacterName = otherAnimalCharacter.characterName;
         int otherCharacterIndex = mindNames.IndexOf(otherCharacterName); // check if had met this character before
         if (otherCharacterIndex < 0) //not found
         {
             mindNames.Add(otherCharacterName);
+            // otherMinds and commonMinds are in the same order
             otherMinds.Add(new Mind());
             commonMinds.Add(new Mind());
             otherCharacterIndex = mindNames.Count - 1;
@@ -113,18 +115,18 @@ public class Mind
         Mind otherMind = otherMinds[otherCharacterIndex];
 
         //Add character states in mind
-        AnimalCharacterInfo acinfo = otherAnimalCharacter.GetAnimalCharacterInfo();
+        AnimalCharacterInfo thisAnimalCharacterInfo = thisAnimalCharacter.GetAnimalCharacterInfo();
         var otherMindCharacterInfoCount = otherMind.characterInfoList.Count;
-        if (otherMindCharacterInfoCount > 0) // already added
+        if (otherMindCharacterInfoCount > 0) // other mind's history is not empty
         {
-            if ((otherMind.characterInfoList[otherMindCharacterInfoCount - 1].recordTime - acinfo.recordTime) < meetTimeCoolDown)
+            if ((otherMind.characterInfoList[otherMindCharacterInfoCount - 1].recordTime - thisAnimalCharacterInfo.recordTime) < meetTimeCoolDown)
             {
-                UpdateCharacterInfoHelper(otherAnimalCharacter, acinfo, otherMind);
+                UpdateCharacterInfoHelper(thisAnimalCharacter, thisAnimalCharacterInfo, otherMind);
             }
         }
         else
         {
-            UpdateCharacterInfoHelper(otherAnimalCharacter, acinfo, otherMind);
+            UpdateCharacterInfoHelper(otherAnimalCharacter, thisAnimalCharacterInfo, otherMind);
         }
     }
 
